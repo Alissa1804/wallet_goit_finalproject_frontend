@@ -1,0 +1,18 @@
+:root {
+  /*background-colors*/
+  --primary-background-color: rgba(255, 255, 255, 0.4);
+  --secondary-background-color: #ffffff;
+
+  /*text colors*/
+  --dark-text-color: #000000;
+  --light-text-color: #ffffff;
+  --accent-text-color: #4a56e2;
+
+  /*colors*/
+  --green-color: #24cca7;
+  --red-color: #ff6596;
+
+  /*form-colors*/
+  --dark-form-color: #bdbdbd;
+  --light-form-color: #e0e0e0;
+}
