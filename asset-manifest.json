@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/wallet_goit_finalproject_frontend/static/css/main.94048e17.css",
-    "main.js": "/wallet_goit_finalproject_frontend/static/js/main.ef88981f.js",
+    "main.css": "/wallet_goit_finalproject_frontend/static/css/main.6262fa17.css",
+    "main.js": "/wallet_goit_finalproject_frontend/static/js/main.05b4d5e2.js",
     "index.html": "/wallet_goit_finalproject_frontend/index.html",
-    "main.94048e17.css.map": "/wallet_goit_finalproject_frontend/static/css/main.94048e17.css.map",
-    "main.ef88981f.js.map": "/wallet_goit_finalproject_frontend/static/js/main.ef88981f.js.map"
+    "main.6262fa17.css.map": "/wallet_goit_finalproject_frontend/static/css/main.6262fa17.css.map",
+    "main.05b4d5e2.js.map": "/wallet_goit_finalproject_frontend/static/js/main.05b4d5e2.js.map"
   },
   "entrypoints": [
-    "static/css/main.94048e17.css",
-    "static/js/main.ef88981f.js"
+    "static/css/main.6262fa17.css",
+    "static/js/main.05b4d5e2.js"
   ]
 }
