@@ -4,6 +4,9 @@
   "private": true,
   "homepage": "https://Alissa1804.github.io/wallet_goit_finalproject_frontend/",
   "dependencies": {
+    "@emotion/react": "^11.10.6",
+    "@emotion/styled": "^11.10.6",
+    "@mui/material": "^5.11.16",
     "@mui/x-date-pickers": "^6.0.4",
     "@reduxjs/toolkit": "^1.9.3",
     "@testing-library/jest-dom": "^5.16.3",

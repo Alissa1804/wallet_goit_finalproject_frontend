@@ -1,0 +1,36 @@
+@import '../../stylesheet/vars.css';
+@import '../../stylesheet/fonts.css';
+
+.header {
+  z-index: 1;
+  background-color: var(--green-color);
+  height: 60px;
+}
+
+.header__container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.logo__name {
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+@media screen and (min-width: 768px) {
+  .logo__name {
+    font-size: 30px;
+  }
+  .header {
+    height: 80px;
+  }
+  .headerContainer {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+}
