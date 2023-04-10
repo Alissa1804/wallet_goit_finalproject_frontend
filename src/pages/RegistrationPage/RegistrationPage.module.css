@@ -1,0 +1,50 @@
+@import '../../stylesheet/vars.css';
+@import '../../stylesheet/fonts.css';
+
+/*Mobile*/
+
+
+
+/*Desktop*/
+@media screen and (min-width: 1280px){
+.commonContainer {
+    display: flex;
+    align-items: center; 
+    justify-content: center;
+    background-color: #E7EAF2;
+}
+
+.leftContainer {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 153px 31px 77.5px 66px;
+      background-image: url(../../images/RegistrationPage/ellipse-desktop.png);
+    background-repeat: no-repeat;
+    background-position: bottom left;
+    
+
+}
+
+.regImage {
+  margin-bottom: 32px;
+  width: 452px;
+  height: 413px;
+}
+
+.title {
+  font-family: 'Poppins';
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 45px;
+}
+
+.rightContainer {
+    padding: 52px 91px 52px 107px;
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(25px);
+    background-image: url(../../images/RegistrationPage/background-desktop.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+}
