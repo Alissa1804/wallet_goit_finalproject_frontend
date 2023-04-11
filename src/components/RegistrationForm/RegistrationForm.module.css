@@ -1,0 +1,197 @@
+@import '../../stylesheet/vars.css';
+@import '../../stylesheet/fonts.css';
+
+.form {
+  margin: 0px auto;
+  width: 320px;
+  padding: 32px 20px 36px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(255, 255, 255);
+}
+
+.logoContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 60px;
+}
+
+.logo {
+  margin-right: 15px;
+}
+
+.title {
+  font-family: 'Poppins';
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 0.85;
+
+  color: var(--dark-text-color);
+}
+
+.inputContainer {
+  position: relative;
+  margin-bottom: 40px;
+}
+
+.input {
+  font-family: 'Circe';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.5;
+
+  color: #bdbdbd;
+
+  border: none;
+  outline: none;
+  border-bottom: 1px solid #e0e0e0;
+  padding: 8px 8px 8px 54px;
+}
+
+.inputIcon {
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  left: 10px;
+  top: 20%;
+}
+
+.buttonContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.mainButton {
+  font-family: 'Circe';
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.5;
+  text-align: center;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+
+  color: var(--light-text-color);
+  background: var(--green-color);
+  outline: none;
+  border: none;
+  border-radius: 20px;
+
+  padding: 13px 65px 13px 71px;
+  margin-bottom: 20px;
+
+  cursor: pointer;
+}
+
+.secondaryButton {
+  font-family: 'Circe';
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.5;
+  text-align: center;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+
+  color: #ffffff;
+  background: #ffffff;
+  border: 1px solid var(--accent-text-color);
+  border-radius: 20px;
+
+  padding: 13px 55px 13px 61px;
+
+  cursor: pointer;
+}
+
+/*Desktop*/
+@media screen and (min-width: 1280px) {
+  .form {
+    width: 468px;
+    padding: 40px 58.5px 66px 65px;
+    border-radius: 20px;
+  }
+
+  .logo {
+    margin-right: 20px;
+  }
+
+  .title {
+    font-size: 30px;
+    line-height: 1.5;
+  }
+
+
+  .input {
+    font-family: 'Circe';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 27px;
+
+    color: #bdbdbd;
+
+    border: none;
+    outline: none;
+    border-bottom: 1px solid #e0e0e0;
+    width: 409.5px;
+    padding: 8px 8px 8px 54px;
+    margin-right: 22px;
+  }
+
+  .inputIcon {
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    left: 10px;
+    top: 20%;
+  }
+
+  .buttonContainer {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .mainButton {
+    font-family: 'Circe';
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 27px;
+    text-align: center;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+
+    color: var(--light-text-color);
+    background: var(--green-color);
+    outline: none;
+    border: none;
+    border-radius: 20px;
+
+    padding: 13px 65px 13px 71px;
+    margin-bottom: 20px;
+
+    cursor: pointer;
+  }
+
+  .secondaryButton {
+    font-family: 'Circe';
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 27px;
+    text-align: center;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+
+    color: #ffffff;
+    background: #ffffff;
+    border: 1px solid var(--accent-text-color);
+    border-radius: 20px;
+
+    padding: 13px 65px 13px 71px;
+    /* margin-bottom: 20px; */
+
+    cursor: pointer;
+  }
+}
