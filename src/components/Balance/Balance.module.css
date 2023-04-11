@@ -4,12 +4,29 @@
 /*Mobile*/
 
 .balance {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  background-color: var(--secondary-background-color);
+  align-items: center;
+  border-radius: 30px;
+  margin: 0 20px 32px;
 }
 .balance__text {
   color: var(--placeholder-color);
-  font-family: 'Circe';
+  font-family: Circe;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.5;
+  padding-left: 32px;
+  padding-right: 130px;
 }
 .balance__amount {
   color: var(--dark-text-color);
-  font-family: 'Poppins';
+  font-family: Poppins;
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 1.5;
+  padding-left: 32px;
 }
