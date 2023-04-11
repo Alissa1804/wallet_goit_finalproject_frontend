@@ -37,3 +37,4 @@ const authPersistConfig = {
       store.getState().auth.token
     }`;
   });
+
