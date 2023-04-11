@@ -3,48 +3,67 @@
 
 /*Mobile*/
 
+/*Tablet*/
+@media screen and (min-width: 768px) {
+  .commonContainer {
+    background-image: url(../../images/RegistrationPage/Tablet/ellipse-tablet-purple.png),
+      url(../../images/RegistrationPage/Tablet/ellipse-tablet-pink.png);
+
+    background-repeat: no-repeat, no-repeat;
+    background-position: bottom left, top right;
+    background-color: #e7eaf2;
+  }
 
 
-/*Desktop*/
-@media screen and (min-width: 1280px){
-.commonContainer {
+  .logoContainer {
     display: flex;
-    align-items: center; 
     justify-content: center;
-    background-color: #E7EAF2;
+    align-items: center;
+    padding-top: 60px;
+  }
+
+  .regImage {
+    margin-bottom: 32px;
+    width: 274px;
+    height: 250px;
+  }
+
+  .title {
+    font-family: 'Poppins';
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 1.5;
+  }
+
+  .formContainer {
+    padding: 52px 91px 52px 107px;
+  }
 }
 
-.leftContainer {
+/*Desktop*/
+@media screen and (min-width: 1280px) {
+  .commonContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .logoContainer {
     display: flex;
     align-items: center;
     flex-direction: column;
     padding: 153px 31px 77.5px 66px;
-      background-image: url(../../images/RegistrationPage/ellipse-desktop.png);
-    background-repeat: no-repeat;
-    background-position: bottom left;
-    
+  }
 
-}
+  .regImage {
+    margin-bottom: 32px;
+    width: 452px;
+    height: 413px;
+  }
 
-.regImage {
-  margin-bottom: 32px;
-  width: 452px;
-  height: 413px;
-}
-
-.title {
-  font-family: 'Poppins';
-  font-weight: 400;
-  font-size: 30px;
-  line-height: 45px;
-}
-
-.rightContainer {
+  .formContainer {
     padding: 52px 91px 52px 107px;
     background: rgba(255, 255, 255, 0.4);
     backdrop-filter: blur(25px);
-    background-image: url(../../images/RegistrationPage/background-desktop.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
-}
+  }
 }
