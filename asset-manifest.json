@@ -1,17 +1,20 @@
 {
   "files": {
-    "main.css": "/wallet_goit_finalproject_frontend/static/css/main.08905bed.css",
-    "main.js": "/wallet_goit_finalproject_frontend/static/js/main.860bdf79.js",
+    "main.css": "/wallet_goit_finalproject_frontend/static/css/main.5e523317.css",
+    "main.js": "/wallet_goit_finalproject_frontend/static/js/main.b5a386b8.js",
     "static/media/Circe-Bold.otf": "/wallet_goit_finalproject_frontend/static/media/Circe-Bold.3829a43ce57f35080843.otf",
     "static/media/Circe-Regular.otf": "/wallet_goit_finalproject_frontend/static/media/Circe-Regular.c2a2631afc6d5bb5c30b.otf",
     "static/media/Poppins-Regular.ttf": "/wallet_goit_finalproject_frontend/static/media/Poppins-Regular.4211496d0e075ffe7c2f.ttf",
     "static/media/Poppins-Bold.ttf": "/wallet_goit_finalproject_frontend/static/media/Poppins-Bold.300a4da54f1e6258b6f7.ttf",
+    "static/media/frame-desktop.png": "/wallet_goit_finalproject_frontend/static/media/frame-desktop.5d52b14df26fa5db288e.png",
+    "static/media/background-desktop.jpg": "/wallet_goit_finalproject_frontend/static/media/background-desktop.e495e8744ed23ba1c39b.jpg",
+    "static/media/logo.svg": "/wallet_goit_finalproject_frontend/static/media/logo.2e8c127a95c7317a83a5e9e275a21ef5.svg",
     "index.html": "/wallet_goit_finalproject_frontend/index.html",
-    "main.08905bed.css.map": "/wallet_goit_finalproject_frontend/static/css/main.08905bed.css.map",
-    "main.860bdf79.js.map": "/wallet_goit_finalproject_frontend/static/js/main.860bdf79.js.map"
+    "main.5e523317.css.map": "/wallet_goit_finalproject_frontend/static/css/main.5e523317.css.map",
+    "main.b5a386b8.js.map": "/wallet_goit_finalproject_frontend/static/js/main.b5a386b8.js.map"
   },
   "entrypoints": [
-    "static/css/main.08905bed.css",
-    "static/js/main.860bdf79.js"
+    "static/css/main.5e523317.css",
+    "static/js/main.b5a386b8.js"
   ]
 }
