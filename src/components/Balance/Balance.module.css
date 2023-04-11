@@ -1,0 +1,15 @@
+@import '../../stylesheet/vars.css';
+@import '../../stylesheet/fonts.css';
+
+/*Mobile*/
+
+.balance {
+}
+.balance__text {
+  color: var(--placeholder-color);
+  font-family: 'Circe';
+}
+.balance__amount {
+  color: var(--dark-text-color);
+  font-family: 'Poppins';
+}

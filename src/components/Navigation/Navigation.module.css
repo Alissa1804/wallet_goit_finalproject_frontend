@@ -1,0 +1,21 @@
+@import '../../stylesheet/vars.css';
+@import '../../stylesheet/fonts.css';
+
+/*Mobile*/
+
+.navigation {
+  display: flex;
+  gap: 38px;
+  justify-content: center;
+}
+.navigation__item {
+  width: 36px;
+  height: 36px;
+  background-color: var(--accent-text-color);
+  border-radius: 6px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--light-text-color);
+}
