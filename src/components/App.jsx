@@ -1,5 +1,4 @@
 //import { Loader } from './Loader/Loader';
-//import { Header } from './Header/header';
 import { Routes, Route } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -31,7 +30,6 @@ export const App = () => {
   //   <>
   return (
     // <div>
-    //   <Header />
     //   <Loader />
     // </div>
     <>
