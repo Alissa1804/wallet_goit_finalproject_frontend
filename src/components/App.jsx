@@ -30,7 +30,7 @@ export const App = () => {
   //   <>
   return (
     // <div>
-    //   <Loader />
+    //   <Loader />/
     // </div>
     <>
       <Routes>
