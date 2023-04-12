@@ -11,6 +11,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { RegistrationPage } from 'pages/RegistrationPage/RegistrationPage';
 
 import { PublicRoute } from 'HOCs/PublicRoute';
+import DashboardPage from 'pages/DashboardPage/DashboardPage';
 
 // import { useAuth } from 'hooks/useAuth';
 
@@ -40,6 +41,10 @@ export const App = () => {
           element={
             <PublicRoute redirectTo="/" component={<RegistrationPage />} />
           }
+        />
+        <Route
+          path="/dashboard"
+          element={<PublicRoute redirectTo="/" component={<DashboardPage />} />}
         />
       </Routes>
       <ToastContainer position="bottom-right" />

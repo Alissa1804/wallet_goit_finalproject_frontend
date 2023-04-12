@@ -1,0 +1,8 @@
+@import '../../stylesheet/vars.css';
+@import '../../stylesheet/fonts.css';
+
+/*Mobile*/
+
+.dashboard {
+  background-color: var(--primary-background-color);
+}

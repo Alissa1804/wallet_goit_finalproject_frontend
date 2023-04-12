@@ -1,0 +1,13 @@
+@import '../../stylesheet/vars.css';
+@import '../../stylesheet/fonts.css';
+
+/*Mobile*/
+.transactions {
+  margin: 0 20px;
+}
+.transactions__list {
+}
+.transactions__item {
+  display: flex;
+  flex-wrap: wrap;
+}
