@@ -6,3 +6,13 @@
 .dashboard {
   background-color: var(--primary-background-color);
 }
+.dashboard__content {
+  padding: 12px 20px;
+}
+
+.dashboard__navigation {
+  margin-bottom: 15px;
+}
+.dashboard__balance {
+  margin-bottom: 32px;
+}
