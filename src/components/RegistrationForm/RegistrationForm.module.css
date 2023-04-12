@@ -1,6 +1,7 @@
 @import '../../stylesheet/vars.css';
 @import '../../stylesheet/fonts.css';
 
+/*Mobile*/
 .form {
   margin: 0px auto;
   width: 320px;
@@ -106,11 +107,11 @@
   cursor: pointer;
 }
 
-/*Desktop*/
-@media screen and (min-width: 1280px) {
+/*Tablet*/
+@media screen and (min-width: 768px) {
   .form {
-    width: 468px;
-    padding: 40px 58.5px 66px 65px;
+    width: 409px;
+    padding: 40px 59px 66px 65px;
     border-radius: 20px;
   }
 
@@ -123,75 +124,7 @@
     line-height: 1.5;
   }
 
-
   .input {
-    font-family: 'Circe';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 18px;
-    line-height: 27px;
-
-    color: #bdbdbd;
-
-    border: none;
-    outline: none;
-    border-bottom: 1px solid #e0e0e0;
-    width: 409.5px;
-    padding: 8px 8px 8px 54px;
-    margin-right: 22px;
-  }
-
-  .inputIcon {
-    width: 24px;
-    height: 24px;
-    position: absolute;
-    left: 10px;
-    top: 20%;
-  }
-
-  .buttonContainer {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .mainButton {
-    font-family: 'Circe';
-    font-weight: 400;
-    font-size: 18px;
-    line-height: 27px;
-    text-align: center;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-
-    color: var(--light-text-color);
-    background: var(--green-color);
-    outline: none;
-    border: none;
-    border-radius: 20px;
-
-    padding: 13px 65px 13px 71px;
-    margin-bottom: 20px;
-
-    cursor: pointer;
-  }
-
-  .secondaryButton {
-    font-family: 'Circe';
-    font-weight: 400;
-    font-size: 18px;
-    line-height: 27px;
-    text-align: center;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-
-    color: #ffffff;
-    background: #ffffff;
-    border: 1px solid var(--accent-text-color);
-    border-radius: 20px;
-
-    padding: 13px 65px 13px 71px;
-    /* margin-bottom: 20px; */
-
-    cursor: pointer;
+    width: 409px;
   }
 }
