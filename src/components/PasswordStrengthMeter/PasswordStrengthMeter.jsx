@@ -8,8 +8,8 @@ export const PasswordStrengthMeter = ({ password }) => {
 
   const funcProgressColor = () => {
     switch(testResult.score) {
-      case 0:
-        return '#828282';
+      // case 0:
+      //   return '#828282';
       case 1:
         return '#EA1111';
       case 2:
@@ -31,8 +31,8 @@ export const PasswordStrengthMeter = ({ password }) => {
 
   const createPasswordLabel = () => {
     switch(testResult.score) {
-        case 0:
-          return 'Very weak';
+        // case 0:
+        //   return 'Very weak';
         case 1:
           return 'Weak';
         case 2:
@@ -42,7 +42,7 @@ export const PasswordStrengthMeter = ({ password }) => {
         case 4:
           return 'Strong';
         default:
-          return 'none';
+          return '';
   }
 }
 

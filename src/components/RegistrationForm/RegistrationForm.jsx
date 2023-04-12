@@ -70,7 +70,7 @@ export const RegistrationForm = () => {
             <h1 className={styles.title}>Wallet</h1>
           </div>
           {touched.email && errors.email ? (
-            <p style={{ color: 'red' }}>{errors.email}</p>
+            <p className={styles.textValidation}>{errors.email}</p>
           ) : null}
           <div className={styles.inputContainer}>
             <EmailIcon
@@ -89,7 +89,7 @@ export const RegistrationForm = () => {
             />
           </div>
           {touched.password && errors.password ? (
-            <p style={{ color: 'red' }}>{errors.password}</p>
+            <p className={styles.textValidation}>{errors.password}</p>
           ) : null}
           <div className={styles.inputContainer}>
             <LockIcon
@@ -111,7 +111,7 @@ export const RegistrationForm = () => {
           </div>
 
           {touched.confirmPassword && errors.confirmPassword ? (
-            <p style={{ color: 'red' }}>{errors.confirmPassword}</p>
+            <p className={styles.textValidation}>{errors.confirmPassword}</p>
           ) : null}
           <div className={styles.inputContainer}>
             <LockIcon
@@ -130,7 +130,7 @@ export const RegistrationForm = () => {
             />
           </div>
           {touched.name && errors.name ? (
-            <p style={{ color: 'red' }}>{errors.name}</p>
+            <p className={styles.textValidation}>{errors.name}</p>
           ) : null}
 
           <div className={styles.inputContainer}>
