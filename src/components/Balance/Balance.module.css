@@ -4,13 +4,9 @@
 /*Mobile*/
 
 .balance {
-  display: flex;
-  justify-content: flex-start;
-  flex-wrap: wrap;
   background-color: var(--secondary-background-color);
-  align-items: center;
   border-radius: 30px;
-  margin: 0 20px 32px;
+  padding: 8px 32px;
 }
 .balance__text {
   color: var(--placeholder-color);
@@ -19,14 +15,15 @@
   font-weight: 400;
   font-size: 12px;
   line-height: 1.5;
-  padding-left: 32px;
-  padding-right: 130px;
+  text-transform: uppercase;
 }
 .balance__amount {
   color: var(--dark-text-color);
   font-family: Poppins;
-  font-weight: 400;
+  font-weight: 700;
   font-size: 30px;
   line-height: 1.5;
-  padding-left: 32px;
+}
+.balance__currency {
+  font-weight: 400;
 }
