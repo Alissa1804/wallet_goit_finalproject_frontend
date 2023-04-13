@@ -4,10 +4,12 @@ import Navigation from 'components/Navigation/Navigation';
 import Balance from 'components/Balance/Balance';
 import Transactions from 'components/Transactions/Transactions';
 import { Header } from '../../components/Header/Header';
+import { ModalLogout } from '../../components/ModalLogout/ModalLogout';
 
 function DashboardPage() {
   return (
     <div className={styles.dashboard}>
+      <ModalLogout />
       <Header />
       <div className={styles.dashboard__content}>
         <div className={styles.dashboard__navigation}>
