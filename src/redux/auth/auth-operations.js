@@ -1,4 +1,6 @@
 import axios from 'axios';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 axios.defaults.baseURL = 'https://walletproject.onrender.com';
@@ -14,26 +16,28 @@ const token = {
 
 export const register = createAsyncThunk(
   'auth/register',
-  async (userData, { rejectWithValue }) => {
+  async (credentials, { rejectWithValue }) => {
     try {
-      const { data } = await axios.post('/api/users/', userData);
+      const { data } = await axios.post('/api/users', credentials);
+      toast.success('Registration is successful!');
       token.set(data.token);
       return data;
     } catch (error) {
-      return rejectWithValue(error);
+      return rejectWithValue(toast.error('Email is already in use'));
     }
   }
 );
 
 export const login = createAsyncThunk(
   'auth/login',
-  async (userData, { rejectWithValue }) => {
+  async (credentials, { rejectWithValue }) => {
     try {
-      const { data } = await axios.post('/api/users/login', userData);
+      const { data } = await axios.post('/api/users/login', credentials);
       token.set(data.token);
+      toast.success(`Welcome, ${data.user.name}!`);
       return data;
     } catch (error) {
-      return rejectWithValue(error);
+      return rejectWithValue(toast.error('Incorrect password or email'));
     }
   }
 );
@@ -44,11 +48,13 @@ export const logout = createAsyncThunk(
     try {
       await axios.post('/api/users/logout');
       token.unset();
+      toast.success('You are logged out');
     } catch (error) {
       return rejectWithValue(error);
     }
   }
 );
+
 
 export const fetchCurrentUser = createAsyncThunk(
   'auth/refresh',
@@ -60,7 +66,6 @@ export const fetchCurrentUser = createAsyncThunk(
     token.set(tokenLS);
     try {
       const { data } = await axios.get('/api/users/current');
-
       return data;
     } catch (error) {
       return rejectWithValue(error);

@@ -12,8 +12,8 @@
     background-repeat: no-repeat, no-repeat;
     background-position: bottom left, top right;
     background-color: #e7eaf2;
-  }
 
+  }
 
   .logoContainer {
     display: flex;
@@ -72,7 +72,7 @@
     align-items: center;
     justify-content: center;
     padding: 52px 91px 52px 107px;
-    background: rgba(255, 255, 255, 0.4);
+    background-color: rgba(255, 255, 255, 0.4);
     backdrop-filter: blur(25px);
   }
 }
