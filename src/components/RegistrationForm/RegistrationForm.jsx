@@ -13,7 +13,7 @@ import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import styles from './RegistrationForm.module.css';
 
 import logo from '../../images/logo.svg';
-import { register } from 'redux/auth/authOperations';
+import { register } from 'redux/auth/auth-operations';
 import  {PasswordStrengthMeter}  from '../PasswordStrengthMeter/PasswordStrengthMeter';
 
 export const RegistrationForm = () => {
@@ -64,15 +64,28 @@ export const RegistrationForm = () => {
         values,
         errors
       }) => (
+        <div className={styles.containerForForm}>
         <Form className={styles.form}>
           <div className={styles.logoContainer}>
             <img className={styles.logo} alt="Logo" src={logo} />
             <h1 className={styles.title}>Wallet</h1>
           </div>
-          {touched.email && errors.email ? (
-            <p style={{ color: 'red' }}>{errors.email}</p>
-          ) : null}
           <div className={styles.inputContainer}>
+            {touched.email && errors.email ? (
+              <p
+                style={{
+                  color: '#ff6596',
+                  position: 'absolute',
+                  bottom: '-30px',
+                  left: '0',
+                  fontFamily: 'Poppins',
+                  fontSize: '13px',
+                }}
+              >
+                {errors.email}
+              </p>
+            ) : null}
+
             <EmailIcon
               className={styles.inputIcon}
               style={{ color: '#e0e0e0' }}
@@ -88,10 +101,22 @@ export const RegistrationForm = () => {
               onBlur={handleBlur}
             />
           </div>
-          {touched.password && errors.password ? (
-            <p style={{ color: 'red' }}>{errors.password}</p>
-          ) : null}
           <div className={styles.inputContainer}>
+            {touched.password && errors.password ? (
+              <p
+                style={{
+                  color: '#ff6596',
+                  position: 'absolute',
+                  bottom: '-30px',
+                  left: '0',
+                  fontFamily: 'Poppins',
+                  fontSize: '13px',
+                }}
+              >
+                {errors.password}
+              </p>
+            ) : null}
+
             <LockIcon
               className={styles.inputIcon}
               style={{ color: '#e0e0e0' }}
@@ -105,15 +130,26 @@ export const RegistrationForm = () => {
               value={values.password}
               onChange={handleChange}
               onBlur={handleBlur}
-              onInput={(e) => setPassword(e.target.value)}
+              onInput={e => setPassword(e.target.value)}
             />
-            <PasswordStrengthMeter password={password}/>
+            <PasswordStrengthMeter password={password} />
           </div>
-
-          {touched.confirmPassword && errors.confirmPassword ? (
-            <p style={{ color: 'red' }}>{errors.confirmPassword}</p>
-          ) : null}
           <div className={styles.inputContainer}>
+            {touched.confirmPassword && errors.confirmPassword ? (
+              <p
+                style={{
+                  color: '#ff6596',
+                  position: 'absolute',
+                  bottom: '-30px',
+                  left: '0',
+                  fontFamily: 'Poppins',
+                  fontSize: '13px',
+                }}
+              >
+                {errors.confirmPassword}
+              </p>
+            ) : null}
+
             <LockIcon
               className={styles.inputIcon}
               style={{ color: '#e0e0e0' }}
@@ -129,11 +165,22 @@ export const RegistrationForm = () => {
               onBlur={handleBlur}
             />
           </div>
-          {touched.name && errors.name ? (
-            <p style={{ color: 'red' }}>{errors.name}</p>
-          ) : null}
-
           <div className={styles.inputContainer}>
+            {touched.name && errors.name ? (
+              <p
+                style={{
+                  color: '#ff6596',
+                  position: 'absolute',
+                  bottom: '-30px',
+                  left: '0',
+                  fontFamily: 'Poppins',
+                  fontSize: '13px',
+                }}
+              >
+                {errors.name}
+              </p>
+            ) : null}
+
             <AccountBoxIcon
               className={styles.inputIcon}
               style={{ color: '#e0e0e0' }}
@@ -162,6 +209,7 @@ export const RegistrationForm = () => {
             </button>
           </div>
         </Form>
+      </div>
       )}
     </Formik>
   );
