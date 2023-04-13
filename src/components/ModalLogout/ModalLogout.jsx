@@ -1,4 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux';
+import { useEffect } from 'react';
 import { toggleModalOpen } from '../../redux/global/global-slice';
 import styles from './ModalLogout.module.css';
 
@@ -11,6 +12,20 @@ export const ModalLogout = () => {
       dispatch(toggleModalOpen());
     }
   };
+
+  useEffect(() => {
+    const handleKeyDown = event => {
+      if (event.code === 'Escape') {
+        dispatch(toggleModalOpen());
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [dispatch]);
 
   return (
     <>
