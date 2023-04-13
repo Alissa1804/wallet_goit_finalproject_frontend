@@ -1,5 +1,4 @@
 //import { Loader } from './Loader/Loader';
-//import { Header } from './Header/header';
 import { Routes, Route } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -9,9 +8,10 @@ import 'react-toastify/dist/ReactToastify.css';
 // import { PrivateRoute } from 'HOCs/PrivateRoute';
 // import { RestrictedRoute } from 'HOCs/RestrictedRoute';
 import { RegistrationPage } from 'pages/RegistrationPage/RegistrationPage';
+import { LoginPage } from 'pages/LoginPage/LoginPage';
+import DashboardPage from 'pages/DashboardPage/DashboardPage';
 
 import { PublicRoute } from 'HOCs/PublicRoute';
-import DashboardPage from 'pages/DashboardPage/DashboardPage';
 
 // import { useAuth } from 'hooks/useAuth';
 
@@ -31,8 +31,7 @@ export const App = () => {
   //   <>
   return (
     // <div>
-    //   <Header />
-    //   <Loader />
+    //   <Loader />/
     // </div>
     <>
       <Routes>
@@ -43,9 +42,15 @@ export const App = () => {
           }
         />
         <Route
+          path="/login"
+          element={<PublicRoute redirectTo="/dashboard" component={<LoginPage />} />}
+        />
+
+        <Route
           path="/dashboard"
           element={<PublicRoute redirectTo="/" component={<DashboardPage />} />}
         />
+
       </Routes>
       <ToastContainer position="bottom-right" />
     </>
