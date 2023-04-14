@@ -93,10 +93,12 @@
 @media screen and (min-width: 768px) {
   .transactions {
     width: 100%;
+    box-sizing: border-box;
   }
   .transactions__tbl {
     border-collapse: collapse;
     width: 100%;
+    box-sizing: border-box;
   }
 
   .transactions__tbl_title:first-child {
@@ -126,7 +128,6 @@
     line-height: 1.5;
     color: var(--dark-text-color);
     padding: 16px 20px 12px;
-    white-space: nowrap;
   }
   .transactions__tbl_item:nth-child(2),
   .transactions__tbl_title:nth-child(2) {
@@ -169,9 +170,11 @@
   }
   .transactions__red {
     color: var(--red-color);
+    white-space: nowrap;
   }
   .transactions__green {
     color: var(--green-color);
+    white-space: nowrap;
   }
 }
 

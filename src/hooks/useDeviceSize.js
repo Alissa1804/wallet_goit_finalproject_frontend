@@ -23,7 +23,7 @@ export function useDeviceSize() {
       return 'tablet';
     }
     return 'descktop';
-  });
+  }, [dimensions.width]);
 
   return {
     width: dimensions.width,

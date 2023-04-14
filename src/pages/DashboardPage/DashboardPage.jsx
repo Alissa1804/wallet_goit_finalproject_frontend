@@ -28,15 +28,31 @@ function DashboardPage() {
           <div className={styles.dashboard__balance}>
             <Balance amount="24 000.00" />{' '}
           </div>
+          {deviceType === 'descktop' && (
+            <div className={styles.dashboard__currency}>
+              <Currency />
+            </div>
+          )}
         </div>
         <div className={styles.dashboard__right}>
-          <div className={styles.dashboard__currency}>
-            <Currency />
-          </div>
+          {deviceType === 'descktop' ? (
+            <>
+              <Transactions />
+              <Statistics />
+            </>
+          ) : (
+            <div className={styles.dashboard__currency}>
+              <Currency />
+            </div>
+          )}
         </div>
+        {deviceType !== 'descktop' && (
+          <>
+            <Transactions />
+            <Statistics />
+          </>
+        )}
 
-        <Transactions />
-        <Statistics />
         <AddTransactionBtn />
       </div>
     </div>
