@@ -27,6 +27,7 @@
   line-height: 1.5;
   color: var(--light-text-color);
   padding-top: 12px;
+  text-align: left;
   padding-bottom: 12px;
 }
 .currency__tbl_title:first-child {
@@ -34,6 +35,7 @@
 }
 .currency__tbl_title:last-child {
   padding-right: 17px;
+  text-align: right;
 }
 .currency__tbl_item {
   font-family: 'Circe';
@@ -43,6 +45,14 @@
   line-height: 1.5;
   color: var(--light-text-color);
   padding: 12px 20px;
+}
+.currency__tbl_item:nth-child(2) {
+  padding-left: 0;
+  padding-right: 0;
+}
+.currency__tbl_item:last-child {
+  padding-right: 17px;
+  text-align: right;
 }
 
 /*Tablet*/

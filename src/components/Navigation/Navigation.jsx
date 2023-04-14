@@ -8,15 +8,22 @@ function Navigation() {
   return (
     <div className={styles.navigation}>
       <div className={styles.navigation__item}>
-        <HomeIcon />
+        <div className={styles.navigation__icon}>
+          <HomeIcon fontSize="inherit" />
+        </div>
         <div className={styles.navigation__text}>Home</div>
       </div>
       <div className={styles.navigation__item}>
-        <TimelineIcon />
-        <div className={styles.navigation__text}>Home</div>
+        <div className={styles.navigation__icon}>
+          <TimelineIcon fontSize="inherit" />
+        </div>
+
+        <div className={styles.navigation__text}>Statistics</div>
       </div>
       <div className={styles.navigation__item}>
-        <AttachMoneyIcon />
+        <div className={styles.navigation__icon}>
+          <AttachMoneyIcon fontSize="inherit" />
+        </div>
       </div>
     </div>
   );

@@ -8,7 +8,8 @@
   gap: 38px;
   justify-content: center;
 }
-.navigation__item {
+
+.navigation__icon {
   width: 36px;
   height: 36px;
   background-color: var(--accent-text-color);
@@ -17,6 +18,7 @@
   justify-content: center;
   align-items: center;
   color: var(--light-text-color);
+  font-size: 30px;
 }
 .navigation__text {
   display: none;
@@ -24,8 +26,28 @@
 
 /*Tablet*/
 @media screen and (min-width: 768px) {
+  .navigation {
+    flex-direction: column;
+    gap: 12px;
+  }
   .navigation__text {
     display: block;
+    font-family: 'Poppins';
+    font-size: 18px;
+    line-height: 1.5;
+  }
+  .navigation__item {
+    display: flex;
+    gap: 23px;
+    align-items: center;
+  }
+  .navigation__item:last-child {
+    display: none;
+  }
+  .navigation__icon {
+    width: 18px;
+    height: 18px;
+    font-size: 14px;
   }
 }
 
