@@ -3,6 +3,7 @@
 
 /*Mobile*/
 .currency {
+  position: relative;
   background-color: #4a56e2;
   border-radius: 30px;
   min-height: 174px;

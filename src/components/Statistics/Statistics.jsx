@@ -1,5 +1,6 @@
 import ChartDoughnut from 'components/Chart/Chart';
 import styles from './Statistics.module.css';
+import { DatePickers } from 'components/DatePicker/DatePicker';
 
 export const Statistics = () => {
   return (
@@ -10,6 +11,9 @@ export const Statistics = () => {
           <ChartDoughnut />
         </div>
         <div className={styles.container__right}>
+          <div className={styles.pickers__container}>
+            <DatePickers />
+          </div>
           <ul className={styles.title}>
             <li>Category</li>
             <li>Sum</li>

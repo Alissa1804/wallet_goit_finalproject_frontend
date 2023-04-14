@@ -2,6 +2,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { toggleModalOpen } from '../../redux/global/global-slice';
 import styles from './ModalLogout.module.css';
+import { logout } from 'redux/auth/auth-operations';
 
 export const ModalLogout = () => {
   const isModalOpen = useSelector(state => state.global.isModalOpen);
@@ -38,6 +39,7 @@ export const ModalLogout = () => {
                 title="logout"
                 className={styles.button}
                 onClick={() => {
+                  dispatch(logout());
                   dispatch(toggleModalOpen());
                 }}
               >

@@ -13,7 +13,7 @@
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background: #4a56e2;
+  background: #7e87e2;
   animation: lds-grid 1.2s linear infinite;
 }
 .loader div:nth-child(1) {

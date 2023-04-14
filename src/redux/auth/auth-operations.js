@@ -46,15 +46,16 @@ export const logout = createAsyncThunk(
   'auth/logout',
   async (_, { rejectWithValue }) => {
     try {
-      await axios.post('/api/users/logout');
+      await axios.get('/api/users/logout');
       token.unset();
       toast.success('You are logged out');
     } catch (error) {
-      return rejectWithValue(error);
+      return rejectWithValue(
+        toast.error('Something went wrong. Please, try again')
+      );
     }
   }
 );
-
 
 export const fetchCurrentUser = createAsyncThunk(
   'auth/refresh',

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styles from './Currency.module.css';
 import { getCurrency } from './getCurrency';
+import { Loader } from 'components/Loader/Loader';
 
 function Currency() {
   const [currencyData, setCurrencyData] = useState(null);
@@ -13,7 +14,11 @@ function Currency() {
   }, []);
 
   if (!currencyData) {
-    return <div>Loading...</div>;
+    return (
+      <div className={styles.currency}>
+        <Loader />
+      </div>
+    );
   }
 
   const eurBuy = currencyData.eur.buy;

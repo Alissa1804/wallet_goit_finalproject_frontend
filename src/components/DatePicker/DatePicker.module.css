@@ -1,0 +1,36 @@
+@import 'react-datetime/css/react-datetime.css';
+
+.picker__input {
+  padding: 12px 20px;
+  border: 1px solid #000000;
+  border-radius: 30px;
+  background-color: transparent;
+  font-size: 16px;
+  cursor: pointer;
+  font-family: 'Circe';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.picker input {
+  width: 100%;
+}
+
+.picker {
+  display: flex;
+  margin-top: 10px;
+  border-radius: 4px;
+  padding: 0;
+}
+
+.DatePicker_picker__vpN-N {
+  padding: 0;
+}
+
+@media screen and (min-width: 768px) {
+  .picker input {
+    width: 160px;
+  }
+}
