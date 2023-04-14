@@ -1,6 +1,6 @@
-const { default: axios } = require('axios');
-async function getCurrency() {
-  //const response = await axios('https://walletproject.onrender.com/transactions/currency')
+import axios from 'axios';
+export async function getCurrency() {
+  //const response = await axios('https://walletproject.onrender.com/transactions/currency')  // Использовать в конечном варианте
   const response = await axios(
     'http://localhost:3000/api/transactions/currency'
   );
@@ -10,13 +10,13 @@ async function getCurrency() {
   response.data.currency.forEach(currency => {
     switch (currency.ccy) {
       case 'EUR':
-        currencyData.euro = {
+        currencyData.eur = {
           buy: currency.buy,
           sale: currency.sale,
         };
         break;
       case 'USD':
-        currencyData.dollar = {
+        currencyData.usd = {
           buy: currency.buy,
           sale: currency.sale,
         };
@@ -29,17 +29,3 @@ async function getCurrency() {
 
   return currencyData;
 }
-//Где будет необходимо в коде, вот так как ниже описано можно вызывать функцию для получения валюты
-
-// getCurrency()
-//   .then(currencyData => {
-//     EUR = currencyData.euro;
-//     console.log('foo', currencyData.euro);
-//   })
-//   .catch(error => {
-//     console.log(error);
-//   });
-
-// console.log('EUR', EUR);
-
-module.exports = getCurrency;
