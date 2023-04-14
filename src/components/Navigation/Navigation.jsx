@@ -9,9 +9,11 @@ function Navigation() {
     <div className={styles.navigation}>
       <div className={styles.navigation__item}>
         <HomeIcon />
+        <div className={styles.navigation__text}>Home</div>
       </div>
       <div className={styles.navigation__item}>
         <TimelineIcon />
+        <div className={styles.navigation__text}>Home</div>
       </div>
       <div className={styles.navigation__item}>
         <AttachMoneyIcon />

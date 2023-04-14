@@ -5,6 +5,9 @@
 .transactions {
 }
 .transactions__list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 .transactions__item {
   border-radius: 10px;
@@ -20,7 +23,12 @@
   padding-bottom: 8px;
   padding-left: 20px;
   padding-right: 20px;
+}
+.transactions__item:nth-child(odd) .transactions__row {
   border-left: 5px solid var(--red-color);
+}
+.transactions__item:nth-child(even) .transactions__row {
+  border-left: 5px solid var(--green-color);
 }
 
 .transactions__th {
@@ -65,7 +73,8 @@
 .transactions__button_edit {
   display: flex;
   justify-content: center;
-  align-content: center;
+  align-items: center;
+  gap: 2px;
 }
 .transactions__btn_e {
   border-radius: 18px;
@@ -78,5 +87,13 @@
   line-height: 1.5;
   text-align: center;
   letter-spacing: 0.02em;
-  padding: 2px;
+  padding: 0;
+}
+
+/*Tablet*/
+@media screen and (min-width: 768px) {
+}
+
+/*Desktop*/
+@media screen and (min-width: 1280px) {
 }
