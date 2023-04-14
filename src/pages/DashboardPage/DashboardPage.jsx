@@ -5,13 +5,17 @@ import Balance from 'components/Balance/Balance';
 import Transactions from 'components/Transactions/Transactions';
 import { Header } from '../../components/Header/Header';
 import Currency from '../../components/Currency/Currency';
-//import { useDeviceSize } from 'hooks/useDeviceSize';
+import { useDeviceSize } from 'hooks/useDeviceSize';
 import { ModalLogout } from '../../components/ModalLogout/ModalLogout';
 import { AddTransactionBtn } from 'components/AddBtn/AddTransactionBtn';
 import { Statistics } from '../../components/Statistics/Statistics';
 
 function DashboardPage() {
-  //const { deviceType } = useDeviceSize();
+  const { deviceType } = useDeviceSize();
+
+  if (deviceType === 'mobile') {
+  }
+
   return (
     <div className={styles.dashboard}>
       <ModalLogout />
