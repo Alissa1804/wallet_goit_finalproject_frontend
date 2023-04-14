@@ -5,6 +5,7 @@ import frame from '../../images/RegistrationPage/Desktop/frame-desktop.png';
 // import { Container } from 'components/Container/Container';
 import styles from './RegistrationPage.module.css';
 
+
 export const RegistrationPage = () => {
   return (
     <div className={styles.commonContainer}>
@@ -19,8 +20,9 @@ export const RegistrationPage = () => {
           )}
         />
         <div className={styles.formContainer}>
-          <RegistrationForm/>
-          
+        <RegistrationForm />
+        
+         
         </div>
       {/* </Container> */}
     </div>
