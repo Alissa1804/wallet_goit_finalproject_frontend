@@ -6,11 +6,11 @@ import Transactions from 'components/Transactions/Transactions';
 import { Header } from '../../components/Header/Header';
 import Currency from '../../components/Currency/Currency';
 import AddIcon from '@mui/icons-material/Add';
-import { useDeviceSize } from 'hooks/useDeviceSize';
+//import { useDeviceSize } from 'hooks/useDeviceSize';
 import { ModalLogout } from '../../components/ModalLogout/ModalLogout';
 
 function DashboardPage() {
-  const { deviceType } = useDeviceSize();
+  //const { deviceType } = useDeviceSize();
   return (
     <div className={styles.dashboard}>
       <ModalLogout />
