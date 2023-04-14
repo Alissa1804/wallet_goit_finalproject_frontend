@@ -4,7 +4,7 @@ import Navigation from 'components/Navigation/Navigation';
 import Balance from 'components/Balance/Balance';
 import Transactions from 'components/Transactions/Transactions';
 import { Header } from '../../components/Header/Header';
-import Currency from 'components/Currency/Currency';
+import Currency from '../../components/Currency/Currency';
 import AddIcon from '@mui/icons-material/Add';
 import { useDeviceSize } from 'hooks/useDeviceSize';
 import { ModalLogout } from '../../components/ModalLogout/ModalLogout';
