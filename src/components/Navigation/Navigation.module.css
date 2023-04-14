@@ -18,3 +18,17 @@
   align-items: center;
   color: var(--light-text-color);
 }
+.navigation__text {
+  display: none;
+}
+
+/*Tablet*/
+@media screen and (min-width: 768px) {
+  .navigation__text {
+    display: block;
+  }
+}
+
+/*Desktop*/
+@media screen and (min-width: 1280px) {
+}

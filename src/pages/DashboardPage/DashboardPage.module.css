@@ -16,3 +16,36 @@
 .dashboard__balance {
   margin-bottom: 32px;
 }
+.dashboard__currency {
+  margin-bottom: 28px;
+}
+.dashboard__add {
+  background-color: var(--green-color);
+  border-radius: 50%;
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  width: 44px;
+  height: 44px;
+  display: block;
+  padding: 0;
+  border: 0;
+  color: var(--light-text-color);
+}
+
+/*Tablet*/
+@media screen and (min-width: 768px) {
+  .dashboard__content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px;
+  }
+  .dashboard__left,
+  .dashboard__right {
+    width: calc(100% / 2 - 16px);
+  }
+}
+
+/*Desktop*/
+@media screen and (min-width: 1280px) {
+}

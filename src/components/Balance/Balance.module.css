@@ -27,3 +27,11 @@
 .balance__currency {
   font-weight: 400;
 }
+
+/*Tablet*/
+@media screen and (min-width: 768px) {
+}
+
+/*Desktop*/
+@media screen and (min-width: 1280px) {
+}
