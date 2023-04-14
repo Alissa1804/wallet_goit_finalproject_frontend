@@ -1,7 +1,26 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './Currency.module.css';
+import { getCurrency } from './getCurrency';
 
 function Currency() {
+  const [currencyData, setCurrencyData] = useState(null);
+  useEffect(() => {
+    async function fetchData() {
+      const data = await getCurrency();
+      setCurrencyData(data);
+    }
+    fetchData();
+  }, []);
+
+  if (!currencyData) {
+    return <div>Loading...</div>;
+  }
+
+  const eurBuy = currencyData.eur.buy;
+  const eurSale = currencyData.eur.sale;
+  const USDSale = currencyData.usd.sale;
+  const USDBuy = currencyData.usd.buy;
+
   return (
     <div className={styles.currency}>
       <table className={styles.currency__tbl}>
@@ -15,13 +34,13 @@ function Currency() {
         <tbody className={styles.currency__tbody}>
           <tr>
             <td className={styles.currency__tbl_item}>USD</td>
-            <td className={styles.currency__tbl_item}>27.55</td>
-            <td className={styles.currency__tbl_item}>27.65</td>
+            <td className={styles.currency__tbl_item}>{USDBuy}</td>
+            <td className={styles.currency__tbl_item}>{USDSale}</td>
           </tr>
           <tr>
             <td className={styles.currency__tbl_item}>EUR</td>
-            <td className={styles.currency__tbl_item}>30.00</td>
-            <td className={styles.currency__tbl_item}>30.10</td>
+            <td className={styles.currency__tbl_item}>{eurBuy}</td>
+            <td className={styles.currency__tbl_item}>{eurSale}</td>
           </tr>
         </tbody>
       </table>
