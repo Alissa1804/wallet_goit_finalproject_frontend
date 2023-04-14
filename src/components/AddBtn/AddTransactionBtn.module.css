@@ -1,40 +1,25 @@
- @import '../../stylesheet/vars.css';
+@import '../../stylesheet/vars.css';
 @import '../../stylesheet/fonts.css';
 
-
-
 .addButton {
-position: fixed;
+  position: fixed;
   display: flex;
   justify-content: center;
   align-items: center;
-  bottom: 40px;
-  right: 40px;
+  bottom: 20px;
+  right: 20px;
   width: 44px;
   height: 44px;
   background-color: transparent;
   border: none;
   cursor: pointer;
-  color: #24CCA7;
+  color: #24cca7;
   z-index: 50;
   transition: 190ms linear;
-  
-  
 }
 
 .addButton:hover {
-  color: #4A56E2;
-  
+  color: #4a56e2;
+
   /* box-shadow: 0px 6px 15px rgba(36, 204, 167, 0.5); */
 }
-
-
-
-
-
-
-
-
-
-
-

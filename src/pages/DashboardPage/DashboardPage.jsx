@@ -5,10 +5,9 @@ import Balance from 'components/Balance/Balance';
 import Transactions from 'components/Transactions/Transactions';
 import { Header } from '../../components/Header/Header';
 import Currency from '../../components/Currency/Currency';
-import AddIcon from '@mui/icons-material/Add';
 //import { useDeviceSize } from 'hooks/useDeviceSize';
 import { ModalLogout } from '../../components/ModalLogout/ModalLogout';
-import { AddTransactionBtn } from 'components/AddBtn/AddTransactionBtn'
+import { AddTransactionBtn } from 'components/AddBtn/AddTransactionBtn';
 
 function DashboardPage() {
   //const { deviceType } = useDeviceSize();
@@ -32,12 +31,7 @@ function DashboardPage() {
         </div>
 
         <Transactions />
-        <div>Currency
-           <AddTransactionBtn />
-        </div>
-        <button className={styles.dashboard__add}>
-          <AddIcon fontSize="large" />
-        </button>
+        <AddTransactionBtn />
       </div>
     </div>
   );

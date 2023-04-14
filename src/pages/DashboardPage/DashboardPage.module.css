@@ -19,19 +19,6 @@
 .dashboard__currency {
   margin-bottom: 28px;
 }
-.dashboard__add {
-  background-color: var(--green-color);
-  border-radius: 50%;
-  position: fixed;
-  right: 20px;
-  bottom: 20px;
-  width: 44px;
-  height: 44px;
-  display: block;
-  padding: 0;
-  border: 0;
-  color: var(--light-text-color);
-}
 
 /*Tablet*/
 @media screen and (min-width: 768px) {

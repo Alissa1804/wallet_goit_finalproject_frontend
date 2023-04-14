@@ -1,17 +1,21 @@
 // import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import styles from '../AddBtn/AddTransactionBtn.module.css';
 // import AddCircleIcon from '@mui/icons-material/AddCircle';
 // import btn from '../../images/btn.svg';
-import { BsFillPlusCircleFill } from 'react-icons/bs'
+import { BsFillPlusCircleFill } from 'react-icons/bs';
+import { toggleTransactionModalOpen } from 'redux/global/global-slice';
+import { AddTransaction } from 'components/AddTransaction/AddTransaction';
 
 export function AddTransactionBtn() {
   const dispatch = useDispatch();
   // const isOpen = useSelector(state => state.modalReducer);
-
-  function isModalAddTransactionOpen(state) {
-    state.isModalOpen = !state.isModalOpen;
-  }
+  const isTransactionModalOpen = useSelector(
+    state => state.global.isTransactionModalOpen
+  );
+  const handleClick = () => {
+    dispatch(toggleTransactionModalOpen());
+  };
 
   return (
     <>
@@ -19,15 +23,14 @@ export function AddTransactionBtn() {
         className={styles.addButton}
         type="button"
         aria-label="add transaction button"
-        onClick={() => {
-          dispatch(isModalAddTransactionOpen);
-        }}
+        onClick={handleClick}
       >
         <BsFillPlusCircleFill size={44} />
         {/* <img src={btn} alt="" width={44} height={44} /> */}
 
         {/* <AddCircleIcon sx={{ color: '#24CCA7', fontSize: 44, }} /> */}
       </button>
+      {isTransactionModalOpen && <AddTransaction />}
     </>
   );
 }
