@@ -23,3 +23,22 @@
 
   /* box-shadow: 0px 6px 15px rgba(36, 204, 167, 0.5); */
 }
+
+@media screen and (min-width: 768px) {
+  .addButton {
+      position: fixed;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      bottom: 40px;
+      right: 40px;
+      width: 44px;
+      height: 44px;
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+      color: #24cca7;
+      z-index: 50;
+      transition: 190ms linear;
+    }
+  }
