@@ -7,11 +7,13 @@ import { Header } from '../../components/Header/Header';
 import Currency from 'components/Currency/Currency';
 import AddIcon from '@mui/icons-material/Add';
 import { useDeviceSize } from 'hooks/useDeviceSize';
+import { ModalLogout } from '../../components/ModalLogout/ModalLogout';
 
 function DashboardPage() {
   const { deviceType } = useDeviceSize();
   return (
     <div className={styles.dashboard}>
+      <ModalLogout />
       <Header />
       <div className={styles.dashboard__content}>
         <div className={styles.dashboard__left}>
