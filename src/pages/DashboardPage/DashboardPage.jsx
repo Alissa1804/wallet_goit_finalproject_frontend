@@ -8,6 +8,7 @@ import Currency from '../../components/Currency/Currency';
 //import { useDeviceSize } from 'hooks/useDeviceSize';
 import { ModalLogout } from '../../components/ModalLogout/ModalLogout';
 import { AddTransactionBtn } from 'components/AddBtn/AddTransactionBtn';
+import { Statistics } from '../../components/Statistics/Statistics';
 
 function DashboardPage() {
   //const { deviceType } = useDeviceSize();
@@ -31,6 +32,7 @@ function DashboardPage() {
         </div>
 
         <Transactions />
+        <Statistics />
         <AddTransactionBtn />
       </div>
     </div>

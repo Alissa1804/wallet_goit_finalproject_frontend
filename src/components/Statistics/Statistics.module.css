@@ -1,0 +1,91 @@
+.s__title {
+  margin-top: 43px;
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 1.5;
+}
+
+.box {
+  display: block;
+  width: 24px;
+  height: 24px;
+  margin-right: 16px;
+  background-color: cornflowerblue;
+  border-radius: 2px;
+}
+
+.title {
+  background-color: var(--secondary-background-color);
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  padding: 16px 20px;
+  border-radius: 30px;
+  font-family: 'Circe';
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+.category__item {
+  font-family: 'Circe';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.12;
+  display: flex;
+  border-bottom: 1px solid #dcdcdf;
+  box-shadow: 0px 1px 0px rgba(255, 255, 255, 0.6);
+  padding: 16px 20px;
+  align-items: center;
+}
+
+.total {
+  margin-left: auto;
+}
+
+.totals__sum {
+  margin-top: 16px;
+  padding: 16px 20px;
+}
+
+.totals__item {
+  display: flex;
+  justify-content: space-between;
+  font-family: 'Circe';
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.table {
+  display: flex;
+  flex-direction: column;
+}
+
+.sumE {
+  color: var(--red-color);
+  margin-bottom: 17px;
+}
+
+.sumI {
+  color: var(--green-color);
+}
+
+@media screen and (min-width: 768px) {
+  .s__title {
+    margin-top: 0px;
+  }
+  .statistic__container {
+    display: flex;
+    gap: 32px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .statistic__container {
+    margin-left: auto;
+  }
+}
