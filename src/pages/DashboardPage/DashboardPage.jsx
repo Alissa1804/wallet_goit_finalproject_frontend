@@ -27,7 +27,7 @@ function DashboardPage() {
               <Navigation />
             </div>
             <div className={styles.dashboard__balance}>
-              <Balance amount="24 000.00" />{' '}
+              <Balance />{' '}
             </div>
             {deviceType === 'descktop' && (
               <div className={styles.dashboard__currency}>
