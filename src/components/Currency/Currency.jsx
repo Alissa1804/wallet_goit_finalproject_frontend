@@ -1,19 +1,24 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import styles from './Currency.module.css';
 import { getCurrency } from './getCurrency';
 import { Loader } from 'components/Loader/Loader';
+import { useSelector } from 'react-redux';
+import { selectToken } from 'redux/auth/auth-selectors';
 
 function Currency() {
   const [currencyData, setCurrencyData] = useState(null);
-  useEffect(() => {
-    async function fetchData() {
-      const data = await getCurrency();
-      setCurrencyData(data);
-    }
-    fetchData();
-  }, []);
+  const [isLoading, setIsLoading] = useState(false);
+  const token = useSelector(selectToken);
 
-  if (!currencyData) {
+  async function fetchData() {
+    const data = await getCurrency(token);
+    setCurrencyData(data);
+    setIsLoading(true);
+  }
+
+  if (!isLoading) {
+    fetchData();
+    setInterval(fetchData, 6000000);
     return (
       <div className={styles.currency}>
         <Loader />
