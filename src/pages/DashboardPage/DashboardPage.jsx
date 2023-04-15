@@ -17,43 +17,45 @@ function DashboardPage() {
   }
 
   return (
-    <div className={styles.dashboard}>
-      <ModalLogout />
-      <Header />
-      <div className={styles.dashboard__content}>
-        <div className={styles.dashboard__left}>
-          <div className={styles.dashboard__navigation}>
-            <Navigation />
-          </div>
-          <div className={styles.dashboard__balance}>
-            <Balance amount="24 000.00" />{' '}
-          </div>
-          {deviceType === 'descktop' && (
-            <div className={styles.dashboard__currency}>
-              <Currency />
+    <div className={styles.backWrapper}>
+      <div className={styles.dashboard}>
+        <ModalLogout />
+        <Header />
+        <div className={styles.dashboard__content}>
+          <div className={styles.dashboard__left}>
+            <div className={styles.dashboard__navigation}>
+              <Navigation />
             </div>
-          )}
-        </div>
-        <div className={styles.dashboard__right}>
-          {deviceType === 'descktop' ? (
+            <div className={styles.dashboard__balance}>
+              <Balance amount="24 000.00" />{' '}
+            </div>
+            {deviceType === 'descktop' && (
+              <div className={styles.dashboard__currency}>
+                <Currency />
+              </div>
+            )}
+          </div>
+          <div className={styles.dashboard__right}>
+            {deviceType === 'descktop' ? (
+              <>
+                <Transactions />
+                <Statistics />
+              </>
+            ) : (
+              <div className={styles.dashboard__currency}>
+                <Currency />
+              </div>
+            )}
+          </div>
+          {deviceType !== 'descktop' && (
             <>
               <Transactions />
               <Statistics />
             </>
-          ) : (
-            <div className={styles.dashboard__currency}>
-              <Currency />
-            </div>
           )}
-        </div>
-        {deviceType !== 'descktop' && (
-          <>
-            <Transactions />
-            <Statistics />
-          </>
-        )}
 
-        <AddTransactionBtn />
+          <AddTransactionBtn />
+        </div>
       </div>
     </div>
   );

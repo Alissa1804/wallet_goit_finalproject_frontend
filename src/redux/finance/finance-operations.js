@@ -10,7 +10,7 @@ export const getStatistics = createAsyncThunk(
   async (date, { rejectWithValue }) => {
     try {
       const { data } = await axios.get(
-        `/statistics/?month=${date.moth}&year=${date.year}`
+        `/statistics/?month=${date.month}&year=${date.year}`
       );
 
       return data;
