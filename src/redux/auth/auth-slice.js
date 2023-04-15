@@ -20,6 +20,7 @@ const authSlice = createSlice({
         state.error = null;
         state.token = null;
         state.user = { name: '', email: '' };
+        state.isAuth = false;
       })
       .addCase(logout.rejected, (state, { payload }) => {
         state.isLoading = false;
@@ -67,4 +68,3 @@ const authSlice = createSlice({
 });
 
 export default authSlice.reducer;
-

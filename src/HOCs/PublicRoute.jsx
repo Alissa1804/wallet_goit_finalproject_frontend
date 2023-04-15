@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import { selectToken } from 'redux/auth/auth-selectors';
+//import { selectToken } from 'redux/auth/auth-selectors';
 import { Navigate } from 'react-router-dom';
 import { selectIsAuth } from 'redux/auth/auth-selectors';
 

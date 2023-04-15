@@ -14,7 +14,7 @@ function Balance() {
   }
   useEffect(() => {
     fetchBalance();
-  }, []);
+  });
 
   return (
     <div className={styles.balance}>

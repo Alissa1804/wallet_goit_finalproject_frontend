@@ -31,7 +31,7 @@ export const Header = () => {
             </NavLink>
           </div>
           <div className={styles.auth__container}>
-            <p className={styles.user__name}>Name{name}</p>
+            <p className={styles.user__name}>{name}</p>
             <button
               type="button"
               className={styles.button__logout}
