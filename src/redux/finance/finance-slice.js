@@ -10,6 +10,7 @@ const initialState = {
 const financeSlice = createSlice({
   name: 'finance',
   initialState,
+  reducers: {},
   extraReducers: builder =>
     builder
       .addCase(getStatistics.pending, state => {
@@ -18,7 +19,8 @@ const financeSlice = createSlice({
       })
       .addCase(getStatistics.fulfilled, (state, { payload }) => {
         state.isLoading = false;
-        state.data = payload;
+        state.error = null;
+        state.statistics = payload;
       })
       .addCase(getStatistics.rejected, (state, { payload }) => {
         state.isLoading = false;
