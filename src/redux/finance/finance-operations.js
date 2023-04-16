@@ -7,12 +7,12 @@ axios.defaults.baseURL = 'https://walletproject.onrender.com';
 
 export const getStatistics = createAsyncThunk(
   'finance/getStatistics',
-  async (date, { rejectWithValue }) => {
+  async ({ year, month }, { rejectWithValue }) => {
     try {
-      const { data } = await axios.get(
-        `/statistics/?month=${date.month}&year=${date.year}`
-      );
-
+      const { data } = await axios.get('/api/statistics', {
+        data: { year, month },
+      });
+      console.log(data);
       return data;
     } catch (error) {
       return rejectWithValue(error.message);

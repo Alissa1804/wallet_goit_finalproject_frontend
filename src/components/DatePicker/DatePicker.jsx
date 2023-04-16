@@ -4,7 +4,7 @@ import 'react-datetime/css/react-datetime.css';
 import styles from './DatePicker.module.css';
 import moment from 'moment';
 
-export const DatePickers = () => {
+export const DatePickers = ({ onMonthChange, onYearChange }) => {
   const [selectedMonth, setSelectedMonth] = useState(null);
   const [selectedYear, setSelectedYear] = useState(null);
   const currentMonth = moment().format('MMMM');
@@ -14,7 +14,10 @@ export const DatePickers = () => {
       <Datetime
         id="month-picker"
         value={selectedMonth}
-        onChange={date => setSelectedMonth(date)}
+        onChange={date => {
+          setSelectedMonth(date);
+          onMonthChange(date);
+        }}
         dateFormat="MMMM"
         viewMode="months"
         timeFormat=""
@@ -28,7 +31,10 @@ export const DatePickers = () => {
       <Datetime
         id="year-picker"
         value={selectedYear}
-        onChange={date => setSelectedYear(date)}
+        onChange={date => {
+          setSelectedYear(date);
+          onYearChange(date);
+        }}
         dateFormat="YYYY"
         viewMode="years"
         timeFormat=""

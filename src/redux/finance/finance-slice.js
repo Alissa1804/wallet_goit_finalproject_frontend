@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
-//import { getStatistics } from './finance-operations';
+import { getStatistics } from './finance-operations';
 
 const initialState = {
-  statistics: [],
+  statistics: null,
   isLoading: false,
   error: null,
 };
@@ -10,7 +10,20 @@ const initialState = {
 const financeSlice = createSlice({
   name: 'finance',
   initialState,
-  extraReducers: builder => builder,
+  extraReducers: builder =>
+    builder
+      .addCase(getStatistics.pending, state => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(getStatistics.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        state.data = payload;
+      })
+      .addCase(getStatistics.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = payload;
+      }),
 });
 
 export default financeSlice.reducer;
