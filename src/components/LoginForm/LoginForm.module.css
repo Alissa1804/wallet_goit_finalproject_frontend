@@ -4,7 +4,10 @@
 /*Mobile*/
 .form {
   margin: 0px auto;
-  /* width: 320px; */
+  height: 100vh;
+  max-width: 320px;
+  overflow: hidden;
+
   padding: 32px 20px 36px;
   display: flex;
   flex-direction: column;
@@ -51,9 +54,9 @@
   border: none;
   outline: none;
   border-bottom: 1px solid #e0e0e0;
-    height: 32px;
-  padding: 8px 8px 8px 54px;
-}
+    height: 24px;
+    padding: 8px 8px 8px 45px;
+  }
 
 .inputIcon {
   width: 24px;
@@ -113,7 +116,10 @@
 /*Tablet*/
 @media screen and (min-width: 768px) {
   .form {
-    padding: 40px 59px 66px 65px;
+    height: auto;
+    max-width: 468px;
+    padding: 40px 59px 
+    66px 65px;
     border-radius: 20px;
   }
 
@@ -128,6 +134,8 @@
 
   .input {
     width: 347px;
+    height: 32px;
+
   }
 
   .mainButton{
