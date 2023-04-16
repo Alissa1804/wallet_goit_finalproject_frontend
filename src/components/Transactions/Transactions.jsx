@@ -2,8 +2,33 @@ import React from 'react';
 import styles from './Transactions.module.css';
 import ModeEditOutlineOutlinedIcon from '@mui/icons-material/ModeEditOutlineOutlined';
 import { useDeviceSize } from 'hooks/useDeviceSize';
+import { useState } from 'react';
+import { useEffect } from 'react';
+import { selectToken } from 'redux/auth/auth-selectors';
+import axios from 'axios';
+import { useSelector } from 'react-redux';
+import moment from 'moment';
 
 function Transactions() {
+  const [transactions, setTransactions] = useState([]);
+  const token = useSelector(selectToken);
+
+  useEffect(() => {
+    async function fetch() {
+      const response = await axios(
+        'https://walletproject.onrender.com/api/transactions',
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      setTransactions(response.data.data);
+    }
+
+    fetch();
+  }, [token]);
+
   const { deviceType } = useDeviceSize();
   if (deviceType === 'mobile') {
     return (
@@ -90,105 +115,41 @@ function Transactions() {
           </tr>
         </thead>
         <tbody className={styles.transactions__tbody}>
-          <tr className={styles.transactions__tbl_string}>
-            <td className={styles.transactions__tbl_item}>04.01.19</td>
-            <td className={styles.transactions__tbl_item}>-</td>
-            <td className={styles.transactions__tbl_item}>Other</td>
-            <td className={styles.transactions__tbl_item}>
-              Gift for your wife
-            </td>
-            <td className={styles.transactions__tbl_item}>
-              <div className={styles.transactions__red}>300.00</div>
-            </td>
-            <td className={styles.transactions__tbl_item}>
-              <div className={styles.transactions__tbl_buttons}>
-                <button className={styles.transactions__tbl_btn_edit}>
-                  <ModeEditOutlineOutlinedIcon fontSize="inherit" />
-                </button>
-                <button className={styles.transactions__tbl_btn_delete}>
-                  Delete
-                </button>
-              </div>
-            </td>
-          </tr>
-          <tr className={styles.transactions__tbl_string}>
-            <td className={styles.transactions__tbl_item}>05.01.19</td>
-            <td className={styles.transactions__tbl_item}>+</td>
-            <td className={styles.transactions__tbl_item}>Income</td>
-            <td className={styles.transactions__tbl_item}>January bonus</td>
-            <td className={styles.transactions__tbl_item}>
-              <div className={styles.transactions__green}>8 000.00</div>
-            </td>
-            <td className={styles.transactions__tbl_item}>
-              <div className={styles.transactions__tbl_buttons}>
-                <button className={styles.transactions__tbl_btn_edit}>
-                  <ModeEditOutlineOutlinedIcon fontSize="inherit" />
-                </button>
-                <button className={styles.transactions__tbl_btn_delete}>
-                  Delete
-                </button>
-              </div>
-            </td>
-          </tr>
-          <tr className={styles.transactions__tbl_string}>
-            <td className={styles.transactions__tbl_item}>07.01.19</td>
-            <td className={styles.transactions__tbl_item}>-</td>
-            <td className={styles.transactions__tbl_item}>Car</td>
-            <td className={styles.transactions__tbl_item}>Oil</td>
-            <td className={styles.transactions__tbl_item}>
-              <div className={styles.transactions__red}>1000.00</div>
-            </td>
-            <td className={styles.transactions__tbl_item}>
-              <div className={styles.transactions__tbl_buttons}>
-                <button className={styles.transactions__tbl_btn_edit}>
-                  <ModeEditOutlineOutlinedIcon fontSize="inherit" />
-                </button>
-                <button className={styles.transactions__tbl_btn_delete}>
-                  Delete
-                </button>
-              </div>
-            </td>
-          </tr>
-          <tr className={styles.transactions__tbl_string}>
-            <td className={styles.transactions__tbl_item}>07.01.19</td>
-            <td className={styles.transactions__tbl_item}>-</td>
-            <td className={styles.transactions__tbl_item}>Products</td>
-            <td className={styles.transactions__tbl_item}>
-              Vegetables for the week
-            </td>
-            <td className={styles.transactions__tbl_item}>
-              <div className={styles.transactions__red}>280.00</div>
-            </td>
-            <td className={styles.transactions__tbl_item}>
-              <div className={styles.transactions__tbl_buttons}>
-                <button className={styles.transactions__tbl_btn_edit}>
-                  <ModeEditOutlineOutlinedIcon fontSize="inherit" />
-                </button>
-                <button className={styles.transactions__tbl_btn_delete}>
-                  Delete
-                </button>
-              </div>
-            </td>
-          </tr>
-          <tr className={styles.transactions__tbl_string}>
-            <td className={styles.transactions__tbl_item}>07.01.19</td>
-            <td className={styles.transactions__tbl_item}>+</td>
-            <td className={styles.transactions__tbl_item}>Income</td>
-            <td className={styles.transactions__tbl_item}>Gift</td>
-            <td className={styles.transactions__tbl_item}>
-              <div className={styles.transactions__green}>1 000.00</div>
-            </td>
-            <td className={styles.transactions__tbl_item}>
-              <div className={styles.transactions__tbl_buttons}>
-                <button className={styles.transactions__tbl_btn_edit}>
-                  <ModeEditOutlineOutlinedIcon fontSize="inherit" />
-                </button>
-                <button className={styles.transactions__tbl_btn_delete}>
-                  Delete
-                </button>
-              </div>
-            </td>
-          </tr>
+          {transactions.map(item => (
+            <tr className={styles.transactions__tbl_string} key={item._id}>
+              <td className={styles.transactions__tbl_item}>
+                {moment(item.date).format('L')}
+              </td>
+              <td className={styles.transactions__tbl_item}>
+                {item.type ? '+' : '-'}
+              </td>
+              <td className={styles.transactions__tbl_item}>{item.category}</td>
+              <td className={styles.transactions__tbl_item}>
+                {item.comment ?? '-'}
+              </td>
+              <td className={styles.transactions__tbl_item}>
+                <div
+                  className={
+                    item.type
+                      ? styles.transactions__green
+                      : styles.transactions__red
+                  }
+                >
+                  {item.amount}
+                </div>
+              </td>
+              <td className={styles.transactions__tbl_item}>
+                <div className={styles.transactions__tbl_buttons}>
+                  <button className={styles.transactions__tbl_btn_edit}>
+                    <ModeEditOutlineOutlinedIcon fontSize="inherit" />
+                  </button>
+                  <button className={styles.transactions__tbl_btn_delete}>
+                    Delete
+                  </button>
+                </div>
+              </td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>

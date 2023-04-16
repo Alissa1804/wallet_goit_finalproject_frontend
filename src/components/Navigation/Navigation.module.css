@@ -40,7 +40,9 @@
     display: flex;
     gap: 23px;
     align-items: center;
+    color: var(--accent-text-color);
   }
+
   .navigation__item:last-child {
     display: none;
   }
