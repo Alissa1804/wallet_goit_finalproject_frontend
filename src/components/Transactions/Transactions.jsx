@@ -143,7 +143,7 @@ function Transactions() {
                   <button className={styles.transactions__tbl_btn_edit}>
                     <ModeEditOutlineOutlinedIcon fontSize="inherit" />
                   </button>
-                  <button className={styles.transactions__tbl_btn_delete}>
+                  <button className={styles.transactions__tbl_btn_delete} >
                     Delete
                   </button>
                 </div>
