@@ -11,7 +11,7 @@ function Balance() {
   useEffect(() => {
     async function fetch() {
       const response = await axios(
-        'https://walletproject.onrender.com/api/balance',
+        'https://walletproject.onrender.com/api/users/current',
         {
           headers: {
             Authorization: `Bearer ${token}`,
