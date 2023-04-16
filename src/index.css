@@ -45,3 +45,7 @@ html {
 body {
   background-color: #e7eaf2;
 }
+
+.active {
+  font-weight: bold;
+}

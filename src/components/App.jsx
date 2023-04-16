@@ -9,6 +9,8 @@ import { LoginPage } from 'pages/LoginPage/LoginPage';
 import DashboardPage from 'pages/DashboardPage/DashboardPage';
 
 import { PublicRoute } from 'HOCs/PublicRoute';
+import StatisticsPage from 'pages/StatisticsPage/StatisticsPage';
+import CurrencyPage from 'pages/CurrencyPage/CurrencyPage';
 
 export const App = () => {
   return (
@@ -22,16 +24,24 @@ export const App = () => {
         />
         <Route
           path="/login"
-          element={
-            <PublicRoute redirectTo="/dashboard" component={<LoginPage />} />
-          }
+          element={<PublicRoute redirectTo="/home" component={<LoginPage />} />}
         />
 
         <Route
-          path="/dashboard"
+          path="/home"
           element={
             <PrivateRoute redirectTo="/" component={<DashboardPage />} />
           }
+        />
+        <Route
+          path="/statistics"
+          element={
+            <PrivateRoute redirectTo="/" component={<StatisticsPage />} />
+          }
+        />
+        <Route
+          path="/currency"
+          element={<PrivateRoute redirectTo="/" component={<CurrencyPage />} />}
         />
       </Routes>
       <ToastContainer position="bottom-right" />
