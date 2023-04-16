@@ -1,9 +1,10 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { useEffect } from 'react';
+import { useEffect,useState } from 'react';
 import { toggleTransactionModalOpen } from '../../redux/global/global-slice';
 import styles from './AddTransaction.module.css';
 import { selectIsTransactionModalOpen } from 'redux/global/global-selectors';
 // import { Field } from 'formik';
+
 
 export const AddTransaction = () => {
   const isTransactionModalOpen = useSelector(selectIsTransactionModalOpen);
@@ -29,12 +30,42 @@ export const AddTransaction = () => {
     };
   }, [dispatch]);
 
+
+
+
+  const currentDay = () => {
+  const date = new Date();
+  let day = date.getDate();
+  let month = date.getMonth() + 1;
+  let year = date.getFullYear();
+  if (month < 10) month = "0" + month;
+  if (day < 10) day = "0" + day;
+  const today = year + "-" + month + "-" + day;
+  return today;
+  };
+  
+  const [date, setDate] = useState(currentDay());
+
+    const handleChange = {
+    // category: ({ target: { value } }) => {
+    //   setCategory(value);
+    // },
+    date: ({ target: { value } }) => {
+      setDate(value);
+    },
+    // comment: ({ target: { value } }) => {
+    //   setComment(value);
+    // },
+  };
+
+ 
+
   return (
     <>
       {isTransactionModalOpen && (
         <div className={styles.overlay} onClick={handleBackdropClick}>
-          <div className={styles.modal__container}>Add transaction
-
+          <div className={styles.modal__container}>
+          <div className={styles.modal__container_transaction}>Add transaction
 
             {/* <div className={styles.switcher} >
               <span >
@@ -60,18 +91,16 @@ export const AddTransaction = () => {
             {/* </div> */} 
 
             <form className={styles.form_wrapper}>
-              <div className={styles.switcher}
-                // style='position:relative'
+                <div className={styles.switcher}
+                  style={{ position: 'relative' }}
               >
-                <span>Income</span>
+                <span className={styles.income}>Income</span>
                 <label className={styles.switcher_wrapper}>
                   <input name='type' type='checkbox' className={styles.switcher_checkbox}
                     value='EXPENSE' checked='true' />
-                  <span className={styles.switcher_toggle}>
-
-                  </span>
+                  <span className={styles.switcher_toggle}></span>
                 </label>
-                <span>Expense</span>
+                <span className={styles.expense}>Expense</span>
               </div>
 
               <div className={styles.category_wrapper}>
@@ -82,7 +111,9 @@ export const AddTransaction = () => {
                     </span>
                     <div className={styles.category_control}>
                       <div className={styles.category_control_field}>
-                        <div className={styles.category_control_field_placeholder}>
+                          <div className={styles.category_control_field_placeholder}
+                          as="select"
+              name="category">
                           Select a category
                         </div>
                         <div className={styles.category_control_field_placeholder_selectCategory}>
@@ -119,11 +150,16 @@ export const AddTransaction = () => {
                 </div>
                 <div className={styles.date_wrapper}>
                   <label>
-                    <div className={styles.date_svg}>
-                    <input className={styles.date_input}
-                    value='14.04.23'
-                placeholder="0.00"
-                name="amount"
+                      <div className={styles.date_svg}>
+                        
+                        <input className={styles.date_input}
+                          
+                date={date} setDate={handleChange.date}
+                
+                name="date"
+                dateFormat="DD.MM.YYYY"
+             
+             
                     >
                       </input>
                       </div>
@@ -132,7 +168,8 @@ export const AddTransaction = () => {
 
               </div>
 
-              <textarea name="comment" rows="1" type="text" placeholder="Comment">
+                <textarea name="comment" rows="1" type="text" placeholder="Comment"
+                className={styles.textarea}>
 
               </textarea>
 
@@ -190,7 +227,8 @@ export const AddTransaction = () => {
                 CANCEL
               </button>
             </div>
-            </form>
+              </form>
+              </div>
           </div>
         </div>
       )}
