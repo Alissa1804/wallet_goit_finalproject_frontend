@@ -105,37 +105,6 @@ function Transactions() {
               </div>
             </li>
           ))}
-          {/* <li className={styles.transactions__item}>
-            <div className={styles.transactions__row}>
-              <div className={styles.transactions__th}>Date</div>
-              <div className={styles.transactions__tb}>04.01.19</div>
-            </div>
-            <div className={styles.transactions__row}>
-              <div className={styles.transactions__th}>Type</div>
-              <div className={styles.transactions__tb}>-</div>
-            </div>
-            <div className={styles.transactions__row}>
-              <div className={styles.transactions__th}>Category</div>
-              <div className={styles.transactions__tb}>Other</div>
-            </div>
-            <div className={styles.transactions__row}>
-              <div className={styles.transactions__th}>Comment</div>
-              <div className={styles.transactions__tb}>Gift for your wife</div>
-            </div>
-            <div className={styles.transactions__row}>
-              <div className={styles.transactions__th}>Sum</div>
-              <div className={styles.transactions__red}>300.00</div>
-            </div>
-            <div className={styles.transactions__row}>
-              <div>
-                <button className={styles.transactions__btn_d}>Delete</button>
-              </div>
-              <div className={styles.transactions__button_edit}>
-                <ModeEditOutlineOutlinedIcon fontSize="small" />
-                <button className={styles.transactions__btn_e}>Edit</button>
-              </div>
-            </div>
-          </li> */}
         </ul>
         {isModalOpen && <ModalDelete />}
       </div>
