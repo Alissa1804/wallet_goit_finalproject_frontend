@@ -120,12 +120,12 @@
 } */
 
 .income {
-  color: greenyellow;
+  color: #24CCA7;
   transition: color 0.4s ease-in-out;
 }
 
 .expense {
-  color: pink;
+  color: #FF6596;
   transition: color 0.4s ease-in-out;
 }
 
