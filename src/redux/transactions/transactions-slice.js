@@ -12,7 +12,7 @@ const transactionsSlice = createSlice({
         state.error = null;
       })
       .addCase(deleteTransaction.fulfilled, (state, { payload }) => {
-        state.transactions = state.transactions.filter(({ transaction }) => transaction._id !== payload.id);
+        state.transactions = state.transactions.filter(({ _id }) => _id !== payload);
         state.balance = payload.balance;
         state.isLoading = false;
         state.error = null;
