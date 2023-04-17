@@ -25,7 +25,7 @@ export const Header = () => {
           <div className={styles.logo}>
             <NavLink
               className={styles.logo__link}
-              to="/dashboard"
+              to="/home"
               style={{ textDecoration: 'none', color: 'unset' }}
             >
               <img className={styles.logo__img} alt="Logo" src={img} />{' '}
