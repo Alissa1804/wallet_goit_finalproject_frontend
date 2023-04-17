@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { useEffect,useState } from 'react';
+import { useEffect, useState } from 'react';
 import { toggleTransactionModalOpen } from '../../redux/global/global-slice';
 // import styles from './AddTransaction.module.css';
 import { selectIsTransactionModalOpen } from 'redux/global/global-selectors';
@@ -15,13 +15,11 @@ import {
 import DateComponent from './DateComponent/DateComponent';
 import SelectComponent from './SelectComponent/SelectComponent';
 
-
 // import { selectCategories } from 'redux/transactions/trans-selectors';
 import {
   addTransaction,
   // getTransactionCategories,
-} from 'redux/transactions/trans-operations';
-
+} from 'redux/transactions/transactions-operations';
 
 const defaultState = {
   type: 'EXPENSE',
@@ -31,11 +29,10 @@ const defaultState = {
   comment: '',
 };
 
-
 export const AddTransaction = () => {
   const isTransactionModalOpen = useSelector(selectIsTransactionModalOpen);
   const dispatch = useDispatch();
-  console.log(1)
+  console.log(1);
 
   const handleBackdropClick = event => {
     if (event.target === event.currentTarget) {
@@ -57,9 +54,6 @@ export const AddTransaction = () => {
     };
   }, [dispatch]);
 
-
-
-
   // const currentDay = () => {
   // const date = new Date();
   // let day = date.getDate();
@@ -70,7 +64,7 @@ export const AddTransaction = () => {
   // const today = year + "-" + month + "-" + day;
   // return today;
   // };
-  
+
   // const [date, setDate] = useState(currentDay());
 
   //   const handleChange = {
@@ -88,7 +82,6 @@ export const AddTransaction = () => {
   const [transactionState, setTransactionState] = useState(defaultState);
   // const isModalOpen = useSelector(selectIsTransactionModalOpen);
   // const categories = useSelector(selectCategories);
- 
 
   // const dispatch = useDispatch();
 
@@ -99,15 +92,11 @@ export const AddTransaction = () => {
     // if (!categories.length) {
     //   dispatch(getTransactionCategories());
     // }
-    }, [isTransactionModalOpen,  dispatch]);
+  }, [isTransactionModalOpen, dispatch]);
   // }, [isTransactionModalOpen, categories, dispatch]);
 
-  const optionsIncome = (
-    'INCOME'
-  );
-  const optionsExpense = (
-    'EXPENSE'
-  );
+  const optionsIncome = 'INCOME';
+  const optionsExpense = 'EXPENSE';
 
   const handleCheckboxChange = event => {
     if (transactionState.type === 'EXPENSE') {
@@ -166,8 +155,6 @@ export const AddTransaction = () => {
     type: string().required('Required'),
   });
 
- 
-
   return (
     // <>
     //   {isTransactionModalOpen && (
@@ -177,7 +164,7 @@ export const AddTransaction = () => {
 
     //         {/* <div className={styles.switcher} >
     //           <span >
-            
+
     //           </span>
     //           <label className={styles.switcher__box}>
     //           {/* <Field
@@ -215,7 +202,7 @@ export const AddTransaction = () => {
     //             <label>
     //               <div className={styles.category_conteiner}>
     //                 <span>
-                      
+
     //                 </span>
     //                 <div className={styles.category_control}>
     //                   <div className={styles.category_control_field}>
@@ -228,7 +215,7 @@ export const AddTransaction = () => {
     //                       <input className={styles.category_input}>
     //                       </input>
     //                     </div>
-                        
+
     //                   </div>
     //                   <div className={styles.category_menu}>
     //                     <span>
@@ -259,15 +246,14 @@ export const AddTransaction = () => {
     //             <div className={styles.date_wrapper}>
     //               <label>
     //                   <div className={styles.date_svg}>
-                        
+
     //                     <input className={styles.date_input}
-                          
+
     //             // date={date} setDate={handleChange.date}
-                
+
     //             name="date"
     //             dateFormat="DD.MM.YYYY"
-             
-             
+
     //                 >
     //                   </input>
     //                   </div>
@@ -280,9 +266,6 @@ export const AddTransaction = () => {
     //             className={styles.textarea}>
 
     //           </textarea>
-
-
-
 
     //       {/* <form>
     //           <form className={styles.form}
@@ -300,18 +283,15 @@ export const AddTransaction = () => {
     //             <span className={styles.span}>
     //           <textarea type="text" name="comment"
     //           className={styles.textarea}>
-                
+
     //           </textarea>
     //             </span>
 
     //             <span>
     //               <label>
-                    
+
     //               </label>
     //             </span> */}
-              
-    
-
 
     <Formik
       initialValues={transactionState}
@@ -323,126 +303,128 @@ export const AddTransaction = () => {
     >
       <AddTransactionStyled className="modal-form">
         {isTransactionModalOpen && (
-        <div className='overlay' onClick={handleBackdropClick}>
-          <div className='modal__container'>
-          <div className='modal__container_transaction'>Add transaction
-        <div className="switcher" style={{ position: 'relative' }}>
-          <span className={transactionState.type === 'INCOME' ? 'income' : ''}>
-            {/* {t('modalAddTransactionIncomesType')} */}
-          </span>
-          <label className="switcher__box">
-            <Field
-              type="checkbox"
-              name="type"
-              onChange={handleCheckboxChange}
-              className="switcher__checkbox"
-              checked={transactionState.type === 'EXPENSE' ? true : false}
-            />
-            <span className="switcher__toggle"></span>
-          </label>
-          <span
-            className={transactionState.type === 'EXPENSE' ? 'expense' : ''}
-          >
-            {/* {t('modalAddTransactionOutcomesType')} */}
-          </span>
-        </div>
-        <div
-          className={
-            transactionState.type === 'EXPENSE'
-              ? 'category-wrapper'
-              : 'category-wrapper isHidden'
-          }
-        >
-          <label>
-            <Field
-              as="select"
-              name="category"
-              // placeholder={t('modalAddTransactionSelect')}
-              component={SelectComponent}
-              // options={(transactionState.type === 'EXPENSE'
-              //   ? optionsExpense
-              //   : optionsIncome
-              // ).map(option => {
-              //   if (lan === false) {
-              //     let newName = categoryCheck(option.name);
-              //     return { value: option.id, label: newName };
-              //   }
-              //   return { value: option.id, label: option.name };
-              // })}
-              onChange={option => {
-                handleSelectChange(option.value);
-              }}
-            />
-          </label>
-        </div>
+          <div className="overlay" onClick={handleBackdropClick}>
+            <div className="modal__container">
+              <div className="modal__container_transaction">
+                Add transaction
+                <div className="switcher" style={{ position: 'relative' }}>
+                  <span
+                    className={
+                      transactionState.type === 'INCOME' ? 'income' : ''
+                    }
+                  >
+                    {/* {t('modalAddTransactionIncomesType')} */}
+                  </span>
+                  <label className="switcher__box">
+                    <Field
+                      type="checkbox"
+                      name="type"
+                      onChange={handleCheckboxChange}
+                      className="switcher__checkbox"
+                      checked={
+                        transactionState.type === 'EXPENSE' ? true : false
+                      }
+                    />
+                    <span className="switcher__toggle"></span>
+                  </label>
+                  <span
+                    className={
+                      transactionState.type === 'EXPENSE' ? 'expense' : ''
+                    }
+                  >
+                    {/* {t('modalAddTransactionOutcomesType')} */}
+                  </span>
+                </div>
+                <div
+                  className={
+                    transactionState.type === 'EXPENSE'
+                      ? 'category-wrapper'
+                      : 'category-wrapper isHidden'
+                  }
+                >
+                  <label>
+                    <Field
+                      as="select"
+                      name="category"
+                      // placeholder={t('modalAddTransactionSelect')}
+                      component={SelectComponent}
+                      // options={(transactionState.type === 'EXPENSE'
+                      //   ? optionsExpense
+                      //   : optionsIncome
+                      // ).map(option => {
+                      //   if (lan === false) {
+                      //     let newName = categoryCheck(option.name);
+                      //     return { value: option.id, label: newName };
+                      //   }
+                      //   return { value: option.id, label: option.name };
+                      // })}
+                      onChange={option => {
+                        handleSelectChange(option.value);
+                      }}
+                    />
+                  </label>
+                </div>
+                <div className="amount-date-wrapper">
+                  <div className="amount-wrapper">
+                    <label>
+                      <Field
+                        type="number"
+                        placeholder="0.00"
+                        name="amount"
+                        className="amount"
+                      />
+                    </label>
+                    <ErrorMessageStyled name="amount" component="div" />
+                  </div>
 
-        <div className="amount-date-wrapper">
-          <div className="amount-wrapper">
-            <label>
-              <Field
-                type="number"
-                placeholder="0.00"
-                name="amount"
-                className="amount"
-              />
-            </label>
-            <ErrorMessageStyled name="amount" component="div" />
-          </div>
-
-          <div className="date-wrapper">
-            <label>
-              <Field
-                as="date"
-                component={DateComponent}
-                className="date"
-                name="date"
-                dateFormat="DD.MM.YYYY"
-                timeFormat={false}
-                value={transactionState.date}
-                onChange={handleDateChange}
-              />
-            </label>
-            <ErrorMessageStyled name="date" component="div" />
-          </div>
-        </div>
-
-        <Field
-          as="textarea"
-          rows={isMobile ? '5' : '1'}
-          type="text"
-          // placeholder={t('modalAddTransactionComment')}
-          name="comment"
-        />
-            
-
-
-
-
-            <div className='button__container'>
-              <button
-                title="add"
-                className='button'
-                onClick={() => {
-                  dispatch(toggleTransactionModalOpen());
-                }}
-              >
-                ADD
-              </button>
-              <button
-                title="cancel"
-                className='button'
-                onClick={() => {
-                  dispatch(toggleTransactionModalOpen());
-                }}
-              >
-                CANCEL
-              </button>
-            </div>
-              {/* </form> */}
+                  <div className="date-wrapper">
+                    <label>
+                      <Field
+                        as="date"
+                        component={DateComponent}
+                        className="date"
+                        name="date"
+                        dateFormat="DD.MM.YYYY"
+                        timeFormat={false}
+                        value={transactionState.date}
+                        onChange={handleDateChange}
+                      />
+                    </label>
+                    <ErrorMessageStyled name="date" component="div" />
+                  </div>
+                </div>
+                <Field
+                  as="textarea"
+                  rows={isMobile ? '5' : '1'}
+                  type="text"
+                  // placeholder={t('modalAddTransactionComment')}
+                  name="comment"
+                />
+                <div className="button__container">
+                  <button
+                    title="add"
+                    className="button"
+                    onClick={() => {
+                      dispatch(toggleTransactionModalOpen());
+                    }}
+                  >
+                    ADD
+                  </button>
+                  <button
+                    title="cancel"
+                    className="button"
+                    onClick={() => {
+                      dispatch(toggleTransactionModalOpen());
+                    }}
+                  >
+                    CANCEL
+                  </button>
+                </div>
+                {/* </form> */}
               </div>
+            </div>
           </div>
-        </div>
-      )}
+        )}
       </AddTransactionStyled>
     </Formik>
   );

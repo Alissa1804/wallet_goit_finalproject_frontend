@@ -1,4 +1,3 @@
-import React from 'react';
 import styles from './DashboardLayout.module.css';
 import { useDeviceSize } from 'hooks/useDeviceSize';
 import { ModalLogout } from 'components/ModalLogout/ModalLogout';
