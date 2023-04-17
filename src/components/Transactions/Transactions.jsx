@@ -46,7 +46,66 @@ function Transactions() {
     return (
       <div className={styles.transactions}>
         <ul className={styles.transactions__list}>
-          <li className={styles.transactions__item}>
+          {transactions.map(item => (
+            <li
+              className={`${styles.transactions__item} ${
+                item.type
+                  ? styles.transactions__item__positive
+                  : styles.transactions__item__negative
+              }`}
+              key={item._id}
+            >
+              <div className={styles.transactions__row}>
+                <div className={styles.transactions__th}>Date</div>
+                <div className={styles.transactions__tb}>
+                  {moment(item.date).format('L')}
+                </div>
+              </div>
+              <div className={styles.transactions__row}>
+                <div className={styles.transactions__th}>Type</div>
+                <div className={styles.transactions__tb}>
+                  {item.type ? '+' : '-'}
+                </div>
+              </div>
+              <div className={styles.transactions__row}>
+                <div className={styles.transactions__th}>Category</div>
+                <div className={styles.transactions__tb}>{item.category}</div>
+              </div>
+              <div className={styles.transactions__row}>
+                <div className={styles.transactions__th}>Comment</div>
+                <div className={styles.transactions__tb}>
+                  {item.comment ?? '-'}
+                </div>
+              </div>
+              <div className={styles.transactions__row}>
+                <div className={styles.transactions__th}>Sum</div>
+                <div
+                  className={
+                    item.type
+                      ? styles.transactions__green
+                      : styles.transactions__red
+                  }
+                >
+                  {item.amount}
+                </div>
+              </div>
+              <div className={styles.transactions__row}>
+                <div>
+                  <button
+                    className={styles.transactions__btn_d}
+                    onClick={handleDeleteClick}
+                  >
+                    Delete
+                  </button>
+                </div>
+                <div className={styles.transactions__button_edit}>
+                  <ModeEditOutlineOutlinedIcon fontSize="small" />
+                  <button className={styles.transactions__btn_e}>Edit</button>
+                </div>
+              </div>
+            </li>
+          ))}
+          {/* <li className={styles.transactions__item}>
             <div className={styles.transactions__row}>
               <div className={styles.transactions__th}>Date</div>
               <div className={styles.transactions__tb}>04.01.19</div>
@@ -76,40 +135,9 @@ function Transactions() {
                 <button className={styles.transactions__btn_e}>Edit</button>
               </div>
             </div>
-          </li>
-
-          <li className={styles.transactions__item}>
-            <div className={styles.transactions__row}>
-              <div className={styles.transactions__th}>Date</div>
-              <div className={styles.transactions__tb}>04.01.19</div>
-            </div>
-            <div className={styles.transactions__row}>
-              <div className={styles.transactions__th}>Type</div>
-              <div className={styles.transactions__tb}>-</div>
-            </div>
-            <div className={styles.transactions__row}>
-              <div className={styles.transactions__th}>Category</div>
-              <div className={styles.transactions__tb}>Other</div>
-            </div>
-            <div className={styles.transactions__row}>
-              <div className={styles.transactions__th}>Comment</div>
-              <div className={styles.transactions__tb}>Gift for your wife</div>
-            </div>
-            <div className={styles.transactions__row}>
-              <div className={styles.transactions__th}>Sum</div>
-              <div className={styles.transactions__red}>300.00</div>
-            </div>
-            <div className={styles.transactions__row}>
-              <div>
-                <button className={styles.transactions__btn_d}>Delete</button>
-              </div>
-              <div className={styles.transactions__button_edit}>
-                <ModeEditOutlineOutlinedIcon fontSize="small" />
-                <button className={styles.transactions__btn_e}>Edit</button>
-              </div>
-            </div>
-          </li>
+          </li> */}
         </ul>
+        {isModalOpen && <ModalDelete />}
       </div>
     );
   }
@@ -157,7 +185,7 @@ function Transactions() {
                   </button>
                   <button
                     className={styles.transactions__tbl_btn_delete}
-                    onClick={handleDeleteClick} 
+                    onClick={handleDeleteClick}
                   >
                     Delete
                   </button>
