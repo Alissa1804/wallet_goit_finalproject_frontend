@@ -1,6 +1,17 @@
 .container {
+  position: relative;
   width: 280px;
   margin-top: 8px;
+}
+
+.expense {
+  font-family: 'Circe';
+  font-weight: 700;
+  position: absolute;
+  font-size: 18px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
 
 @media screen and (min-width: 768px) {

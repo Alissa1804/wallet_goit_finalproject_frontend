@@ -33,6 +33,7 @@ export const Statistics = () => {
   const categories =
     statistics &&
     statistics.data[0]?.categories?.map(category => category.category);
+  const expense = statistics?.data[0]?.expense || 0;
   const fetchStatistics = useCallback(() => {
     const year = parseInt(selectedYear.format('YYYY'), 10);
     const month = Number(selectedMonth.format('M'));
@@ -56,7 +57,11 @@ export const Statistics = () => {
     <div className={styles.statistic__container}>
       <div className={styles.container__left}>
         <h3 className={styles.s__title}>Statistics</h3>
-        <ChartDoughnut categories={categories} colors={colors} />
+        <ChartDoughnut
+          categories={categories}
+          colors={colors}
+          expense={expense}
+        />
       </div>
       <div className={styles.container__right}>
         <div className={styles.pickers__container}>
@@ -71,11 +76,13 @@ export const Statistics = () => {
           <li>Category</li>
           <li>Sum</li>
         </ul>
-        {isLoading && <Loader />}
+
         {statistics &&
         statistics.data[0].categories &&
         statistics.data[0].categories.length > 0 ? (
           <ul className={styles.table}>
+            {' '}
+            {isLoading && <Loader />}
             {statistics.data[0].categories.map((category, id) => (
               <li className={styles.category__item} key={id}>
                 <span

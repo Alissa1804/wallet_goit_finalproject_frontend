@@ -29,6 +29,13 @@
   padding: 0;
 }
 
+.monthpicker thead {
+  display: none;
+}
+
+.rdtPicker {
+  border-radius: 20px;
+}
 @media screen and (min-width: 768px) {
   .picker input {
     width: 160px;

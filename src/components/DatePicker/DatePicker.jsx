@@ -26,7 +26,7 @@ export const DatePickers = ({ onMonthChange, onYearChange }) => {
           placeholder: currentMonth,
           className: `${styles.picker__input} ${styles.module}`,
         }}
-        className={`${styles.picker} ${styles.module}`}
+        className={`${styles.picker} ${styles.module} ${styles.monthpicker}`}
       />
       <Datetime
         id="year-picker"
