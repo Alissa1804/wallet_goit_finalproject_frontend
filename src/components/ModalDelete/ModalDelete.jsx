@@ -1,12 +1,15 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { toggleModalOpen, setModalType } from '../../redux/global/global-slice';
-import styles from './ModalLogout.module.css';
-import { logout } from 'redux/auth/auth-operations';
+import styles from '../ModalLogout/ModalLogout.module.css';
 
-export const ModalLogout = () => {
+import { deleteTransaction } from 'redux/transactions/transactions-operations';
+import { selectTransactions } from 'redux/transactions/transactions-selectors';
+
+export const ModalDelete = () => {
   const isModalOpen = useSelector(state => state.global.isModalOpen);
-  const modalType = useSelector(state => state.global.modalType)
+  const transaction = useSelector(selectTransactions);
+  const modalType = useSelector(state => state.global.modalType);
   const dispatch = useDispatch();
 
   const handleBackdropClick = event => {
@@ -15,6 +18,7 @@ export const ModalLogout = () => {
       dispatch(setModalType(null));
     }
   };
+
 
   useEffect(() => {
     const handleKeyDown = event => {
@@ -32,21 +36,23 @@ export const ModalLogout = () => {
 
   return (
     <>
-      {isModalOpen && modalType === 'logout' && (
+      {isModalOpen && modalType === 'delete' && (
         <div className={styles.overlay} onClick={handleBackdropClick}>
           <div className={styles.modal__container}>
-            <p className={styles.text}>Are you sure you want to log out?</p>
+            <p className={styles.text}>
+              Are you sure you want to delete this transaction?
+            </p>
             <div className={styles.button__container}>
               <button
-                title="logout"
+                title="delete"
                 className={styles.button}
                 onClick={() => {
-                  dispatch(logout());
+                  dispatch(deleteTransaction(transaction._id));
                   dispatch(toggleModalOpen());
                   dispatch(setModalType(null));
                 }}
               >
-                LOGOUT
+                DELETE
               </button>
               <button
                 title="cancel"
