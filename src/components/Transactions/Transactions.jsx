@@ -6,12 +6,24 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import { selectToken } from 'redux/auth/auth-selectors';
 import axios from 'axios';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import moment from 'moment';
+import { selectIsModalOpen } from 'redux/global/global-selectors';
+import { toggleModalOpen, setModalType } from 'redux/global/global-slice';
+// import { deleteTransaction } from 'redux/transactions/transactions-operations';
+import { ModalDelete } from 'components/ModalDelete/ModalDelete';
 
 function Transactions() {
   const [transactions, setTransactions] = useState([]);
   const token = useSelector(selectToken);
+  const isModalOpen = useSelector(selectIsModalOpen);
+
+  const dispatch = useDispatch();
+
+  const handleDeleteClick = () => {
+    dispatch(setModalType('delete'));
+    dispatch(toggleModalOpen());
+  };
 
   useEffect(() => {
     async function fetch() {
@@ -143,7 +155,10 @@ function Transactions() {
                   <button className={styles.transactions__tbl_btn_edit}>
                     <ModeEditOutlineOutlinedIcon fontSize="inherit" />
                   </button>
-                  <button className={styles.transactions__tbl_btn_delete} >
+                  <button
+                    className={styles.transactions__tbl_btn_delete}
+                    onClick={handleDeleteClick} 
+                  >
                     Delete
                   </button>
                 </div>
@@ -152,6 +167,7 @@ function Transactions() {
           ))}
         </tbody>
       </table>
+      {isModalOpen && <ModalDelete />}
     </div>
   );
 }

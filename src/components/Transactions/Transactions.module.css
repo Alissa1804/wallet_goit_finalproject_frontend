@@ -156,6 +156,8 @@
     border: none;
     font-size: 20px;
     background-color: transparent;
+    cursor: pointer;
+
   }
   .transactions__tbl_btn_delete {
     background-color: var(--green-color);
@@ -167,6 +169,7 @@
     line-height: 1.5;
     text-align: center;
     padding: 4px 12px;
+    cursor: pointer;
   }
   .transactions__red {
     color: var(--red-color);

@@ -4,7 +4,7 @@ import img from '../../images/logo.svg';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectName } from 'redux/auth/auth-selectors';
-import { toggleModalOpen } from 'redux/global/global-slice';
+import { toggleModalOpen, setModalType } from 'redux/global/global-slice';
 import { selectIsModalOpen } from 'redux/global/global-selectors';
 import { ModalLogout } from 'components/ModalLogout/ModalLogout';
 
@@ -12,7 +12,9 @@ export const Header = () => {
   const dispatch = useDispatch();
   const name = useSelector(selectName);
   const isModalOpen = useSelector(selectIsModalOpen);
+
   const handleLogoutClick = () => {
+    dispatch(setModalType('logout'));
     dispatch(toggleModalOpen());
   };
 

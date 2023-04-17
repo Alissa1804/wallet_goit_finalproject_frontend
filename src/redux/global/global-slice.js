@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   isModalOpen: false,
   isTransactionModalOpen: false,
+  modalType: null,
 };
 
 const globalSlice = createSlice({
@@ -15,9 +16,12 @@ const globalSlice = createSlice({
     toggleTransactionModalOpen(state) {
       state.isTransactionModalOpen = !state.isTransactionModalOpen;
     },
+    setModalType(state, action) {
+      state.modalType = action.payload;
+    },
   },
 });
 
-export const { toggleModalOpen, toggleTransactionModalOpen } =
+export const { toggleModalOpen, toggleTransactionModalOpen, setModalType } =
   globalSlice.actions;
 export const globalReducer = globalSlice.reducer;
