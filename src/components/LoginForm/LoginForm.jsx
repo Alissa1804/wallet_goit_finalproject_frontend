@@ -118,13 +118,16 @@ export const LoginForm = () => {
               <button type="submit" className={styles.mainButton}>
                 Log in
               </button>
-              <button
-                type="button"
-                className={styles.secondaryButton}
-                disabled={!isValid && !dirty}
-              >
-                <Link to="/">Register</Link>
-              </button>
+              <Link to="/">
+                <button
+                  type="button"
+                  className={styles.secondaryButton}
+                  disabled={!isValid && !dirty}
+                >
+                  Register
+                </button>
+              </Link>
+
             </div>
           </Form>
         </div>

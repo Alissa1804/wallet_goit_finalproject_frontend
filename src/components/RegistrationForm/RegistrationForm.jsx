@@ -204,9 +204,9 @@ export const RegistrationForm = () => {
             >
               Register
             </button>
-            <button type="button" className={styles.secondaryButton}>
-              <Link to="/login">Log in</Link>
-            </button>
+            <Link to="/login">
+                <button type="button" className={styles.secondaryButton}>Log in</button>
+              </Link>
           </div>
         </Form>
       </div>
