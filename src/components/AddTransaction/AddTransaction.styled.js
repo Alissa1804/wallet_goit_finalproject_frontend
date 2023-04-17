@@ -196,6 +196,10 @@ export const AddTransactionStyled = styled(Form)`
     gap: 20px;
   }
 
+  .modal__container_transaction {
+    position: relative;
+  }
+
   .text {
     font-family: 'Poppins';
     font-weight: 400;

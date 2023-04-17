@@ -16,10 +16,10 @@ import DateComponent from './DateComponent/DateComponent';
 import SelectComponent from './SelectComponent/SelectComponent';
 
 
-// import { selectCategories } from 'redux/transactions/trans-selectors';
+import { selectCategories } from 'redux/transactions/trans-selectors';
 import {
   addTransaction,
-  // getTransactionCategories,
+  getTransactionCategories,
 } from 'redux/transactions/trans-operations';
 
 
@@ -40,14 +40,14 @@ export const AddTransaction = () => {
   const handleBackdropClick = event => {
     if (event.target === event.currentTarget) {
       dispatch(toggleTransactionModalOpen());
-    }
+    } console.log(2)
   };
 
   useEffect(() => {
     const handleKeyDown = event => {
       if (event.code === 'Escape') {
         dispatch(toggleTransactionModalOpen());
-      }
+      } console.log(3)
     };
 
     window.addEventListener('keydown', handleKeyDown);
@@ -57,37 +57,9 @@ export const AddTransaction = () => {
     };
   }, [dispatch]);
 
-
-
-
-  // const currentDay = () => {
-  // const date = new Date();
-  // let day = date.getDate();
-  // let month = date.getMonth() + 1;
-  // let year = date.getFullYear();
-  // if (month < 10) month = "0" + month;
-  // if (day < 10) day = "0" + day;
-  // const today = year + "-" + month + "-" + day;
-  // return today;
-  // };
-  
-  // const [date, setDate] = useState(currentDay());
-
-  //   const handleChange = {
-  //   // category: ({ target: { value } }) => {
-  //   //   setCategory(value);
-  //   // },
-  //   date: ({ target: { value } }) => {
-  //     setDate(value);
-  //   },
-  //   // comment: ({ target: { value } }) => {
-  //   //   setComment(value);
-  //   // },
-  // };
-
   const [transactionState, setTransactionState] = useState(defaultState);
-  // const isModalOpen = useSelector(selectIsTransactionModalOpen);
-  // const categories = useSelector(selectCategories);
+
+  const categories = useSelector(selectCategories);
  
 
   // const dispatch = useDispatch();
@@ -96,18 +68,16 @@ export const AddTransaction = () => {
 
   useEffect(() => {
     if (!isTransactionModalOpen) return;
-    // if (!categories.length) {
-    //   dispatch(getTransactionCategories());
-    // }
-    }, [isTransactionModalOpen,  dispatch]);
+    if (!categories) {
+  dispatch(getTransactionCategories());
+}
+    }, [isTransactionModalOpen,categories,  dispatch]);
   // }, [isTransactionModalOpen, categories, dispatch]);
 
-  const optionsIncome = (
-    'INCOME'
-  );
-  const optionsExpense = (
-    'EXPENSE'
-  );
+   const optionsIncome = 'INCOME'
+  ;
+  const optionsExpense = 'EXPENSE'
+  ;
 
   const handleCheckboxChange = event => {
     if (transactionState.type === 'EXPENSE') {
@@ -116,15 +86,15 @@ export const AddTransaction = () => {
     } else {
       setTransactionState(prev => ({ ...prev, type: 'EXPENSE' }));
       event.target.setAttribute('checked', 'true');
-    }
+    } 
   };
 
   const handleSelectChange = categoryId => {
-    setTransactionState(prev => ({ ...prev, categoryId }));
+    setTransactionState(prev => ({ ...prev, categoryId })); console.log(5)
   };
 
   const handleDateChange = selectedDate => {
-    setTransactionState(prev => ({ ...prev, date: selectedDate._d }));
+    setTransactionState(prev => ({ ...prev, date: selectedDate._d })); 
   };
 
   const handleSubmit = (values, actions) => {
@@ -146,14 +116,14 @@ export const AddTransaction = () => {
       amount:
         transactionState.type === 'INCOME' ? Number(amount) : -Number(amount),
     };
-    onSubmit(formData);
+    onSubmit(formData);console.log(7)
     setTransactionState(prev => ({ ...prev, type: 'EXPENSE' }));
     actions.resetForm();
     dispatch(selectIsTransactionModalOpen());
   };
 
   const onSubmit = formData => {
-    dispatch(addTransaction(formData));
+    dispatch(addTransaction(formData)); console.log(7)
   };
 
   let validationSchema = object({

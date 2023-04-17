@@ -1,98 +1,32 @@
+
+import axios from 'axios';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-import {
-  TransactionsAPI,
-  TransactionCategoriesAPI,
-  TransactionSummaryAPI,
-} from '../../services/api';
+axios.defaults.baseURL = 'https://walletproject.onrender.com';
 
-
-export const fetchTransactions = createAsyncThunk(
-  'transactions/getTransactions',
+export const getTransactionCategories = createAsyncThunk(
+  'categories/getAllCategories',
   async (_, { rejectWithValue }) => {
     try {
-      const response = await TransactionsAPI.getUserTransactions();
-      return response;
+      const { data } = await axios.get('/api/categories/');
+      toast.success('You have all categories!');
+      return data;
     } catch (error) {
-      return rejectWithValue(error.message);
+      return rejectWithValue(error.response.data); // return a rejected promise with error response data
     }
   }
 );
 
 export const addTransaction = createAsyncThunk(
-  'transactions/addTransition',
-  async (formData, { rejectWithValue }) => {
+  'transactions/addTransaction',
+  async (data, { rejectWithValue }) => {
     try {
-      const response = await TransactionsAPI.createTransaction(formData);
-      return response;
-    } catch (error) {
-      return rejectWithValue(error.message);
-    }
-  }
-);
-
-export const deleteTransaction = createAsyncThunk(
-  'transactions/deleteTransition',
-  async (formData, { rejectWithValue }) => {
-    try {
-      await TransactionsAPI.removeTransaction(formData.transitionId);
-      const newBalance = formData.balance - formData.delAmount;
-      const info = { id: formData.transitionId, balance: newBalance };
-      return info;
-    } catch (error) {
-      return rejectWithValue(error.message);
-    }
-  }
-);
-
-export const editTransaction = createAsyncThunk(
-  'transactions/editTransition',
-  async (formData, { rejectWithValue }) => {
-    try {
-      const info = {
-        id: formData.id,
-        amount: formData.amount,
-        comment: formData.comment,
-      };
-      const response = await TransactionsAPI.updateTransaction(info);
-      const newBalance = formData.balance - formData.oldAmnt + formData.amount;
-
-      const data = {
-        response,
-        balance: newBalance,
-      };
-
-      return data;
-    } catch (error) {
-      return rejectWithValue(error.message);
-    }
-  }
-);
-
-export const getTransactionCategories = createAsyncThunk(
-  'transactions/getTransactionCategories',
-  async (_, { rejectWithValue }) => {
-    try {
-      const response =
-        await TransactionCategoriesAPI.getTransactionCategories();
-      return response;
-    } catch (error) {
-      return rejectWithValue(error.message);
-    }
-  }
-);
-
-export const getTransactionSummary = createAsyncThunk(
-  'transactions/getTransactionSummary',
-  async (formData, { rejectWithValue }) => {
-    try {
-      // return await TransactionSummaryAPI.getTransactionSummary(formData);
-      const response = await TransactionSummaryAPI.getTransactionSummary(
-        formData
-      );
-      return response;
-    } catch (error) {
-      return rejectWithValue(error.message);
+      const transaction = await axios.addTransaction(data);
+      return transaction;
+    } catch ({ response }) {
+      return rejectWithValue(response);
     }
   }
 );

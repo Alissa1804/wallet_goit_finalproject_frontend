@@ -1,4 +1,4 @@
-export const selectStyles = theme => {
+export const selectStyles = () => {
   return {
     control: provided => ({
       ...provided,
