@@ -47,3 +47,15 @@ export const getTransactions = createAsyncThunk(
   }
 );
 
+export const editTransaction = createAsyncThunk(
+  'transactions/editTransaction',
+  async ({ id, transaction }, { rejectWithValue }) => {
+    try {
+      const response = await axios.put(`/api/transactions/${id}`, transaction);
+      toast.success('Your transaction is updated!');
+      return response.data.data;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+);

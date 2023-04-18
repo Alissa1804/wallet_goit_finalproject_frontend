@@ -1,5 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { deleteTransaction, addTransaction, getTransactions } from './transactions-operations';
+import {
+  deleteTransaction,
+  addTransaction,
+  getTransactions,
+  editTransaction,
+} from './transactions-operations';
 
 const transactionsSlice = createSlice({
   name: 'transactions',
@@ -11,9 +16,7 @@ const transactionsSlice = createSlice({
         state.isLoading = true;
         state.error = null;
       })
-      .addCase(deleteTransaction.fulfilled, (state, { payload }) => {
-        state.transactions = state.transactions.filter(({ _id }) => _id !== payload);
-        state.balance = payload.balance;
+      .addCase(deleteTransaction.fulfilled, state => {
         state.isLoading = false;
         state.error = null;
       })
@@ -45,7 +48,20 @@ const transactionsSlice = createSlice({
       .addCase(getTransactions.rejected, (state, { payload }) => {
         state.isLoading = false;
         state.error = payload;
+      })
+      .addCase(editTransaction.pending, state => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(editTransaction.fulfilled, (state, { payload }) => {
+        // state.transactions = payload;
+        state.isLoading = false;
+        state.error = null;
+      })
+      .addCase(editTransaction.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = payload;
       }),
-})
+});
 
 export default transactionsSlice.reducer;

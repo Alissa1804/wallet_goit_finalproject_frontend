@@ -2,10 +2,12 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { toggleModalOpen, setModalType } from '../../redux/global/global-slice';
 import styles from '../ModalLogout/ModalLogout.module.css';
-
+import { selectToken } from 'redux/auth/auth-selectors';
+import { getTransactions } from 'redux/transactions/transactions-operations';
 import { deleteTransaction } from 'redux/transactions/transactions-operations';
 
-export const ModalDelete = ({ id, fetch }) => {
+export const ModalDelete = ({ id }) => {
+  const token = useSelector(selectToken);
   const isModalOpen = useSelector(state => state.global.isModalOpen);
   const modalType = useSelector(state => state.global.modalType);
   const dispatch = useDispatch();
@@ -43,11 +45,11 @@ export const ModalDelete = ({ id, fetch }) => {
               <button
                 title="delete"
                 className={styles.button}
-                onClick={() => {
-                  dispatch(deleteTransaction(id));
+                onClick={async () => {
+                  await dispatch(deleteTransaction(id));
+                  await dispatch(getTransactions({ token }));
                   dispatch(toggleModalOpen());
                   dispatch(setModalType(null));
-                  dispatch(fetch());
                 }}
               >
                 DELETE

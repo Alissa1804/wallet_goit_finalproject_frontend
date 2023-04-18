@@ -7,18 +7,27 @@ import { useEffect, useCallback } from 'react';
 import { selectToken } from 'redux/auth/auth-selectors';
 import { useSelector, useDispatch } from 'react-redux';
 import moment from 'moment';
-import { selectIsModalOpen } from 'redux/global/global-selectors';
-import { toggleModalOpen, setModalType } from 'redux/global/global-slice';
+import {
+  selectIsEditTransactionModalOpen,
+  selectIsModalOpen,
+} from 'redux/global/global-selectors';
+import {
+  toggleModalOpen,
+  setModalType,
+  toggleEditTransactionModalOpen,
+} from 'redux/global/global-slice';
 import { ModalDelete } from 'components/ModalDelete/ModalDelete';
 import { Loader } from 'components/Loader/Loader';
 import { selectTransactions } from 'redux/transactions/transactions-selectors';
 import { getTransactions } from 'redux/transactions/transactions-operations';
+import { EditTransaction } from 'components/EditTransaction/EditTransaction';
 
 function Transactions() {
   const transactions = useSelector(selectTransactions);
   const [isLoading, setIsLoading] = useState(true);
   const token = useSelector(selectToken);
   const isModalOpen = useSelector(selectIsModalOpen);
+  const isEditModalOpen = useSelector(selectIsEditTransactionModalOpen);
   const [id, setId] = useState(null);
 
   const dispatch = useDispatch();
@@ -27,6 +36,10 @@ function Transactions() {
     dispatch(setModalType('delete'));
     dispatch(toggleModalOpen());
     setId(itemId);
+  };
+  const handleEditClick = itemId => {
+    setId(itemId);
+    dispatch(toggleEditTransactionModalOpen());
   };
   const fetchTransactions = useCallback(async () => {
     setIsLoading(true);
@@ -105,16 +118,23 @@ function Transactions() {
                       Delete
                     </button>
                   </div>
+                  dsfsfs
                   <div className={styles.transactions__button_edit}>
                     <ModeEditOutlineOutlinedIcon fontSize="small" />
-                    <button className={styles.transactions__btn_e}>Edit</button>
+                    <button
+                      className={styles.transactions__btn_e}
+                      onClick={() => handleEditClick(item._id)}
+                    >
+                      Edit
+                    </button>
                   </div>
                 </div>
               </li>
             ))}
           </ul>
         )}
-        {isModalOpen && <ModalDelete id={id} fetch={fetchTransactions} />}
+        {isEditModalOpen && <EditTransaction id={id} />}
+        {isModalOpen && <ModalDelete id={id} />}
       </div>
     );
   }
@@ -166,7 +186,10 @@ function Transactions() {
                 </td>
                 <td className={styles.transactions__tbl_item}>
                   <div className={styles.transactions__tbl_buttons}>
-                    <button className={styles.transactions__tbl_btn_edit}>
+                    <button
+                      className={styles.transactions__tbl_btn_edit}
+                      onClick={() => handleEditClick(item._id)}
+                    >
                       <ModeEditOutlineOutlinedIcon fontSize="inherit" />
                     </button>
                     <button
@@ -182,6 +205,7 @@ function Transactions() {
           </tbody>
         </table>
       )}
+      {isEditModalOpen && <EditTransaction id={id} />}
       {isModalOpen && <ModalDelete id={id} fetch={fetchTransactions} />}
     </div>
   );
