@@ -89,7 +89,6 @@ export const AddTransaction = () => {
 
   const handleSelectChange = categoryId => {
     setTransactionState(prev => ({ ...prev, categoryId }));
-    console.log(5);
   };
 
   const handleDateChange = selectedDate => {
@@ -100,20 +99,19 @@ export const AddTransaction = () => {
     const { amount, comment } = values;
     const month = transactionState.date.getMonth() + 1;
     const year = transactionState.date.getFullYear();
-    const selectedCategory = categories.find(
-      el => el.id === transactionState.categoryId
-    );
-    const selectedCategoryName = capitalizeFirstLetter(
-      selectedCategory.category
-    );
+
+    let selectedCategoryName = 'Income';
+
+    if (transactionState.type === TRANSACTION_TYPE.EXPENSE) {
+      const selectedCategory = categories.find(
+        el => el.id === transactionState.categoryId
+      );
+
+      selectedCategoryName = capitalizeFirstLetter(selectedCategory.category);
+    }
 
     const formData = {
-      ...(transactionState.type === TRANSACTION_TYPE.INCOME && {
-        category: null,
-      }),
-      ...(transactionState.type === TRANSACTION_TYPE.EXPENSE && {
-        category: selectedCategoryName,
-      }),
+      category: selectedCategoryName,
       type: transactionState.type === TRANSACTION_TYPE.INCOME ? true : false,
       date: transactionState.date,
       month,
