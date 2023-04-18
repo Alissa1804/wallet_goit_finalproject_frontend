@@ -25,6 +25,7 @@ const financeSlice = createSlice({
       .addCase(getStatistics.rejected, (state, { payload }) => {
         state.isLoading = false;
         state.error = payload;
+        state.statistics = null;
       }),
 });
 
