@@ -82,15 +82,22 @@
   .statistic__container {
     display: flex;
     gap: 32px;
+    width: 100%;
+  }
+  .container__right {
+    width: 100%;
   }
   .pickers__container {
     display: flex;
+    gap: 16px;
+    justify-content: center;
   }
 }
 
 @media screen and (min-width: 1280px) {
   .statistic__container {
     margin-left: auto;
+    justify-content: flex-end;
   }
   .container__right {
     width: 395px;

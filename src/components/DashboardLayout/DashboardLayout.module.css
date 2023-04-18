@@ -25,7 +25,6 @@
 /*Tablet*/
 @media screen and (min-width: 768px) {
   .backWrapper {
-    position: fixed;
     top: 0;
     padding: 0;
     margin: 0;
@@ -38,6 +37,7 @@
     background-repeat: no-repeat, no-repeat;
     background-position: bottom left, top right;
     background-color: #e7eaf2;
+    backdrop-filter: blur(25px);
   }
   .backWrapper::before {
     content: '';
@@ -55,6 +55,7 @@
     flex-wrap: wrap;
     gap: 32px;
     padding: 32px 32px;
+    height: 100vh;
   }
   .dashboard__left,
   .dashboard__right {
@@ -80,8 +81,7 @@
   .dashboard__content {
     gap: 69px;
     padding: 0 18px;
-    width: 100%;
-    height: 100%;
+    justify-content: space-between;
   }
   .dashboard__left,
   .dashboard__right {

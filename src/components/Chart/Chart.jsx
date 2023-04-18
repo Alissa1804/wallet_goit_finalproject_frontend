@@ -34,12 +34,12 @@ const ChartDoughnut = ({ categories, colors, expense }) => {
     <div className={styles.container}>
       {expense ? (
         <>
-          <Doughnut data={data} options={options} />
+          <Doughnut data={data} options={options} className={styles.doughnut} />
           <p className={styles.expense}>₴ {expense}</p>
         </>
       ) : (
         <>
-          <Doughnut data={data} options={options} />
+          <Doughnut data={data} options={options} className={styles.doughnut} />
           <p className={styles.expense}>No expenses</p>
         </>
       )}

@@ -10,7 +10,7 @@ export const DatePickers = ({ onMonthChange, onYearChange }) => {
   const currentMonth = moment().format('MMMM');
   const currentYear = moment().format('YYYY');
   return (
-    <div>
+    <>
       <Datetime
         id="month-picker"
         value={selectedMonth}
@@ -45,6 +45,6 @@ export const DatePickers = ({ onMonthChange, onYearChange }) => {
         }}
         className={`${styles.picker} ${styles.module}`}
       />
-    </div>
+    </>
   );
 };

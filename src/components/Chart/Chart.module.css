@@ -3,6 +3,10 @@
   width: 280px;
   margin-top: 8px;
 }
+.doughnut {
+  width: 100% !important;
+  height: 100% !important;
+}
 
 .expense {
   font-family: 'Circe';

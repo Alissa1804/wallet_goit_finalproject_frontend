@@ -196,4 +196,8 @@
 
 /*Desktop*/
 @media screen and (min-width: 1280px) {
+  .transactions {
+    justify-content: flex-end;
+    display: flex;
+  }
 }
