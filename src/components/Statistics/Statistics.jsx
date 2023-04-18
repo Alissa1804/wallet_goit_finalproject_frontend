@@ -37,7 +37,6 @@ export const Statistics = () => {
   const fetchStatistics = useCallback(() => {
     const year = parseInt(selectedYear.format('YYYY'), 10);
     const month = Number(selectedMonth.format('M'));
-    console.log(year, month);
     dispatch(getStatistics({ month, year }));
   }, [dispatch, selectedMonth, selectedYear]);
 

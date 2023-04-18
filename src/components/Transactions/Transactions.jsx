@@ -5,16 +5,17 @@ import { useDeviceSize } from 'hooks/useDeviceSize';
 import { useState } from 'react';
 import { useEffect, useCallback } from 'react';
 import { selectToken } from 'redux/auth/auth-selectors';
-import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
 import moment from 'moment';
 import { selectIsModalOpen } from 'redux/global/global-selectors';
 import { toggleModalOpen, setModalType } from 'redux/global/global-slice';
 import { ModalDelete } from 'components/ModalDelete/ModalDelete';
 import { Loader } from 'components/Loader/Loader';
+import { selectTransactions } from 'redux/transactions/transactions-selectors';
+import { getTransactions } from 'redux/transactions/transactions-operations';
 
 function Transactions() {
-  const [transactions, setTransactions] = useState([]);
+  const transactions = useSelector(selectTransactions);
   const [isLoading, setIsLoading] = useState(true);
   const token = useSelector(selectToken);
   const isModalOpen = useSelector(selectIsModalOpen);
@@ -27,32 +28,15 @@ function Transactions() {
     dispatch(toggleModalOpen());
     setId(itemId);
   };
-  
   const fetchTransactions = useCallback(async () => {
-    setIsLoading(true); 
-    try {
-      const response = await axios(
-        'https://walletproject.onrender.com/api/transactions',
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      setTransactions(response.data.data);
-      setIsLoading(false); 
-    } catch (error) {
-      console.error('Error fetching transactions:', error);
-      setIsLoading(false); 
-    }
-  }, [token]);
-
-  
+    setIsLoading(true);
+    dispatch(getTransactions({ token }));
+    setIsLoading(false);
+  }, [token, dispatch]);
 
   useEffect(() => {
     fetchTransactions();
   }, [fetchTransactions]);
-
 
   const { deviceType } = useDeviceSize();
   if (deviceType === 'mobile') {
