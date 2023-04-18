@@ -88,30 +88,4 @@ export const editTransaction = createAsyncThunk(
   }
 );
 
-export const getTransactionCategories = createAsyncThunk(
-  'transactions/getTransactionCategories',
-  async (_, { rejectWithValue }) => {
-    try {
-      const response =
-        await TransactionCategoriesAPI.getTransactionCategories();
-      return response;
-    } catch (error) {
-      return rejectWithValue(error.message);
-    }
-  }
-);
 
-export const getTransactionSummary = createAsyncThunk(
-  'transactions/getTransactionSummary',
-  async (formData, { rejectWithValue }) => {
-    try {
-      // return await TransactionSummaryAPI.getTransactionSummary(formData);
-      const response = await TransactionSummaryAPI.getTransactionSummary(
-        formData
-      );
-      return response;
-    } catch (error) {
-      return rejectWithValue(error.message);
-    }
-  }
-);

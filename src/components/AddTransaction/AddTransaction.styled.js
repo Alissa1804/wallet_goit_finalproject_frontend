@@ -46,7 +46,7 @@ export const AddTransactionStyled = styled(Form)`
     margin-bottom: 40px;
   }
   & .switcher {
-    width: 235px;
+    
     height: 46px;
     display: flex;
     align-items: center;
@@ -167,6 +167,7 @@ export const AddTransactionStyled = styled(Form)`
         -webkit-appearance: none;
         -moz-appearance: textfield;
         margin: 0;
+        
       }
     }
     @media screen and (min-width: 768px) {
@@ -178,13 +179,16 @@ export const AddTransactionStyled = styled(Form)`
       }
       & .date-wrapper {
         width: calc((100% - 30px) / 2);
+        
       }
       & .amount {
         width: 100%;
         text-align: center;
+        
       }
       & .date {
         width: 100%;
+        
       }
     }
   }
@@ -194,6 +198,10 @@ export const AddTransactionStyled = styled(Form)`
     flex-direction: column;
     align-items: center;
     gap: 20px;
+  }
+
+  .modal__container_transaction {
+    position: relative;
   }
 
   .text {
