@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { getTransactionCategories, addTransaction } from './trans-operations';
+import { getTransactionCategories, addTransaction } from './categories-operations';
 
 export const getTransactionCategoriesThunk = createAsyncThunk(
   'transactions/getTransactionCategories',

@@ -16,11 +16,11 @@ import DateComponent from './DateComponent/DateComponent';
 import SelectComponent from './SelectComponent/SelectComponent';
 
 
-import { selectCategories } from 'redux/transactions/trans-selectors';
+import { selectCategories } from 'redux/transactions/categories-selectors';
 import {
   addTransaction,
   getTransactionCategories,
-} from 'redux/transactions/trans-operations';
+} from 'redux/transactions/categories-operations';
 
 
 const defaultState = {
@@ -69,16 +69,16 @@ export const AddTransaction = () => {
   useEffect(() => {
     if (!isTransactionModalOpen) return;
     if (!categories) {
-  dispatch(getTransactionCategories());
+  dispatch(getTransactionCategories());console.log(4)
 }
-    }, [isTransactionModalOpen,categories,  dispatch]);
+    }, [isTransactionModalOpen,categories,  dispatch]);console.log(5)
   // }, [isTransactionModalOpen, categories, dispatch]);
 
    const optionsIncome = 'INCOME'
   ;
   const optionsExpense = 'EXPENSE'
   ;
-
+////ok//
   const handleCheckboxChange = event => {
     if (transactionState.type === 'EXPENSE') {
       setTransactionState(prev => ({ ...prev, type: 'INCOME' }));
@@ -88,10 +88,10 @@ export const AddTransaction = () => {
       event.target.setAttribute('checked', 'true');
     } 
   };
-
+/////
   const handleSelectChange = categoryId => {
     setTransactionState(prev => ({ ...prev, categoryId })); console.log(5)
-  };
+  }; 
 
   const handleDateChange = selectedDate => {
     setTransactionState(prev => ({ ...prev, date: selectedDate._d })); 
@@ -103,7 +103,7 @@ export const AddTransaction = () => {
     const formData = {
       ...(transactionState.type === 'INCOME' && {
         categoryId: optionsIncome[0].id,
-      }),
+      }), 
       ...(transactionState.type === 'EXPENSE' && {
         categoryId: transactionState.categoryId
           ? transactionState.categoryId
@@ -115,16 +115,17 @@ export const AddTransaction = () => {
       comment,
       amount:
         transactionState.type === 'INCOME' ? Number(amount) : -Number(amount),
+      
     };
-    onSubmit(formData);console.log(7)
+    onSubmit(formData);console.log(8)
     setTransactionState(prev => ({ ...prev, type: 'EXPENSE' }));
-    actions.resetForm();
+    actions.resetForm();console.log(11)
     dispatch(selectIsTransactionModalOpen());
   };
 
   const onSubmit = formData => {
-    dispatch(addTransaction(formData)); console.log(7)
-  };
+    dispatch(addTransaction(formData)); 
+  };console.log(7)
 
   let validationSchema = object({
     amount: string()

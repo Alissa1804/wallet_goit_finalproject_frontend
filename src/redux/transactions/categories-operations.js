@@ -17,16 +17,19 @@ export const getTransactionCategories = createAsyncThunk(
       return rejectWithValue(error.response.data); // return a rejected promise with error response data
     }
   }
-);
+); console.log(70)
 
 export const addTransaction = createAsyncThunk(
   'transactions/addTransaction',
   async (data, { rejectWithValue }) => {
     try {
-      const transaction = await axios.addTransaction(data);
+        const transaction = await axios.addTransaction(data);
+        toast.success('You have ADD!');
       return transaction;
     } catch ({ response }) {
       return rejectWithValue(response);
     }
   }
-);
+); console.log(748);
+
+
