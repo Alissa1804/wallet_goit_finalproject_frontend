@@ -12,9 +12,11 @@ import { selectIsModalOpen } from 'redux/global/global-selectors';
 import { toggleModalOpen, setModalType } from 'redux/global/global-slice';
 // import { deleteTransaction } from 'redux/transactions/transactions-operations';
 import { ModalDelete } from 'components/ModalDelete/ModalDelete';
+import { Loader } from 'components/Loader/Loader';
 
 function Transactions() {
   const [transactions, setTransactions] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const token = useSelector(selectToken);
   const isModalOpen = useSelector(selectIsModalOpen);
 
@@ -25,145 +27,166 @@ function Transactions() {
     dispatch(toggleModalOpen());
   };
 
-  useEffect(() => {
-    async function fetch() {
-      const response = await axios(
-        'https://walletproject.onrender.com/api/transactions',
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      setTransactions(response.data.data);
-    }
 
-    fetch();
+  useEffect(() => {
+    async function fetchTransactions() {
+      setIsLoading(true);
+      try {
+        const response = await axios(
+          'https://walletproject.onrender.com/api/transactions',
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        setTransactions(response.data.data);
+      } catch (error) {
+        console.error('Error fetching transactions:', error);
+      }
+      setIsLoading(false);
+    }
+    fetchTransactions();
   }, [token]);
+
 
   const { deviceType } = useDeviceSize();
   if (deviceType === 'mobile') {
     return (
       <div className={styles.transactions}>
-        <ul className={styles.transactions__list}>
-          {transactions.map(item => (
-            <li
-              className={`${styles.transactions__item} ${
-                item.type
-                  ? styles.transactions__item__positive
-                  : styles.transactions__item__negative
-              }`}
-              key={item._id}
-            >
-              <div className={styles.transactions__row}>
-                <div className={styles.transactions__th}>Date</div>
-                <div className={styles.transactions__tb}>
-                  {moment(item.date).format('L')}
+        {isLoading ? (
+          <Loader />
+        ) : transactions.length === 0 ? (
+          <p className={styles.transactions__th} style={{ textAlign: 'center' }}>No transactions found</p>
+        ) : (
+          <ul className={styles.transactions__list}>
+            {transactions.map(item => (
+              <li
+                className={`${styles.transactions__item} ${
+                  item.type
+                    ? styles.transactions__item__positive
+                    : styles.transactions__item__negative
+                }`}
+                key={item._id}
+              >
+                <div className={styles.transactions__row}>
+                  <div className={styles.transactions__th}>Date</div>
+                  <div className={styles.transactions__tb}>
+                    {moment(item.date).format('L')}
+                  </div>
                 </div>
-              </div>
-              <div className={styles.transactions__row}>
-                <div className={styles.transactions__th}>Type</div>
-                <div className={styles.transactions__tb}>
-                  {item.type ? '+' : '-'}
+                <div className={styles.transactions__row}>
+                  <div className={styles.transactions__th}>Type</div>
+                  <div className={styles.transactions__tb}>
+                    {item.type ? '+' : '-'}
+                  </div>
                 </div>
-              </div>
-              <div className={styles.transactions__row}>
-                <div className={styles.transactions__th}>Category</div>
-                <div className={styles.transactions__tb}>{item.category}</div>
-              </div>
-              <div className={styles.transactions__row}>
-                <div className={styles.transactions__th}>Comment</div>
-                <div className={styles.transactions__tb}>
-                  {item.comment ?? '-'}
+                <div className={styles.transactions__row}>
+                  <div className={styles.transactions__th}>Category</div>
+                  <div className={styles.transactions__tb}>{item.category}</div>
                 </div>
-              </div>
-              <div className={styles.transactions__row}>
-                <div className={styles.transactions__th}>Sum</div>
-                <div
-                  className={
-                    item.type
-                      ? styles.transactions__green
-                      : styles.transactions__red
-                  }
-                >
-                  {item.amount}
+                <div className={styles.transactions__row}>
+                  <div className={styles.transactions__th}>Comment</div>
+                  <div className={styles.transactions__tb}>
+                    {item.comment ?? '-'}
+                  </div>
                 </div>
-              </div>
-              <div className={styles.transactions__row}>
-                <div>
-                  <button
-                    className={styles.transactions__btn_d}
-                    onClick={handleDeleteClick}
+                <div className={styles.transactions__row}>
+                  <div className={styles.transactions__th}>Sum</div>
+                  <div
+                    className={
+                      item.type
+                        ? styles.transactions__green
+                        : styles.transactions__red
+                    }
                   >
-                    Delete
-                  </button>
+                    {item.amount}
+                  </div>
                 </div>
-                <div className={styles.transactions__button_edit}>
-                  <ModeEditOutlineOutlinedIcon fontSize="small" />
-                  <button className={styles.transactions__btn_e}>Edit</button>
+                <div className={styles.transactions__row}>
+                  <div>
+                    <button
+                      className={styles.transactions__btn_d}
+                      onClick={handleDeleteClick}
+                    >
+                      Delete
+                    </button>
+                  </div>
+                  <div className={styles.transactions__button_edit}>
+                    <ModeEditOutlineOutlinedIcon fontSize="small" />
+                    <button className={styles.transactions__btn_e}>Edit</button>
+                  </div>
                 </div>
-              </div>
-            </li>
-          ))}
-        </ul>
+              </li>
+            ))}
+          </ul>
+        )}
         {isModalOpen && <ModalDelete />}
       </div>
     );
   }
   return (
     <div className={styles.transactions}>
-      <table className={styles.transactions__tbl}>
-        <thead className={styles.transactions__thead}>
-          <tr className={styles.transactions__thr}>
-            <th className={styles.transactions__tbl_title}>Date</th>
-            <th className={styles.transactions__tbl_title}>Type</th>
-            <th className={styles.transactions__tbl_title}>Category</th>
-            <th className={styles.transactions__tbl_title}>Comment</th>
-            <th className={styles.transactions__tbl_title}>Sum</th>
-            <th className={styles.transactions__tbl_title}></th>
-          </tr>
-        </thead>
-        <tbody className={styles.transactions__tbody}>
-          {transactions.map(item => (
-            <tr className={styles.transactions__tbl_string} key={item._id}>
-              <td className={styles.transactions__tbl_item}>
-                {moment(item.date).format('L')}
-              </td>
-              <td className={styles.transactions__tbl_item}>
-                {item.type ? '+' : '-'}
-              </td>
-              <td className={styles.transactions__tbl_item}>{item.category}</td>
-              <td className={styles.transactions__tbl_item}>
-                {item.comment ?? '-'}
-              </td>
-              <td className={styles.transactions__tbl_item}>
-                <div
-                  className={
-                    item.type
-                      ? styles.transactions__green
-                      : styles.transactions__red
-                  }
-                >
-                  {item.amount}
-                </div>
-              </td>
-              <td className={styles.transactions__tbl_item}>
-                <div className={styles.transactions__tbl_buttons}>
-                  <button className={styles.transactions__tbl_btn_edit}>
-                    <ModeEditOutlineOutlinedIcon fontSize="inherit" />
-                  </button>
-                  <button
-                    className={styles.transactions__tbl_btn_delete}
-                    onClick={handleDeleteClick}
-                  >
-                    Delete
-                  </button>
-                </div>
-              </td>
+      {isLoading ? (
+        <Loader />
+      ) : transactions.length === 0 ? (
+        <p className={styles.transactions__th} style={{ textAlign: 'center' }}>No transactions found.</p>
+      ) : (
+        <table className={styles.transactions__tbl}>
+          <thead className={styles.transactions__thead}>
+            <tr className={styles.transactions__thr}>
+              <th className={styles.transactions__tbl_title}>Date</th>
+              <th className={styles.transactions__tbl_title}>Type</th>
+              <th className={styles.transactions__tbl_title}>Category</th>
+              <th className={styles.transactions__tbl_title}>Comment</th>
+              <th className={styles.transactions__tbl_title}>Sum</th>
+              <th className={styles.transactions__tbl_title}></th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody className={styles.transactions__tbody}>
+            {transactions.map(item => (
+              <tr className={styles.transactions__tbl_string} key={item._id}>
+                <td className={styles.transactions__tbl_item}>
+                  {moment(item.date).format('L')}
+                </td>
+                <td className={styles.transactions__tbl_item}>
+                  {item.type ? '+' : '-'}
+                </td>
+                <td className={styles.transactions__tbl_item}>
+                  {item.category}
+                </td>
+                <td className={styles.transactions__tbl_item}>
+                  {item.comment ?? '-'}
+                </td>
+                <td className={styles.transactions__tbl_item}>
+                  <div
+                    className={
+                      item.type
+                        ? styles.transactions__green
+                        : styles.transactions__red
+                    }
+                  >
+                    {item.amount}
+                  </div>
+                </td>
+                <td className={styles.transactions__tbl_item}>
+                  <div className={styles.transactions__tbl_buttons}>
+                    <button className={styles.transactions__tbl_btn_edit}>
+                      <ModeEditOutlineOutlinedIcon fontSize="inherit" />
+                    </button>
+                    <button
+                      className={styles.transactions__tbl_btn_delete}
+                      onClick={handleDeleteClick}
+                    >
+                      Delete
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
       {isModalOpen && <ModalDelete />}
     </div>
   );
