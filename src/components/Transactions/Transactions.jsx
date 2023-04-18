@@ -10,7 +10,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import moment from 'moment';
 import { selectIsModalOpen } from 'redux/global/global-selectors';
 import { toggleModalOpen, setModalType } from 'redux/global/global-slice';
-// import { deleteTransaction } from 'redux/transactions/transactions-operations';
 import { ModalDelete } from 'components/ModalDelete/ModalDelete';
 import { Loader } from 'components/Loader/Loader';
 
@@ -28,8 +27,9 @@ function Transactions() {
     dispatch(toggleModalOpen());
     setId(itemId);
   };
+  
   const fetchTransactions = useCallback(async () => {
-    setIsLoading(true);
+    setIsLoading(true); 
     try {
       const response = await axios(
         'https://walletproject.onrender.com/api/transactions',
@@ -40,15 +40,19 @@ function Transactions() {
         }
       );
       setTransactions(response.data.data);
+      setIsLoading(false); 
     } catch (error) {
       console.error('Error fetching transactions:', error);
+      setIsLoading(false); 
     }
-    setIsLoading(false);
   }, [token]);
+
+  
 
   useEffect(() => {
     fetchTransactions();
   }, [fetchTransactions]);
+
 
   const { deviceType } = useDeviceSize();
   if (deviceType === 'mobile') {

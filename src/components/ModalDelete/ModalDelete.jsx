@@ -4,11 +4,9 @@ import { toggleModalOpen, setModalType } from '../../redux/global/global-slice';
 import styles from '../ModalLogout/ModalLogout.module.css';
 
 import { deleteTransaction } from 'redux/transactions/transactions-operations';
-//import { selectTransactions } from 'redux/transactions/transactions-selectors';
 
 export const ModalDelete = ({ id, fetch }) => {
   const isModalOpen = useSelector(state => state.global.isModalOpen);
-  //const transaction = useSelector(selectTransactions);
   const modalType = useSelector(state => state.global.modalType);
   const dispatch = useDispatch();
 
