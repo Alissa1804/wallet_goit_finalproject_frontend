@@ -6,29 +6,31 @@ import { selectIsTransactionModalOpen } from 'redux/global/global-selectors';
 import { Formik, Field } from 'formik';
 import { useMediaQuery } from 'react-responsive';
 import { date, object, string } from 'yup';
-
 import {
   ErrorMessageStyled,
   AddTransactionStyled,
 } from './AddTransaction.styled';
-
 import DateComponent from './DateComponent/DateComponent';
 import SelectComponent from './SelectComponent/SelectComponent';
+import { getCategories } from 'redux/categories/categories-operations';
+import { selectCategories } from 'redux/categories/categories-selectors';
+import { addTransaction } from 'redux/transactions/transactions-operations';
+import { selectToken } from 'redux/auth/auth-selectors';
+import { getTransactions } from 'redux/transactions/transactions-operations';
+import { getCurrentUser } from 'redux/user/user-operations';
 
+function capitalizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
 
-
-import { selectCategories } from 'redux/transactions/categories-selectors';
-import {
-  addTransaction,
-  getTransactionCategories,
-} from 'redux/transactions/categories-operations';
-
-
-
+const TRANSACTION_TYPE = {
+  EXPENSE: 'EXPENSE',
+  INCOME: 'INCOME',
+};
 
 const defaultState = {
-  type: 'EXPENSE',
-  categoryId: '',
+  type: TRANSACTION_TYPE.EXPENSE,
+  categoryId: null,
   amount: '',
   date: new Date(),
   comment: '',
@@ -36,20 +38,31 @@ const defaultState = {
 
 export const AddTransaction = () => {
   const isTransactionModalOpen = useSelector(selectIsTransactionModalOpen);
+  const categories = useSelector(selectCategories);
+  const token = useSelector(selectToken);
+  const [transactionState, setTransactionState] = useState(defaultState);
+
   const dispatch = useDispatch();
-  console.log(1);
+
+  useEffect(() => {
+    if (!isTransactionModalOpen) return;
+
+    if (!Array.isArray(categories) || categories.length === 0) {
+      dispatch(getCategories());
+    }
+  }, [isTransactionModalOpen, categories, dispatch]);
 
   const handleBackdropClick = event => {
     if (event.target === event.currentTarget) {
       dispatch(toggleTransactionModalOpen());
-    } console.log(2)
+    }
   };
 
   useEffect(() => {
     const handleKeyDown = event => {
       if (event.code === 'Escape') {
         dispatch(toggleTransactionModalOpen());
-      } console.log(3)
+      }
     };
 
     window.addEventListener('keydown', handleKeyDown);
@@ -59,82 +72,64 @@ export const AddTransaction = () => {
     };
   }, [dispatch]);
 
-
-  const [transactionState, setTransactionState] = useState(defaultState);
-
-  const categories = useSelector(selectCategories);
- 
-
-
-
-  // const dispatch = useDispatch();
-
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
 
-  useEffect(() => {
-    if (!isTransactionModalOpen) return;
-
-    if (!categories) {
-  dispatch(getTransactionCategories());console.log(4)
-}
-    }, [isTransactionModalOpen,categories,  dispatch]);console.log(5)
-  // }, [isTransactionModalOpen, categories, dispatch]);
-
-   const optionsIncome = 'INCOME'
-  ;
-  const optionsExpense = 'EXPENSE'
-  ;
-////ok//
-
-
-
   const handleCheckboxChange = event => {
-    if (transactionState.type === 'EXPENSE') {
-      setTransactionState(prev => ({ ...prev, type: 'INCOME' }));
+    if (transactionState.type === TRANSACTION_TYPE.EXPENSE) {
+      setTransactionState(prev => ({ ...prev, type: TRANSACTION_TYPE.INCOME }));
       event.target.removeAttribute('checked', 'true');
     } else {
-      setTransactionState(prev => ({ ...prev, type: 'EXPENSE' }));
+      setTransactionState(prev => ({
+        ...prev,
+        type: TRANSACTION_TYPE.EXPENSE,
+      }));
       event.target.setAttribute('checked', 'true');
-    } 
+    }
   };
-/////
+
   const handleSelectChange = categoryId => {
-    setTransactionState(prev => ({ ...prev, categoryId })); console.log(5)
-  }; 
+    setTransactionState(prev => ({ ...prev, categoryId }));
+    console.log(5);
+  };
 
   const handleDateChange = selectedDate => {
-    setTransactionState(prev => ({ ...prev, date: selectedDate._d })); 
+    setTransactionState(prev => ({ ...prev, date: selectedDate._d }));
   };
 
   const handleSubmit = (values, actions) => {
     const { amount, comment } = values;
+    const month = transactionState.date.getMonth() + 1;
+    const year = transactionState.date.getFullYear();
+    const selectedCategory = categories.find(
+      el => el.id === transactionState.categoryId
+    );
+    const selectedCategoryName = capitalizeFirstLetter(
+      selectedCategory.category
+    );
 
     const formData = {
-      ...(transactionState.type === 'INCOME' && {
-        categoryId: optionsIncome[0].id,
-      }), 
-      ...(transactionState.type === 'EXPENSE' && {
-        categoryId: transactionState.categoryId
-          ? transactionState.categoryId
-          : optionsExpense.find(option => option.name === 'Other expenses').id,
+      ...(transactionState.type === TRANSACTION_TYPE.INCOME && {
+        category: null,
       }),
-
-      type: transactionState.type,
-      transactionDate: transactionState.date,
+      ...(transactionState.type === TRANSACTION_TYPE.EXPENSE && {
+        category: selectedCategoryName,
+      }),
+      type: transactionState.type === TRANSACTION_TYPE.INCOME ? true : false,
+      date: transactionState.date,
+      month,
+      year,
       comment,
-      amount:
-        transactionState.type === 'INCOME' ? Number(amount) : -Number(amount),
-      
+      amount: Number(amount),
+      owner: '6433e3a626cb729e1bec8d1e',
     };
-    onSubmit(formData);console.log(8)
-    setTransactionState(prev => ({ ...prev, type: 'EXPENSE' }));
-    actions.resetForm();console.log(11)
-    dispatch(selectIsTransactionModalOpen());
-  };
 
-  const onSubmit = formData => {
-    dispatch(addTransaction(formData)); 
-  };console.log(7)
+    dispatch(addTransaction(formData));
+    setTransactionState(prev => ({ ...prev, type: TRANSACTION_TYPE.EXPENSE }));
+    actions.resetForm();
+    dispatch(toggleTransactionModalOpen());
+    dispatch(getTransactions({ token }));
+    dispatch(getCurrentUser({ token }));
+  };
 
   let validationSchema = object({
     amount: string()
@@ -147,143 +142,6 @@ export const AddTransaction = () => {
   });
 
   return (
-    // <>
-    //   {isTransactionModalOpen && (
-    //     <div className={styles.overlay} onClick={handleBackdropClick}>
-    //       <div className={styles.modal__container}>
-    //       <div className={styles.modal__container_transaction}>Add transaction
-
-    //         {/* <div className={styles.switcher} >
-    //           <span >
-
-    //           </span>
-    //           <label className={styles.switcher__box}>
-    //           {/* <Field
-    //               type="checkbox"
-    //               name="type"
-    //               // onChange={handleCheckboxChange}
-    //               className={styles.switcher__checkbox}
-    //           // checked={transactionState.type === 'EXPENSE' ? true : false}
-    //         /> */}
-    //             {/* <span className={styles.switcher__toggle}>
-
-    //             </span>
-    //           </label> */}
-    //            {/* <span
-    //         className={transactionState.type === 'EXPENSE' ? 'expense' : ''}
-    //       >
-    //         {t('modalAddTransactionOutcomesType')}
-    //       </span> */}
-    //         {/* </div> */}
-
-    //         <form className={styles.form_wrapper}>
-    //             <div className={styles.switcher}
-    //               style={{ position: 'relative' }}
-    //           >
-    //             <span className={styles.income}>Income</span>
-    //             <label className={styles.switcher_wrapper}>
-    //               <input name='type' type='checkbox' className={styles.switcher_checkbox}
-    //                 value='EXPENSE' checked='true' />
-    //               <span className={styles.switcher_toggle}></span>
-    //             </label>
-    //             <span className={styles.expense}>Expense</span>
-    //           </div>
-
-    //           <div className={styles.category_wrapper}>
-    //             <label>
-    //               <div className={styles.category_conteiner}>
-    //                 <span>
-
-    //                 </span>
-    //                 <div className={styles.category_control}>
-    //                   <div className={styles.category_control_field}>
-    //                       <div className={styles.category_control_field_placeholder}
-    //                       as="select"
-    //           name="category">
-    //                       Select a category
-    //                     </div>
-    //                     <div className={styles.category_control_field_placeholder_selectCategory}>
-    //                       <input className={styles.category_input}>
-    //                       </input>
-    //                     </div>
-
-    //                   </div>
-    //                   <div className={styles.category_menu}>
-    //                     <span>
-
-    //                     </span>
-
-    //                     <div className={styles.category_menu_down}>
-    //                   <svg stroke="currentColor" fill="currentColor" stroke-width="0" version="1.1" viewBox="0 0 17 17" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><g></g><path d="M16.354 5.075l-7.855 7.854-7.853-7.854 0.707-0.707 7.145 7.146 7.148-7.147 0.708 0.708z"></path></svg>
-    //                     </div>
-
-    //                   </div>
-    //               </div>
-    //               </div>
-    //           </label>
-    //           </div>
-
-    //           <div className={styles.amount_date_wrapper}>
-    //             <div className={styles.amount_wrapper}>
-    //               <label>
-    //                 <input className={styles.amount_input}
-    //                 type="number"
-    //             placeholder="0.00"
-    //             name="amount"
-    //                 >
-    //                 </input>
-    //               </label>
-    //             </div>
-    //             <div className={styles.date_wrapper}>
-    //               <label>
-    //                   <div className={styles.date_svg}>
-
-    //                     <input className={styles.date_input}
-
-    //             // date={date} setDate={handleChange.date}
-
-    //             name="date"
-    //             dateFormat="DD.MM.YYYY"
-
-    //                 >
-    //                   </input>
-    //                   </div>
-    //               </label>
-    //             </div>
-
-    //           </div>
-
-    //             <textarea name="comment" rows="1" type="text" placeholder="Comment"
-    //             className={styles.textarea}>
-
-    //           </textarea>
-
-    //       {/* <form>
-    //           <form className={styles.form}
-    //             type="number"
-    //             placeholder="0.00"
-    //             name="amount">
-    //           </form>
-
-    //           <form className={styles.form_date}
-    //             name="date"
-    //             dateFormat="DD.MM.YYYY"
-    //             timeFormat='false'>
-    //           </form>
-    //           </form>
-    //             <span className={styles.span}>
-    //           <textarea type="text" name="comment"
-    //           className={styles.textarea}>
-
-    //           </textarea>
-    //             </span>
-
-    //             <span>
-    //               <label>
-
-    //               </label>
-    //             </span> */}
-
     <Formik
       initialValues={transactionState}
       validationSchema={validationSchema}
@@ -301,10 +159,12 @@ export const AddTransaction = () => {
                 <div className="switcher" style={{ position: 'relative' }}>
                   <span
                     className={
-                      transactionState.type === 'INCOME' ? 'income' : ''
+                      transactionState.type === TRANSACTION_TYPE.INCOME
+                        ? 'income'
+                        : ''
                     }
                   >
-                    {/* {t('modalAddTransactionIncomesType')} */}
+                    Income
                   </span>
                   <label className="switcher__box">
                     <Field
@@ -313,48 +173,41 @@ export const AddTransaction = () => {
                       onChange={handleCheckboxChange}
                       className="switcher__checkbox"
                       checked={
-                        transactionState.type === 'EXPENSE' ? true : false
+                        transactionState.type === TRANSACTION_TYPE.EXPENSE
+                          ? true
+                          : false
                       }
                     />
                     <span className="switcher__toggle"></span>
                   </label>
                   <span
                     className={
-                      transactionState.type === 'EXPENSE' ? 'expense' : ''
+                      transactionState.type === TRANSACTION_TYPE.EXPENSE
+                        ? 'expense'
+                        : ''
                     }
                   >
-                    {/* {t('modalAddTransactionOutcomesType')} */}
+                    Expense
                   </span>
                 </div>
-                <div
-                  className={
-                    transactionState.type === 'EXPENSE'
-                      ? 'category-wrapper'
-                      : 'category-wrapper isHidden'
-                  }
-                >
-                  <label>
-                    <Field
-                      as="select"
-                      name="category"
-                      // placeholder={t('modalAddTransactionSelect')}
-                      component={SelectComponent}
-                      // options={(transactionState.type === 'EXPENSE'
-                      //   ? optionsExpense
-                      //   : optionsIncome
-                      // ).map(option => {
-                      //   if (lan === false) {
-                      //     let newName = categoryCheck(option.name);
-                      //     return { value: option.id, label: newName };
-                      //   }
-                      //   return { value: option.id, label: option.name };
-                      // })}
-                      onChange={option => {
-                        handleSelectChange(option.value);
-                      }}
-                    />
-                  </label>
-                </div>
+                {transactionState.type === TRANSACTION_TYPE.EXPENSE && (
+                  <div className="category-wrapper">
+                    <label>
+                      <Field
+                        as="select"
+                        name="category"
+                        placeholder="Select a category"
+                        component={SelectComponent}
+                        options={categories.map(option => {
+                          return { value: option.id, label: option.category };
+                        })}
+                        onChange={option => {
+                          handleSelectChange(option.value);
+                        }}
+                      />
+                    </label>
+                  </div>
+                )}
                 <div className="amount-date-wrapper">
                   <div className="amount-wrapper">
                     <label>
@@ -388,17 +241,11 @@ export const AddTransaction = () => {
                   as="textarea"
                   rows={isMobile ? '5' : '1'}
                   type="text"
-                  // placeholder={t('modalAddTransactionComment')}
+                  placeholder="Comment"
                   name="comment"
                 />
                 <div className="button__container">
-                  <button
-                    title="add"
-                    className="button"
-                    onClick={() => {
-                      dispatch(toggleTransactionModalOpen());
-                    }}
-                  >
+                  <button title="add" className="button" type="submit">
                     ADD
                   </button>
                   <button
@@ -411,7 +258,6 @@ export const AddTransaction = () => {
                     CANCEL
                   </button>
                 </div>
-                {/* </form> */}
               </div>
             </div>
           </div>
