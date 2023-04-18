@@ -3,7 +3,7 @@ import styles from './Transactions.module.css';
 import ModeEditOutlineOutlinedIcon from '@mui/icons-material/ModeEditOutlineOutlined';
 import { useDeviceSize } from 'hooks/useDeviceSize';
 import { useState } from 'react';
-import { useEffect } from 'react';
+import { useEffect, useCallback } from 'react';
 import { selectToken } from 'redux/auth/auth-selectors';
 import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
@@ -19,36 +19,36 @@ function Transactions() {
   const [isLoading, setIsLoading] = useState(true);
   const token = useSelector(selectToken);
   const isModalOpen = useSelector(selectIsModalOpen);
+  const [id, setId] = useState(null);
 
   const dispatch = useDispatch();
 
-  const handleDeleteClick = () => {
+  const handleDeleteClick = itemId => {
     dispatch(setModalType('delete'));
     dispatch(toggleModalOpen());
+    setId(itemId);
   };
-
-
-  useEffect(() => {
-    async function fetchTransactions() {
-      setIsLoading(true);
-      try {
-        const response = await axios(
-          'https://walletproject.onrender.com/api/transactions',
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
-        setTransactions(response.data.data);
-      } catch (error) {
-        console.error('Error fetching transactions:', error);
-      }
-      setIsLoading(false);
+  const fetchTransactions = useCallback(async () => {
+    setIsLoading(true);
+    try {
+      const response = await axios(
+        'https://walletproject.onrender.com/api/transactions',
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      setTransactions(response.data.data);
+    } catch (error) {
+      console.error('Error fetching transactions:', error);
     }
-    fetchTransactions();
+    setIsLoading(false);
   }, [token]);
 
+  useEffect(() => {
+    fetchTransactions();
+  }, [fetchTransactions]);
 
   const { deviceType } = useDeviceSize();
   if (deviceType === 'mobile') {
@@ -57,7 +57,12 @@ function Transactions() {
         {isLoading ? (
           <Loader />
         ) : transactions.length === 0 ? (
-          <p className={styles.transactions__th} style={{ textAlign: 'center' }}>No transactions found</p>
+          <p
+            className={styles.transactions__th}
+            style={{ textAlign: 'center' }}
+          >
+            No transactions found
+          </p>
         ) : (
           <ul className={styles.transactions__list}>
             {transactions.map(item => (
@@ -107,7 +112,7 @@ function Transactions() {
                   <div>
                     <button
                       className={styles.transactions__btn_d}
-                      onClick={handleDeleteClick}
+                      onClick={() => handleDeleteClick(item._id)}
                     >
                       Delete
                     </button>
@@ -121,7 +126,7 @@ function Transactions() {
             ))}
           </ul>
         )}
-        {isModalOpen && <ModalDelete />}
+        {isModalOpen && <ModalDelete id={id} fetch={fetchTransactions} />}
       </div>
     );
   }
@@ -130,7 +135,9 @@ function Transactions() {
       {isLoading ? (
         <Loader />
       ) : transactions.length === 0 ? (
-        <p className={styles.transactions__th} style={{ textAlign: 'center' }}>No transactions found.</p>
+        <p className={styles.transactions__th} style={{ textAlign: 'center' }}>
+          No transactions found.
+        </p>
       ) : (
         <table className={styles.transactions__tbl}>
           <thead className={styles.transactions__thead}>
@@ -176,7 +183,7 @@ function Transactions() {
                     </button>
                     <button
                       className={styles.transactions__tbl_btn_delete}
-                      onClick={handleDeleteClick}
+                      onClick={() => handleDeleteClick(item._id)}
                     >
                       Delete
                     </button>
@@ -187,7 +194,7 @@ function Transactions() {
           </tbody>
         </table>
       )}
-      {isModalOpen && <ModalDelete />}
+      {isModalOpen && <ModalDelete id={id} fetch={fetchTransactions} />}
     </div>
   );
 }
