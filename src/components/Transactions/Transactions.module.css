@@ -99,6 +99,9 @@
   letter-spacing: 0.02em;
   padding: 0;
 }
+/* .empty-transaction__text {
+
+} */
 
 /*Tablet*/
 @media screen and (min-width: 768px) {
