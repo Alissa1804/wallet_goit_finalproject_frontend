@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import { selectToken } from 'redux/auth/auth-selectors';
 import axios from 'axios';
 
+
 function Balance() {
   const [balance, setBalance] = useState(0);
   const token = useSelector(selectToken);
@@ -23,6 +24,7 @@ function Balance() {
 
     fetch();
   }, [token]);
+
 
   return (
     <div className={styles.balance}>

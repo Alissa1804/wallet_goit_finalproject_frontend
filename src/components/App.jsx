@@ -12,7 +12,9 @@ import { PublicRoute } from 'HOCs/PublicRoute';
 import StatisticsPage from 'pages/StatisticsPage/StatisticsPage';
 import CurrencyPage from 'pages/CurrencyPage/CurrencyPage';
 
+
 export const App = () => {
+
   return (
     <>
       <Routes>
