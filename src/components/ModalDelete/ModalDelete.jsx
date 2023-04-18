@@ -5,6 +5,7 @@ import styles from '../ModalLogout/ModalLogout.module.css';
 import { selectToken } from 'redux/auth/auth-selectors';
 import { getTransactions } from 'redux/transactions/transactions-operations';
 import { deleteTransaction } from 'redux/transactions/transactions-operations';
+import { getCurrentUser } from 'redux/user/user-operations';
 
 export const ModalDelete = ({ id }) => {
   const token = useSelector(selectToken);
@@ -50,6 +51,7 @@ export const ModalDelete = ({ id }) => {
                   await dispatch(getTransactions({ token }));
                   dispatch(toggleModalOpen());
                   dispatch(setModalType(null));
+                  dispatch(getCurrentUser({ token }));
                 }}
               >
                 DELETE

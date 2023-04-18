@@ -206,7 +206,7 @@ function Transactions() {
         </table>
       )}
       {isEditModalOpen && <EditTransaction id={id} />}
-      {isModalOpen && <ModalDelete id={id} fetch={fetchTransactions} />}
+      {isModalOpen && <ModalDelete id={id} />}
     </div>
   );
 }
