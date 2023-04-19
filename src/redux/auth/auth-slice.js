@@ -31,10 +31,14 @@ const authSlice = createSlice({
         state.error = null;
         state.user = payload;
         state.isFetchingCurrentUser = false;
+        state.isAuth = true;
       })
       .addCase(fetchCurrentUser.rejected, state => {
         state.isFetchingCurrentUser = false;
         state.token = null;
+      })
+      .addCase(login.fulfilled, state => {
+        state.isAuth = true;
       })
       .addMatcher(
         isAnyOf(register.fulfilled, login.fulfilled),
@@ -42,10 +46,11 @@ const authSlice = createSlice({
           state.isLoading = false;
           state.user = user;
           state.token = token;
-          state.isAuth = true;
+
           state.error = null;
         }
       )
+
       .addMatcher(
         isAnyOf(
           register.pending,
@@ -61,7 +66,6 @@ const authSlice = createSlice({
         isAnyOf(register.rejected, login.rejected),
         (state, { payload }) => {
           state.isLoading = false;
-          state.isAuth = false;
           state.error = payload;
         }
       ),

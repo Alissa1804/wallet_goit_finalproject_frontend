@@ -12,16 +12,14 @@ import { PublicRoute } from 'HOCs/PublicRoute';
 import StatisticsPage from 'pages/StatisticsPage/StatisticsPage';
 import CurrencyPage from 'pages/CurrencyPage/CurrencyPage';
 
-
 export const App = () => {
-
   return (
     <>
       <Routes>
         <Route
           path="/"
           element={
-            <PublicRoute redirectTo="/" component={<RegistrationPage />} />
+            <PublicRoute redirectTo="/home" component={<RegistrationPage />} />
           }
         />
         <Route
@@ -32,18 +30,20 @@ export const App = () => {
         <Route
           path="/home"
           element={
-            <PrivateRoute redirectTo="/" component={<DashboardPage />} />
+            <PrivateRoute redirectTo="/login" component={<DashboardPage />} />
           }
         />
         <Route
           path="/statistics"
           element={
-            <PrivateRoute redirectTo="/" component={<StatisticsPage />} />
+            <PrivateRoute redirectTo="/login" component={<StatisticsPage />} />
           }
         />
         <Route
           path="/currency"
-          element={<PrivateRoute redirectTo="/" component={<CurrencyPage />} />}
+          element={
+            <PrivateRoute redirectTo="/login" component={<CurrencyPage />} />
+          }
         />
       </Routes>
       <ToastContainer position="bottom-right" />

@@ -8,7 +8,13 @@ import { selectIsAuth } from 'redux/auth/auth-selectors';
 //   console.log("public");
 //   return !token ? <Navigate to={redirectTo} /> : Component;
 // };
-export const PublicRoute = ({ component: Component, redirectTo = '/' }) => {
+//export const PublicRoute = ({ component: Component, redirectTo = '/' }) => {
+//  const isAuth = useSelector(selectIsAuth);
+//  const shouldRedirect = isAuth;
+//  return shouldRedirect ? <Navigate to={redirectTo} /> : Component;
+//};
+
+export const PublicRoute = ({ component: Component, redirectTo = '/home' }) => {
   const isAuth = useSelector(selectIsAuth);
   const shouldRedirect = isAuth;
   return shouldRedirect ? <Navigate to={redirectTo} /> : Component;

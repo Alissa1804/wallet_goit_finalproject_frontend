@@ -5,7 +5,10 @@ import { selectToken } from 'redux/auth/auth-selectors';
 import { useEffect } from 'react';
 import { fetchCurrentUser } from 'redux/auth/auth-operations';
 
-export const PrivateRoute = ({ component: Component, redirectTo = '/' }) => {
+export const PrivateRoute = ({
+  component: Component,
+  redirectTo = '/login',
+}) => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchCurrentUser());
