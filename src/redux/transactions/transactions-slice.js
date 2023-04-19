@@ -28,9 +28,10 @@ const transactionsSlice = createSlice({
         state.isLoading = true;
         state.error = null;
       })
-      .addCase(addTransaction.fulfilled, state => {
+      .addCase(addTransaction.fulfilled, (state, { payload }) => {
         state.isLoading = false;
         state.error = null;
+        state.transactions = [...state.transactions, payload];
       })
       .addCase(addTransaction.rejected, (state, { payload }) => {
         state.isLoading = false;
