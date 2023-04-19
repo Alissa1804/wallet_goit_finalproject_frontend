@@ -19,6 +19,7 @@ import { selectToken } from 'redux/auth/auth-selectors';
 import { getTransactions } from 'redux/transactions/transactions-operations';
 import { getCurrentUser } from 'redux/user/user-operations';
 import { selectTransactions } from 'redux/transactions/transactions-selectors';
+import { selectId } from 'redux/auth/auth-selectors';
 
 function capitalizeFirstLetter(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
@@ -40,6 +41,7 @@ export const EditTransaction = ({ id }) => {
   const categories = useSelector(selectCategories);
   const token = useSelector(selectToken);
   const transactions = useSelector(selectTransactions);
+  const owner = useSelector(selectId);
   const transaction = transactions.find(el => el._id === id);
   const category = transaction.category
     ? categories.find(
@@ -130,7 +132,6 @@ export const EditTransaction = ({ id }) => {
     }
 
     const formData = {
-      ...transaction,
       category: selectedCategoryName,
       type: transactionState.type === TRANSACTION_TYPE.INCOME ? true : false,
       date: transactionState.date,
@@ -138,6 +139,7 @@ export const EditTransaction = ({ id }) => {
       year,
       comment,
       amount: Number(amount),
+      owner: owner,
     };
 
     dispatch(editTransaction({ id: transaction._id, transaction: formData }));
