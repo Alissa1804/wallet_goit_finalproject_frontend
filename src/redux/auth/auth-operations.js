@@ -4,6 +4,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 axios.defaults.baseURL = 'https://walletproject.onrender.com';
+//axios.defaults.baseURL = 'http://localhost:3000';
 
 const token = {
   set(token) {

@@ -2,40 +2,87 @@ import styled from 'styled-components';
 import { Form, ErrorMessage } from 'formik';
 
 export const AddTransactionStyled = styled(Form)`
-  .modal__container {
-    padding: 40px 20px;
-    margin: 50px 40px;
-    text-align: center;
-    background-color: var(--secondary-background-color);
-    border-radius: 20px;
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  
+@media screen and (max-width: 767px) {
+      padding: 0 8px 8px;
+    
+  .amount-date-wrapper {
+    
+   margin-bottom:40px
+  }
+  
 
+  .amount{
+     margin-bottom:40px;
+     padding: 0px ;
+  }
+
+  .btns-wrapper {
+    width: 1000%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+ 
+}
+
+  .modal__title {
+    font-size: 30px;
+    line-height: calc(1.5);
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 400;
     font-size: 30px;
     line-height: 45px;
-    display: flex;
-    align-items: center;
+    /* display: flex; */
+    /* align-items: center; */
     text-align: center;
     font-size: 30px;
     line-height: calc(1.5);
+     padding: 40px 73px;
+    
+  }
+
+  .form {
+    display: flex;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
   }
 
   .modal__container_transaction {
     position: absolute;
-    top: 60px;
+    /* top: 50px; */
     left: 0px;
     margin-bottom: 40px;
-    width: 100%;
+    /* width: 100%; */
     height: calc(100% - 60px);
     padding: 20px;
     background-color: rgb(255, 255, 255);
     z-index: 102;
-    text-align: center;
+    /* text-align: center; */
     background-color: var(--secondary-background-color);
     border-radius: 20px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    height:auto;
+    width: 540px;
+    min-height:508px
+
+    font-size: 30px;
+    line-height: calc(1.5);
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 45px;
+    padding:40px 73px
+    
+
+    
   }
 
   display: flex;
@@ -46,7 +93,7 @@ export const AddTransactionStyled = styled(Form)`
     margin-bottom: 40px;
   }
   & .switcher {
-    
+    width: 235px;
     height: 46px;
     display: flex;
     align-items: center;
@@ -55,6 +102,10 @@ export const AddTransactionStyled = styled(Form)`
     font-size: 16px;
     line-height: calc(24 / 16);
     color: #e0e0e0;
+&:not(:last-child) {
+    margin-bottom: 40px;
+  }
+
     & .income {
       color: #24cca7;
       transition: color 0.4s ease-in-out;
@@ -150,11 +201,23 @@ export const AddTransactionStyled = styled(Form)`
       margin-bottom: 0;
     }
   }
+  .category-wrapper:not(:last-child) {
+    margin-bottom: 40px;
+  }
+
+  .textarea:not(:last-child) {
+    margin-bottom: 40px;
+  }
+
   & .amount-date-wrapper {
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 40px 0;
+    gap: 0px 32px;
+    &:not(:last-child) {
+      margin-bottom: 40px;
+    }
+
     & .amount-wrapper,
     & .date-wrapper {
       position: relative;
@@ -166,31 +229,29 @@ export const AddTransactionStyled = styled(Form)`
         /* display: none; */
         -webkit-appearance: none;
         -moz-appearance: textfield;
-        margin: 0;
-        
+      
       }
     }
+
     @media screen and (min-width: 768px) {
       flex-direction: row;
       align-items: center;
-      gap: 0 30px;
+      gap: 0 32px;
       & .amount-wrapper {
         width: calc((100% - 30px) / 2);
       }
       & .date-wrapper {
         width: calc((100% - 30px) / 2);
-        
       }
       & .amount {
         width: 100%;
         text-align: center;
-        
       }
       & .date {
         width: 100%;
-        
       }
     }
+    
   }
   & .btns-wrapper {
     width: 100%;
@@ -204,12 +265,24 @@ export const AddTransactionStyled = styled(Form)`
     position: relative;
   }
 
+
+
   .text {
     font-family: 'Poppins';
     font-weight: 400;
     font-size: 22px;
     line-height: 1.5;
     color: var(--dark-text-color);
+    
+  }
+
+  .button__container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    -webkit-box-align: center;
+    align-items: center;
+    gap: 20px;
   }
 
   .button {
@@ -217,7 +290,7 @@ export const AddTransactionStyled = styled(Form)`
     align-items: center;
     justify-content: center;
     box-sizing: border-box;
-    width: 100%;
+    width: 300px;
     padding: 10px;
     height: 50px;
     border-radius: 20px;
@@ -225,17 +298,23 @@ export const AddTransactionStyled = styled(Form)`
     font-family: 'Circe';
     font-size: 18px;
     cursor: pointer;
+    margin0px
+      transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
   }
 
+  .button:hover {
+  box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
+    rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+}
   .button:first-child {
-    margin-top: 30px;
+    /* margin-top: 30px; */
     border: 1px solid var(--green-color);
     background-color: var(--green-color);
     color: var(--light-text-color);
   }
 
   .button:last-child {
-    margin-top: 20px;
+    /* margin-top: 20px; */
     border: 1px solid var(--accent-text-color);
     color: var(--accent-text-color);
   }
@@ -253,7 +332,32 @@ export const AddTransactionStyled = styled(Form)`
     backdrop-filter: blur(3px);
     z-index: 1200;
   }
+
+
 `;
+
+// .modal__container {
+
+//     margin: 50px 40px;
+//     /* text-align: center; */
+//     background-color: var(--secondary-background-color);
+//     border-radius: 20px;
+//     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
+//     font-family: 'Poppins';
+//     font-style: normal;
+//     font-weight: 400;
+//     font-size: 30px;
+//     line-height: 45px;
+//     display: flex;
+//     align-items: center;
+
+//     font-size: 30px;
+//     line-height: calc(1.5);
+
+//     width: 540px;
+//     min-height: 508px;
+//   }
 
 export const ErrorMessageStyled = styled(ErrorMessage)`
   position: absolute;

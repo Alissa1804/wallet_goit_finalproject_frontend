@@ -58,7 +58,9 @@
   height: 24px;
   padding: 8px 8px 8px 45px;
 }
-
+.input:focus {
+  border-bottom: 1px solid var(--green-color);
+}
 .inputIcon {
   width: 24px;
   height: 24px;
@@ -90,10 +92,13 @@
   height: 50px;
   /* padding: 13px 65px 13px 71px; */
   margin-bottom: 20px;
-
+  transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
 }
-
+.mainButton:hover {
+  box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
+    rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+}
 .secondaryButton {
   font-family: 'Circe';
   font-weight: 400;
@@ -110,8 +115,12 @@
   width: 280px;
   height: 50px;
   /* padding: 13px 55px 13px 61px; */
-
+  transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
+}
+.secondaryButton:hover {
+  box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
+    rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
 }
 
 .passwordVisibilityToggle {

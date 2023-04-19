@@ -118,7 +118,6 @@ function Transactions() {
                       Delete
                     </button>
                   </div>
-                  dsfsfs
                   <div className={styles.transactions__button_edit}>
                     <ModeEditOutlineOutlinedIcon fontSize="small" />
                     <button

@@ -25,9 +25,16 @@ export function AddTransactionBtn() {
         aria-label="add transaction button"
         onClick={handleClick}
       >
-        <BsFillPlusCircleFill size={44} />
+        {' '}
+        <BsFillPlusCircleFill
+          size={44}
+          style={{
+            borderRadius: '50%',
+            border: 'none',
+            backgroundColor: '#fff',
+          }}
+        />
         {/* <img src={btn} alt="" width={44} height={44} /> */}
-
         {/* <AddCircleIcon sx={{ color: '#24CCA7', fontSize: 44, }} /> */}
       </button>
       {isTransactionModalOpen && <AddTransaction />}

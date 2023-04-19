@@ -220,6 +220,12 @@ export const EditTransactionStyled = styled(Form)`
     font-family: 'Circe';
     font-size: 18px;
     cursor: pointer;
+    transition: box-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .button:hover {
+    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
+      rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
   }
 
   .button:first-child {
