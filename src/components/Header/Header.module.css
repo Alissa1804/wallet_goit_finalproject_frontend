@@ -37,6 +37,11 @@
   font-style: normal;
   font-weight: 700;
   font-size: 20px;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.logo__name:hover {
+  color: var(--green-color);
 }
 
 .user__name {
@@ -66,6 +71,10 @@
 
 .logout__text {
   display: none;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.logout__text:hover {
+  color: var(--red-color);
 }
 
 @media screen and (min-width: 768px) {
