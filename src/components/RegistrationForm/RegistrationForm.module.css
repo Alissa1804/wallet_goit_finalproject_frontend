@@ -55,7 +55,7 @@
   border: none;
   outline: none;
   border-bottom: 1px solid #e0e0e0;
-    height: 24px;
+  height: 24px;
   padding: 8px 8px 8px 45px;
 }
 
@@ -64,7 +64,7 @@
   height: 24px;
   position: absolute;
   left: 10px;
-  top: 20%;
+  top: 25%;
 }
 
 .buttonContainer {
@@ -103,7 +103,7 @@
   letter-spacing: 0.1em;
   text-transform: uppercase;
 
-  color: #4A56E2;
+  color: #4a56e2;
   background: #ffffff;
   border: 1px solid var(--accent-text-color);
   border-radius: 20px;
@@ -111,6 +111,15 @@
   height: 50px;
   /* padding: 13px 55px 13px 61px; */
 
+  cursor: pointer;
+}
+
+.passwordVisibilityToggle {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  right: -5px;
+  top: 30%;
   cursor: pointer;
 }
 
@@ -135,15 +144,14 @@
   .input {
     width: 347px;
     height: 32px;
-
   }
 
-  .mainButton{
+  .mainButton {
     width: 300px;
     height: 50px;
   }
 
-  .secondaryButton{
+  .secondaryButton {
     width: 300px;
     height: 50px;
   }

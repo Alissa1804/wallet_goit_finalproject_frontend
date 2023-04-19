@@ -63,7 +63,7 @@
   height: 24px;
   position: absolute;
   left: 10px;
-  top: 20%;
+  top: 30%;
 }
 
 .buttonContainer {
@@ -110,6 +110,15 @@
   height: 50px;
   /* padding: 13px 55px 13px 61px; */
 
+  cursor: pointer;
+}
+
+.passwordVisibilityToggle{
+    width: 30px;
+  height: 30px;
+  position: absolute;
+  right: -5px;
+  top: 30%;
   cursor: pointer;
 }
 
