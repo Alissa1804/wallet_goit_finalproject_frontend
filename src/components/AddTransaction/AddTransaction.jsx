@@ -20,6 +20,8 @@ import { getTransactions } from 'redux/transactions/transactions-operations';
 import { getCurrentUser } from 'redux/user/user-operations';
 import { selectId } from 'redux/auth/auth-selectors';
 
+
+
 function capitalizeFirstLetter(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
@@ -112,6 +114,8 @@ export const AddTransaction = () => {
       selectedCategoryName = capitalizeFirstLetter(selectedCategory.category);
     }
 
+  
+
     const formData = {
       category: selectedCategoryName,
       type: transactionState.type === TRANSACTION_TYPE.INCOME ? true : false,
@@ -141,6 +145,8 @@ export const AddTransaction = () => {
     type: string().required('Required'),
   });
 
+  
+
   return (
     <Formik
       initialValues={transactionState}
@@ -150,12 +156,14 @@ export const AddTransaction = () => {
         setTransactionState(prev => ({ ...prev, nextValues }));
       }}
     >
+      
       <AddTransactionStyled className="modal-form">
         {isTransactionModalOpen && (
           <div className="overlay" onClick={handleBackdropClick}>
             <div className="modal__container">
               <div className="modal__container_transaction">
-                Add transaction
+                <h2 className="modal__title">Add transaction</h2>
+                <form className="form">
                 <div className="switcher" style={{ position: 'relative' }}>
                   <span
                     className={
@@ -242,7 +250,8 @@ export const AddTransaction = () => {
                   rows={isMobile ? '5' : '1'}
                   type="text"
                   placeholder="Comment"
-                  name="comment"
+                    name="comment"
+                    className="textarea"
                 />
                 <div className="button__container">
                   <button title="add" className="button" type="submit">
@@ -257,12 +266,18 @@ export const AddTransaction = () => {
                   >
                     CANCEL
                   </button>
-                </div>
+                  </div>
+                </form>
+                
               </div>
             </div>
+
+            
           </div>
         )}
       </AddTransactionStyled>
+      
     </Formik>
+    
   );
 };
