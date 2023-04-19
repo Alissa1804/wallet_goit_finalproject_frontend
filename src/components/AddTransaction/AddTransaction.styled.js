@@ -10,6 +10,7 @@ export const AddTransactionStyled = styled(Form)`
     
    margin-bottom:40px
   }
+  
 
   .amount{
      margin-bottom:40px;
@@ -298,8 +299,13 @@ export const AddTransactionStyled = styled(Form)`
     font-size: 18px;
     cursor: pointer;
     margin0px
+      transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
   }
 
+  .button:hover {
+  box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
+    rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+}
   .button:first-child {
     /* margin-top: 30px; */
     border: 1px solid var(--green-color);
@@ -331,7 +337,7 @@ export const AddTransactionStyled = styled(Form)`
 `;
 
 // .modal__container {
-   
+
 //     margin: 50px 40px;
 //     /* text-align: center; */
 //     background-color: var(--secondary-background-color);

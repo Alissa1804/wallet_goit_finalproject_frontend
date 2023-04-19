@@ -104,8 +104,11 @@
   }
 }
 
-@media screen and (min-width: 2000px) {
+@media screen and (min-width: 1300px) {
   .dashboard__content {
     justify-content: center;
+    max-width: 1300px;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
