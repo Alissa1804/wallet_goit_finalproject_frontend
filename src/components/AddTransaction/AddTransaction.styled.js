@@ -2,8 +2,79 @@ import styled from 'styled-components';
 import { Form, ErrorMessage } from 'formik';
 
 export const AddTransactionStyled = styled(Form)`
+
+.modal__container {
+  overflow:auto;
+    position: absolute;
+    top: 60px;
+    left: 0px;
+    margin-bottom: 40px;
+    width: 100%;
+    height: calc(100% - 100px);
+    padding: 20px;
+    background-color: rgb(255, 255, 255);
+    z-index: 102;
+    /* text-align: center; */
+    background-color: var(--secondary-background-color);
+    border-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    
+    
+    
+
+    font-size: 30px;
+    line-height: calc(1.5);
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 45px;
+    /* padding:40px 73px; */
+
+    
+  /* flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  & > *:not(:last-child) {
+    margin-bottom: 40px;} */
+    
+
+    
+  }
+
+  .main__title{
+        font-family: Poppins, "Montserrat Alternates";
+    text-align: center;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: calc(1.5);
+  }
+
+  .modal__container_transaction{
+        display: flex;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+}
   
-@media screen and (max-width: 767px) {
+/* &.switcher{
+  width: 235px;
+    height: 46px;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: calc(1.5);
+    color: rgb(224, 224, 224);
+} */
+
+  
+/* @media screen and (max-width: 767px) {
       padding: 0 8px 8px;
     
   .amount-date-wrapper {
@@ -26,72 +97,15 @@ export const AddTransactionStyled = styled(Form)`
   }
 
  
-}
+} */
 
-  .modal__title {
-    font-size: 30px;
-    line-height: calc(1.5);
-    font-family: 'Poppins';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 30px;
-    line-height: 45px;
-    /* display: flex; */
-    /* align-items: center; */
-    text-align: center;
-    font-size: 30px;
-    line-height: calc(1.5);
-     padding: 40px 73px;
-    
-  }
+  
 
-  .form {
-    display: flex;
-    flex-direction: column;
-    -webkit-box-pack: center;
-    justify-content: center;
-    -webkit-box-align: center;
-    align-items: center;
-  }
+  
 
-  .modal__container_transaction {
-    position: absolute;
-    /* top: 50px; */
-    left: 0px;
-    margin-bottom: 40px;
-    /* width: 100%; */
-    height: calc(100% - 60px);
-    padding: 20px;
-    background-color: rgb(255, 255, 255);
-    z-index: 102;
-    /* text-align: center; */
-    background-color: var(--secondary-background-color);
-    border-radius: 20px;
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-    height:auto;
-    width: 540px;
-    min-height:508px
 
-    font-size: 30px;
-    line-height: calc(1.5);
-    font-family: 'Poppins';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 30px;
-    line-height: 45px;
-    padding:40px 73px
-    
 
-    
-  }
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  & > *:not(:last-child) {
-    margin-bottom: 40px;
-  }
+ 
   & .switcher {
     width: 235px;
     height: 46px;
@@ -163,7 +177,11 @@ export const AddTransactionStyled = styled(Form)`
   }
   & textarea {
     resize: none;
+     &:not(:last-child) {
+    margin-bottom: 40px;
   }
+  }
+  
   & input,
   & select {
     max-height: 32px;
@@ -181,9 +199,14 @@ export const AddTransactionStyled = styled(Form)`
     font-weight: 400;
     font-size: 18px;
     line-height: calc(27 / 18);
+   
+
+ 
     @media screen and (min-width: 768px) {
+      
       padding: 0 8px 8px;
     }
+    
     &:focus {
       outline: none;
     }
@@ -194,6 +217,8 @@ export const AddTransactionStyled = styled(Form)`
       color: #bdbdbd;
     }
   }
+
+
   & .category-wrapper {
     width: 100%;
     transition: margin 0.4s ease;
@@ -213,7 +238,7 @@ export const AddTransactionStyled = styled(Form)`
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 0px 32px;
+    gap: 40px 0px;
     &:not(:last-child) {
       margin-bottom: 40px;
     }
@@ -233,7 +258,21 @@ export const AddTransactionStyled = styled(Form)`
       }
     }
 
+    
+    }
+
     @media screen and (min-width: 768px) {
+      .modal__container{
+          height: auto;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 540px;
+    min-height: 508px;
+    padding: 40px 73px;
+    border-radius: 20px;
+}
+.amount-date-wrapper{
       flex-direction: row;
       align-items: center;
       gap: 0 32px;
@@ -250,9 +289,9 @@ export const AddTransactionStyled = styled(Form)`
       & .date {
         width: 100%;
       }
-    }
+    }}
     
-  }
+  
   & .btns-wrapper {
     width: 100%;
     display: flex;
@@ -298,7 +337,7 @@ export const AddTransactionStyled = styled(Form)`
     font-family: 'Circe';
     font-size: 18px;
     cursor: pointer;
-    margin0px
+    margin:0px;
       transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
   }
 
@@ -334,6 +373,9 @@ export const AddTransactionStyled = styled(Form)`
   }
 
 
+
+
+
 `;
 
 // .modal__container {
@@ -358,6 +400,7 @@ export const AddTransactionStyled = styled(Form)`
 //     width: 540px;
 //     min-height: 508px;
 //   }
+
 
 export const ErrorMessageStyled = styled(ErrorMessage)`
   position: absolute;
