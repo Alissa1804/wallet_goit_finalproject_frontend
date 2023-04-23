@@ -154,8 +154,9 @@ export const AddTransaction = () => {
         {isTransactionModalOpen && (
           <div className="overlay" onClick={handleBackdropClick}>
             <div className="modal__container">
+              
+              <h2 className="main__title">Add transaction</h2>
               <div className="modal__container_transaction">
-                Add transaction
                 <div className="switcher" style={{ position: 'relative' }}>
                   <span
                     className={
