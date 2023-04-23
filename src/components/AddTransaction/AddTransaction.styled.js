@@ -3,8 +3,9 @@ import { Form, ErrorMessage } from 'formik';
 
 export const AddTransactionStyled = styled(Form)`
 
-.modal__container {
-  overflow:auto;
+  .modal__container {
+    box-sizing: border-box;
+    overflow: auto;
     position: absolute;
     top: 60px;
     left: 0px;
@@ -18,9 +19,6 @@ export const AddTransactionStyled = styled(Form)`
     background-color: var(--secondary-background-color);
     border-radius: 20px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-    
-    
-    
 
     font-size: 30px;
     line-height: calc(1.5);
@@ -31,35 +29,31 @@ export const AddTransactionStyled = styled(Form)`
     line-height: 45px;
     /* padding:40px 73px; */
 
-    
-  /* flex-direction: column;
+    /* flex-direction: column;
   justify-content: center;
   align-items: center;
   & > *:not(:last-child) {
     margin-bottom: 40px;} */
-    
-
-    
   }
 
-  .main__title{
-        font-family: Poppins, "Montserrat Alternates";
+  .main__title {
+    font-family: Poppins, 'Montserrat Alternates';
     text-align: center;
     font-weight: 400;
     font-size: 24px;
     line-height: calc(1.5);
   }
 
-  .modal__container_transaction{
-        display: flex;
+  .modal__container_transaction {
+    display: flex;
     flex-direction: column;
     -webkit-box-pack: center;
     justify-content: center;
     -webkit-box-align: center;
     align-items: center;
-}
-  
-/* &.switcher{
+  }
+
+  /* &.switcher{
   width: 235px;
     height: 46px;
     display: flex;
@@ -73,8 +67,7 @@ export const AddTransactionStyled = styled(Form)`
     color: rgb(224, 224, 224);
 } */
 
-  
-/* @media screen and (max-width: 767px) {
+  /* @media screen and (max-width: 767px) {
       padding: 0 8px 8px;
     
   .amount-date-wrapper {
@@ -99,13 +92,6 @@ export const AddTransactionStyled = styled(Form)`
  
 } */
 
-  
-
-  
-
-
-
- 
   & .switcher {
     width: 235px;
     height: 46px;
@@ -116,9 +102,9 @@ export const AddTransactionStyled = styled(Form)`
     font-size: 16px;
     line-height: calc(24 / 16);
     color: #e0e0e0;
-&:not(:last-child) {
-    margin-bottom: 40px;
-  }
+    &:not(:last-child) {
+      margin-bottom: 40px;
+    }
 
     & .income {
       color: #24cca7;
@@ -177,11 +163,11 @@ export const AddTransactionStyled = styled(Form)`
   }
   & textarea {
     resize: none;
-     &:not(:last-child) {
-    margin-bottom: 40px;
+    &:not(:last-child) {
+      margin-bottom: 40px;
+    }
   }
-  }
-  
+
   & input,
   & select {
     max-height: 32px;
@@ -199,14 +185,11 @@ export const AddTransactionStyled = styled(Form)`
     font-weight: 400;
     font-size: 18px;
     line-height: calc(27 / 18);
-   
 
- 
     @media screen and (min-width: 768px) {
-      
       padding: 0 8px 8px;
     }
-    
+
     &:focus {
       outline: none;
     }
@@ -217,7 +200,6 @@ export const AddTransactionStyled = styled(Form)`
       color: #bdbdbd;
     }
   }
-
 
   & .category-wrapper {
     width: 100%;
@@ -254,25 +236,22 @@ export const AddTransactionStyled = styled(Form)`
         /* display: none; */
         -webkit-appearance: none;
         -moz-appearance: textfield;
-      
       }
     }
+  }
 
-    
+  @media screen and (min-width: 768px) {
+    .modal__container {
+      height: auto;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 540px;
+      min-height: 508px;
+      padding: 40px 73px;
+      border-radius: 20px;
     }
-
-    @media screen and (min-width: 768px) {
-      .modal__container{
-          height: auto;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 540px;
-    min-height: 508px;
-    padding: 40px 73px;
-    border-radius: 20px;
-}
-.amount-date-wrapper{
+    .amount-date-wrapper {
       flex-direction: row;
       align-items: center;
       gap: 0 32px;
@@ -289,9 +268,9 @@ export const AddTransactionStyled = styled(Form)`
       & .date {
         width: 100%;
       }
-    }}
-    
-  
+    }
+  }
+
   & .btns-wrapper {
     width: 100%;
     display: flex;
@@ -304,15 +283,12 @@ export const AddTransactionStyled = styled(Form)`
     position: relative;
   }
 
-
-
   .text {
     font-family: 'Poppins';
     font-weight: 400;
     font-size: 22px;
     line-height: 1.5;
     color: var(--dark-text-color);
-    
   }
 
   .button__container {
@@ -337,14 +313,14 @@ export const AddTransactionStyled = styled(Form)`
     font-family: 'Circe';
     font-size: 18px;
     cursor: pointer;
-    margin:0px;
-      transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    margin: 0px;
+    transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .button:hover {
-  box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
-    rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
-}
+    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
+      rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+  }
   .button:first-child {
     /* margin-top: 30px; */
     border: 1px solid var(--green-color);
@@ -358,7 +334,7 @@ export const AddTransactionStyled = styled(Form)`
     color: var(--accent-text-color);
   }
 
-  .overlay {
+  /* .overlay {
     position: fixed;
     top: 0;
     left: 0;
@@ -370,41 +346,19 @@ export const AddTransactionStyled = styled(Form)`
 
     backdrop-filter: blur(3px);
     z-index: 1200;
-  }
-
-
-
-
-
+  } */
 `;
-
-// .modal__container {
-
-//     margin: 50px 40px;
-//     /* text-align: center; */
-//     background-color: var(--secondary-background-color);
-//     border-radius: 20px;
-//     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-
-//     font-family: 'Poppins';
-//     font-style: normal;
-//     font-weight: 400;
-//     font-size: 30px;
-//     line-height: 45px;
-//     display: flex;
-//     align-items: center;
-
-//     font-size: 30px;
-//     line-height: calc(1.5);
-
-//     width: 540px;
-//     min-height: 508px;
-//   }
 
 
 export const ErrorMessageStyled = styled(ErrorMessage)`
   position: absolute;
-  top: 36px;
-  left: 0;
+  top: 6px;
+  left: 70px;
   color: #ff3333;
+  font-family: 'Circe';
+  font-size: 18px;
+
+  @media screen and (min-width: 768px) {
+    left: -4px
+  }
 `;
