@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { getCategories } from './categories-operations';
 
 const initialState = {
-  categories: [],
+  allCategories: [],
   isLoading: false,
   error: null,
 };
@@ -21,6 +21,7 @@ const categoriesSlice = createSlice({
         state.isLoading = false;
         state.error = null;
         state.allCategories = payload.data;
+        console.log(state.allCategories);
       })
       .addCase(getCategories.rejected, (state, { payload }) => {
         state.isLoading = false;

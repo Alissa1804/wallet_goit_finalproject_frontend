@@ -119,11 +119,11 @@ function Transactions() {
                     </button>
                   </div>
                   <div className={styles.transactions__button_edit}>
-                    <ModeEditOutlineOutlinedIcon fontSize="small" />
                     <button
                       className={styles.transactions__btn_e}
                       onClick={() => handleEditClick(item._id)}
                     >
+                      <ModeEditOutlineOutlinedIcon fontSize="small" />
                       Edit
                     </button>
                   </div>

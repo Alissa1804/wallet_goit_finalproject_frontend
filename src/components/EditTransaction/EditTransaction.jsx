@@ -57,7 +57,7 @@ export const EditTransaction = ({ id }) => {
         ? TRANSACTION_TYPE.INCOME
         : TRANSACTION_TYPE.EXPENSE,
     categoryId: category ? category.id : null,
-    category: category ? category.id : null,
+    category: category ? transaction.category : null,
     amount: transaction.amount.toString(),
     date: new Date(transaction.date),
     comment: transaction.comment,

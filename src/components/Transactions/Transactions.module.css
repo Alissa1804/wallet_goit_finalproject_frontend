@@ -84,19 +84,22 @@
 }
 
 .transactions__btn_d:hover {
-  background-color: var(--red-color);
+  background-color: var(--green-color);
 }
 .transactions__button_edit {
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
   gap: 2px;
+  cursor: pointer;
+  width: 11px;
 }
 .transactions__btn_e:hover {
-  color: var(--red-color);
+  color: var(--green-color);
 }
 
 .transactions__btn_e {
+  display: flex;
   cursor: pointer;
   border-radius: 18px;
   background-color: var(--light-text-color);

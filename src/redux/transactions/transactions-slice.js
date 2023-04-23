@@ -58,6 +58,10 @@ const transactionsSlice = createSlice({
         // state.transactions = payload;
         state.isLoading = false;
         state.error = null;
+        const index = state.transactions.findIndex(
+          transaction => transaction.id === payload.id
+        );
+        state.transactions[index] = payload;
       })
       .addCase(editTransaction.rejected, (state, { payload }) => {
         state.isLoading = false;
