@@ -3,6 +3,7 @@ import { Form, ErrorMessage } from 'formik';
 
 export const AddTransactionStyled = styled(Form)`
 
+
   .modal__container {
     box-sizing: border-box;
     overflow: auto;
@@ -11,7 +12,7 @@ export const AddTransactionStyled = styled(Form)`
     left: 0px;
     margin-bottom: 40px;
     width: 100%;
-    height: calc(100% - 100px);
+    height: calc(100% - 60px);
     padding: 20px;
     background-color: rgb(255, 255, 255);
     z-index: 102;
@@ -37,6 +38,7 @@ export const AddTransactionStyled = styled(Form)`
   }
 
   .main__title {
+    margin-bottom:40px;
     font-family: Poppins, 'Montserrat Alternates';
     text-align: center;
     font-weight: 400;
@@ -352,11 +354,11 @@ export const AddTransactionStyled = styled(Form)`
 
 export const ErrorMessageStyled = styled(ErrorMessage)`
   position: absolute;
-  top: 6px;
-  left: 70px;
+  top: 37px;
+  /* left: 70px; */
   color: #ff3333;
   font-family: 'Circe';
-  font-size: 18px;
+  font-size: 15px;
 
   @media screen and (min-width: 768px) {
     left: -4px
