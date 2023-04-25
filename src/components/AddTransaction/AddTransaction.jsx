@@ -133,7 +133,7 @@ export const AddTransaction = () => {
 
   let validationSchema = object({
     amount: string()
-      .required('Required')
+      .required('amount is required')
       .max(16, 'Must be 16 characters maximum'),
     date: date()
       .required('Required')
