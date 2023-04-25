@@ -21,6 +21,7 @@ const financeSlice = createSlice({
         state.isLoading = false;
         state.error = null;
         state.statistics = payload;
+        state.statistics.data[0].categories.sort((a, b) => b.total - a.total);
       })
       .addCase(getStatistics.rejected, (state, { payload }) => {
         state.isLoading = false;

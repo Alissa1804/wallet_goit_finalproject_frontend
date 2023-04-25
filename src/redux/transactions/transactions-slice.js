@@ -42,7 +42,9 @@ const transactionsSlice = createSlice({
         state.error = null;
       })
       .addCase(getTransactions.fulfilled, (state, { payload }) => {
-        state.transactions = payload;
+        state.transactions = payload.sort((a, b) => {
+          return new Date(b.date) - new Date(a.date);
+        });
         state.isLoading = false;
         state.error = null;
       })
@@ -59,9 +61,12 @@ const transactionsSlice = createSlice({
         state.isLoading = false;
         state.error = null;
         const index = state.transactions.findIndex(
-          transaction => transaction.id === payload.id
+          transaction => transaction._id === payload._id
         );
         state.transactions[index] = payload;
+        state.transactions = state.transactions.sort((a, b) => {
+          return new Date(b.date) - new Date(a.date);
+        });
       })
       .addCase(editTransaction.rejected, (state, { payload }) => {
         state.isLoading = false;

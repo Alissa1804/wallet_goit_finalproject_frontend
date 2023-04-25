@@ -60,7 +60,10 @@ export const EditTransaction = ({ id }) => {
     category: category ? transaction.category : null,
     amount: transaction.amount.toString(),
     date: new Date(transaction.date),
-    comment: transaction.comment,
+    comment:
+      transaction.comment && transaction.comment.trim() !== ''
+        ? transaction.comment
+        : ' ',
   });
 
   const dispatch = useDispatch();
@@ -137,7 +140,7 @@ export const EditTransaction = ({ id }) => {
       date: transactionState.date,
       month,
       year,
-      comment,
+      comment: comment.trim() !== '' ? comment : ' ',
       amount: Number(amount),
       owner: owner,
     };

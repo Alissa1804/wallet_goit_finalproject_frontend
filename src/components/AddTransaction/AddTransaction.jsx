@@ -34,7 +34,7 @@ const defaultState = {
   categoryId: null,
   amount: '',
   date: new Date(),
-  comment: '',
+  comment: ' ',
 };
 
 export const AddTransaction = () => {
@@ -154,7 +154,6 @@ export const AddTransaction = () => {
         {isTransactionModalOpen && (
           <div className="overlay" onClick={handleBackdropClick}>
             <div className="modal__container">
-              
               <h2 className="main__title">Add transaction</h2>
               <div className="modal__container_transaction">
                 <div className="switcher" style={{ position: 'relative' }}>
