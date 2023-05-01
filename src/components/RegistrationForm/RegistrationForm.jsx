@@ -71,13 +71,13 @@ export const RegistrationForm = () => {
         values,
         errors,
       }) => (
-        <div className={styles.containerForForm}>
+        <div className={styles.form__container}>
           <Form className={styles.form}>
-            <div className={styles.logoContainer}>
+            <div className={styles.logo__container}>
               <img className={styles.logo} alt="Logo" src={logo} />
               <h1 className={styles.title}>Wallet</h1>
             </div>
-            <div className={styles.inputContainer}>
+            <div className={styles.input__container}>
               {touched.email && errors.email ? (
                 <p
                   style={{
@@ -94,7 +94,7 @@ export const RegistrationForm = () => {
               ) : null}
 
               <EmailIcon
-                className={styles.inputIcon}
+                className={styles.input__icon}
                 style={{ color: '#e0e0e0' }}
               />
               <input
@@ -108,7 +108,7 @@ export const RegistrationForm = () => {
                 onBlur={handleBlur}
               />
             </div>
-            <div className={styles.inputContainer}>
+            <div className={styles.input__container}>
               {touched.password && errors.password ? (
                 <p
                   style={{
@@ -125,7 +125,7 @@ export const RegistrationForm = () => {
               ) : null}
 
               <LockIcon
-                className={styles.inputIcon}
+                className={styles.input__icon}
                 style={{ color: '#e0e0e0' }}
               />
               <input
@@ -141,7 +141,7 @@ export const RegistrationForm = () => {
               />
               <span
                 onClick={handlePasswordVisibility}
-                className={styles.passwordVisibilityToggle}
+                className={styles.password__visibility__toggle}
               >
                 {showPassword ? (
                   <VisibilityOffIcon style={{ color: '#e0e0e0' }} />
@@ -151,7 +151,7 @@ export const RegistrationForm = () => {
               </span>
               <PasswordStrengthMeter password={password} />
             </div>
-            <div className={styles.inputContainer}>
+            <div className={styles.input__container}>
               {touched.confirmPassword && errors.confirmPassword ? (
                 <p
                   style={{
@@ -168,7 +168,7 @@ export const RegistrationForm = () => {
               ) : null}
 
               <LockIcon
-                className={styles.inputIcon}
+                className={styles.input__icon}
                 style={{ color: '#e0e0e0' }}
               />
               <input
@@ -182,7 +182,7 @@ export const RegistrationForm = () => {
                 onBlur={handleBlur}
               />
             </div>
-            <div className={styles.inputContainer}>
+            <div className={styles.input__container}>
               {touched.name && errors.name ? (
                 <p
                   style={{
@@ -199,7 +199,7 @@ export const RegistrationForm = () => {
               ) : null}
 
               <AccountBoxIcon
-                className={styles.inputIcon}
+                className={styles.input__icon}
                 style={{ color: '#e0e0e0' }}
               />
               <input
@@ -213,16 +213,16 @@ export const RegistrationForm = () => {
                 onBlur={handleBlur}
               />
             </div>
-            <div className={styles.buttonContainer}>
+            <div className={styles.button__container}>
               <button
                 type="submit"
-                className={styles.mainButton}
+                className={styles.main__button}
                 disabled={!isValid && !dirty}
               >
                 Register
               </button>
               <Link to="/login">
-                <button type="button" className={styles.secondaryButton}>
+                <button type="button" className={styles.secondary__button}>
                   Log in
                 </button>
               </Link>
