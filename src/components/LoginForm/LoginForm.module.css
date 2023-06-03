@@ -5,10 +5,7 @@
 .form {
   margin: 0px auto;
   height: 100vh;
-  max-width: 320px;
   overflow: hidden;
-
-  /* padding: 32px 20px 36px; */
   display: flex;
   flex-direction: column;
   position: relative;
@@ -17,7 +14,7 @@
   background-color: rgb(255, 255, 255);
 }
 
-.logoContainer {
+.logo__container {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -37,7 +34,7 @@
   color: var(--dark-text-color);
 }
 
-.inputContainer {
+.input__container {
   position: relative;
   margin-bottom: 40px;
 }
@@ -60,7 +57,7 @@
 .input:focus {
   border-bottom: 1px solid var(--green-color);
 }
-.inputIcon {
+.input__icon {
   width: 24px;
   height: 24px;
   position: absolute;
@@ -68,12 +65,12 @@
   top: 30%;
 }
 
-.buttonContainer {
+.button__container {
   display: flex;
   flex-direction: column;
 }
 
-.mainButton {
+.main__button {
   font-family: 'Circe';
   font-weight: 400;
   font-size: 18px;
@@ -95,12 +92,12 @@
   cursor: pointer;
 }
 
-.mainButton:hover {
+.main__button:hover {
   box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
     rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
 }
 
-.secondaryButton {
+.secondary__button {
   font-family: 'Circe';
   font-weight: 400;
   font-size: 18px;
@@ -120,7 +117,7 @@
   cursor: pointer;
 }
 
-.passwordVisibilityToggle{
+.password__visibility__toggle{
     width: 30px;
   height: 30px;
   position: absolute;
@@ -130,7 +127,7 @@
 }
 
 
-.secondaryButton:hover {
+.secondary__button:hover {
   box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
     rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
 }
@@ -158,12 +155,12 @@
     height: 32px;
   }
 
-  .mainButton {
+  .main__button {
     width: 300px;
     height: 50px;
   }
 
-  .secondaryButton {
+  .secondary__button {
     width: 300px;
     height: 50px;
   }

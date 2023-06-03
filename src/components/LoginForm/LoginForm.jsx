@@ -53,13 +53,13 @@ export const LoginForm = () => {
         values,
         errors,
       }) => (
-        <div className={styles.containerForForm}>
+        <div className={styles.form__container}>
           <Form className={styles.form}>
-            <div className={styles.logoContainer}>
+            <div className={styles.logo__container}>
               <img className={styles.logo} alt="Logo" src={logo} />
               <h1 className={styles.title}>Wallet</h1>
             </div>
-            <div className={styles.inputContainer}>
+            <div className={styles.input__container}>
               {touched.email && errors.email ? (
                 <p
                   style={{
@@ -76,7 +76,7 @@ export const LoginForm = () => {
               ) : null}
 
               <EmailIcon
-                className={styles.inputIcon}
+                className={styles.input__icon}
                 style={{ color: '#e0e0e0' }}
               />
               <input
@@ -90,7 +90,7 @@ export const LoginForm = () => {
                 onBlur={handleBlur}
               />
             </div>
-            <div className={styles.inputContainer}>
+            <div className={styles.input__container}>
               {touched.password && errors.password ? (
                 <p
                   style={{
@@ -107,7 +107,7 @@ export const LoginForm = () => {
               ) : null}
 
               <LockIcon
-                className={styles.inputIcon}
+                className={styles.input__icon}
                 style={{ color: '#e0e0e0' }}
               />
               <input
@@ -122,20 +122,20 @@ export const LoginForm = () => {
               />
               <span
                 onClick={handlePasswordVisibility}
-                className={styles.passwordVisibilityToggle}
+                className={styles.password__visibility__toggle}
               >
                 {showPassword ? <VisibilityOffIcon style={{ color: '#e0e0e0' }}/> : <VisibilityIcon style={{ color: '#e0e0e0' }}/>}
               </span>
             </div>
 
-            <div className={styles.buttonContainer}>
-              <button type="submit" className={styles.mainButton}>
+            <div className={styles.button__container}>
+              <button type="submit" className={styles.main__button}>
                 Log in
               </button>
               <Link to="/">
                 <button
                   type="button"
-                  className={styles.secondaryButton}
+                  className={styles.secondary__button}
                   disabled={!isValid && !dirty}
                 >
                   Register
